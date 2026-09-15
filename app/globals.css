@@ -794,6 +794,14 @@ select:disabled {
   padding-left: 1.25rem;
 }
 
+/* The mobile menu also carries the `.glass` class for its blur/border
+   styling, but `.glass`'s translucent background (5% white/black) wins on
+   specificity in light theme, making the whole drawer — and the nav links
+   inside it — nearly invisible. Force it fully opaque in both themes. */
+.mobile-menu.glass {
+  background: var(--bg-secondary) !important;
+}
+
 /* ===== Toasts ===== */
 .toast {
   padding: 0.85rem 1.1rem;

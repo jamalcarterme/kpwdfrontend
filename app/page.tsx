@@ -171,12 +171,14 @@ export default function HomePage() {
           >
             <source src="/assets/video/hero-bg.mp4" type="video/mp4" />
           </video>
-          {/* Dark overlay so text stays readable over any frame of the video */}
-          <div className="absolute inset-0 -z-10 bg-black/65" />
+          {/* Light overlay — just enough to keep text readable without
+              muddying the video itself. */}
+          <div className="absolute inset-0 -z-10 bg-black/25" />
+          <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black/45 via-transparent to-black/50" />
           <div className="glow-orb bg-[var(--brand)] w-[500px] h-[500px] -top-40 -left-40 opacity-20" />
           <div className="glow-orb-2 bg-[var(--brand-2)] w-[400px] h-[400px] top-40 right-0 opacity-20" />
 
-          <div className="max-w-4xl mx-auto px-5 lg:px-8 py-20 sm:py-28 lg:py-36 relative z-10 flex flex-col items-center text-center">
+          <div className="max-w-4xl mx-auto px-5 lg:px-8 py-20 sm:py-28 lg:py-36 relative z-10 flex flex-col items-center text-center" style={{ textShadow: '0 2px 16px rgba(0,0,0,0.55)' }}>
             <span className="chip"><span className="dot" /> Lagos &middot; Serving 12+ countries</span>
             <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl font-bold text-white leading-[1.15] mt-5 sm:mt-6">
               Built for Businesses Who Are <span className="text-gradient">Done Being Invisible Online</span>.
