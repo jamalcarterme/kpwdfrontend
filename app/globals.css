@@ -261,6 +261,11 @@ select:disabled {
 [data-theme='light'] #hero .border-white\/10 {
   border-color: rgba(255, 255, 255, 0.1);
 }
+[data-theme='light'] #hero .chip {
+  color: #f1f1f1;
+  border-color: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.08);
+}
 /* The top nav bar is a permanent dark pill (see .nav-glass above) in both
    themes, so its white/slate text must stay light in light mode too. */
 [data-theme='light'] .nav-glass .text-white,
