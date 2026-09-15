@@ -163,13 +163,13 @@ export default function HomePage() {
           <div className="max-w-7xl mx-auto px-5 lg:px-8 py-6 sm:py-12 lg:py-24 grid lg:grid-cols-2 gap-8 lg:gap-14 items-center relative z-10">
             <div>
               <span className="chip"><span className="dot" /> Lagos &middot; Serving 12+ countries</span>
-              <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl font-bold text-white leading-[1.15] mt-5 sm:mt-6">
+              <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl font-bold text-[var(--text-primary)] leading-[1.15] mt-5 sm:mt-6">
                 Built for Businesses Who Are <span className="text-gradient">Done Being Invisible Online</span>.
               </h1>
-              <p className="text-slate-400 text-base sm:text-lg mt-4 sm:mt-6 max-w-xl">
+              <p className="text-[var(--text-secondary)] text-base sm:text-lg mt-4 sm:mt-6 max-w-xl">
                 A premium website, e-commerce store or custom software build, engineered to make you the obvious choice in your market and turn visitors into paying clients. Designed with intent, built with clean code, shipped fast.
               </p>
-              <p className="text-slate-300 text-base sm:text-lg mt-4 max-w-xl">
+              <p className="text-[var(--text-secondary)] text-base sm:text-lg mt-4 max-w-xl">
                 We specialize in conversion-focused design for law firms, real estate agencies, e-commerce brands, restaurants, and small businesses across Lagos and Nigeria. Every site we build includes on-page SEO optimization, mobile responsiveness, and fast load times&mdash;ensuring you rank on Google and attract qualified leads.
               </p>
               <div className="flex flex-wrap gap-4 mt-6 sm:mt-8">
@@ -187,7 +187,7 @@ export default function HomePage() {
               <div className="glass rounded-2xl overflow-hidden float">
                 <div className="flex items-center gap-2 px-4 pt-4 pb-3">
                   <span className="w-3 h-3 rounded-full bg-rose-400" /><span className="w-3 h-3 rounded-full bg-amber-400" /><span className="w-3 h-3 rounded-full bg-emerald-400" />
-                  <span className="ml-2 text-xs text-slate-500 font-medium">kingpraisewebdesign.com</span>
+                  <span className="ml-2 text-xs text-[var(--text-secondary)] font-medium">kingpraisewebdesign.com</span>
                 </div>
                 <div className="relative w-full h-[220px] sm:h-[320px]">
                   <Image
@@ -202,16 +202,16 @@ export default function HomePage() {
               </div>
               <div className="hidden sm:flex absolute -bottom-6 -left-6 glass rounded-xl px-5 py-3.5 items-center gap-3 shadow-lg">
                 <span className="text-2xl">🚀</span>
-                <div><p className="font-display font-bold text-white text-lg leading-none">14 days</p><p className="text-slate-400 text-xs mt-1">Avg. time to launch</p></div>
+                <div><p className="font-display font-bold text-[var(--text-primary)] text-lg leading-none">14 days</p><p className="text-[var(--text-secondary)] text-xs mt-1">Avg. time to launch</p></div>
               </div>
               <div className="hidden sm:flex absolute -top-6 -right-4 glass rounded-xl px-5 py-3 items-center gap-3 shadow-lg">
                 <span className="text-lg font-display font-bold text-[var(--brand-2)]">+212%</span>
-                <p className="text-slate-400 text-xs leading-tight">Avg. enquiries<br />first quarter</p>
+                <p className="text-[var(--text-secondary)] text-xs leading-tight">Avg. enquiries<br />first quarter</p>
               </div>
             </div>
           </div>
-          <div className="border-y border-white/10 py-6 overflow-hidden relative z-10">
-            <div className="marquee-track text-slate-500 font-display text-sm uppercase tracking-widest">
+          <div className="border-y border-[var(--border)] py-6 overflow-hidden relative z-10">
+            <div className="marquee-track text-[var(--text-secondary)] font-display text-sm uppercase tracking-widest">
               <span>Web Design</span><span>&middot;</span><span>E-Commerce</span><span>&middot;</span><span>Mobile Apps</span><span>&middot;</span><span>Custom Software</span><span>&middot;</span><span>SEO</span><span>&middot;</span><span>Branding</span>
               <span>Web Design</span><span>&middot;</span><span>E-Commerce</span><span>&middot;</span><span>Mobile Apps</span><span>&middot;</span><span>Custom Software</span><span>&middot;</span><span>SEO</span><span>&middot;</span><span>Branding</span>
             </div>
@@ -219,11 +219,11 @@ export default function HomePage() {
         </section>
 
         {/* ===== WHY CHOOSE KPWD ===== */}
-        <section className="max-w-7xl mx-auto px-5 lg:px-8 py-16 border-t border-white/10">
+        <section className="max-w-7xl mx-auto px-5 lg:px-8 py-16 border-t border-[var(--border)]">
           <div className="text-center mb-12">
             <span className="text-[var(--brand-2)] text-xs font-semibold uppercase tracking-widest">Why Choose King Praise</span>
-            <h2 className="font-display text-3xl sm:text-5xl font-bold text-white mt-3">Why Businesses Choose KPWD</h2>
-            <p className="text-slate-400 mt-4 max-w-2xl mx-auto">Most web designers build pretty websites. We build websites that generate revenue.</p>
+            <h2 className="font-display text-3xl sm:text-5xl font-bold text-[var(--text-primary)] mt-3">Why Businesses Choose KPWD</h2>
+            <p className="text-[var(--text-secondary)] mt-4 max-w-2xl mx-auto">Most web designers build pretty websites. We build websites that generate revenue.</p>
           </div>
           <div className="grid md:grid-cols-3 gap-8 mt-12">
             {[
@@ -235,10 +235,10 @@ export default function HomePage() {
               { icon: '💰', title: 'Transparent Pricing', desc: 'No hidden fees. Packages start at ₦50K for small business sites. Custom quotes for enterprises.' },
             ].map((c, i) => (
               <Reveal key={c.title} delay={i * 0.06}>
-                <div className="bg-slate-900/50 rounded-lg p-6 border border-white/5 hover:border-white/20 transition h-full">
+                <div className="bg-[var(--surface)] rounded-lg p-6 border border-[var(--border)] hover:border-[var(--brand)] transition h-full">
                   <div className="text-3xl mb-3">{c.icon}</div>
-                  <h3 className="text-white font-semibold text-lg mb-2">{c.title}</h3>
-                  <p className="text-slate-400 text-sm">{c.desc}</p>
+                  <h3 className="text-[var(--text-primary)] font-semibold text-lg mb-2">{c.title}</h3>
+                  <p className="text-[var(--text-secondary)] text-sm">{c.desc}</p>
                 </div>
               </Reveal>
             ))}
@@ -250,8 +250,8 @@ export default function HomePage() {
           <div className="flex items-end justify-between flex-wrap gap-4">
             <div>
               <span className="text-[var(--brand-2)] text-xs font-semibold uppercase tracking-widest">Selected Work</span>
-              <h2 className="font-display text-3xl sm:text-5xl font-bold text-white mt-3">Real projects, real results</h2>
-              <p className="text-slate-400 mt-3 max-w-lg">A look at what we&apos;ve shipped for clients across industries and continents.</p>
+              <h2 className="font-display text-3xl sm:text-5xl font-bold text-[var(--text-primary)] mt-3">Real projects, real results</h2>
+              <p className="text-[var(--text-secondary)] mt-3 max-w-lg">A look at what we&apos;ve shipped for clients across industries and continents.</p>
             </div>
             <Link href="/portfolio" className="btn-primary px-5 py-2.5 rounded-lg text-sm whitespace-nowrap">View full portfolio →</Link>
           </div>
@@ -263,9 +263,9 @@ export default function HomePage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
             <div>
               <span className="text-[var(--brand-2)] text-xs font-semibold uppercase tracking-widest">Who We Are</span>
-              <h2 className="font-display text-3xl sm:text-4xl font-bold text-white mt-3 leading-[1.2]">No AI slop. No cookie-cutter templates. Just work that converts.</h2>
-              <p className="text-slate-400 mt-4 leading-relaxed">We&apos;re a premium web design and software studio based in Lagos, working with law firms, real estate agencies, churches, restaurants and small businesses worldwide. We combine conversion-focused design with clean, maintainable code on the MERN stack (React, Node.js, MongoDB, Express.js).</p>
-              <p className="text-slate-400 mt-3 leading-relaxed">Our mission: give your business a web presence that ranks on Google, builds instant trust with visitors, and turns them into paying customers, not just another site sitting quietly in a corner of the internet.</p>
+              <h2 className="font-display text-3xl sm:text-4xl font-bold text-[var(--text-primary)] mt-3 leading-[1.2]">No AI slop. No cookie-cutter templates. Just work that converts.</h2>
+              <p className="text-[var(--text-secondary)] mt-4 leading-relaxed">We&apos;re a premium web design and software studio based in Lagos, working with law firms, real estate agencies, churches, restaurants and small businesses worldwide. We combine conversion-focused design with clean, maintainable code on the MERN stack (React, Node.js, MongoDB, Express.js).</p>
+              <p className="text-[var(--text-secondary)] mt-3 leading-relaxed">Our mission: give your business a web presence that ranks on Google, builds instant trust with visitors, and turns them into paying customers, not just another site sitting quietly in a corner of the internet.</p>
             </div>
             <div className="grid grid-cols-2 gap-4">
               {[
@@ -276,7 +276,7 @@ export default function HomePage() {
               ].map(([num, label]) => (
                 <div key={label} className="glass rounded-xl p-6 text-center">
                   <div className="font-display text-3xl font-bold text-[var(--brand-2)]">{num}</div>
-                  <p className="text-slate-400 text-sm mt-2">{label}</p>
+                  <p className="text-[var(--text-secondary)] text-sm mt-2">{label}</p>
                 </div>
               ))}
             </div>
@@ -285,7 +285,7 @@ export default function HomePage() {
           <div>
             <div className="text-center max-w-2xl mx-auto mb-14">
               <span className="text-[var(--brand-2)] text-xs font-semibold uppercase tracking-widest">What We Deliver</span>
-              <h3 className="font-display text-2xl sm:text-3xl font-bold text-white mt-3">Full-stack digital solutions built for conversion</h3>
+              <h3 className="font-display text-2xl sm:text-3xl font-bold text-[var(--text-primary)] mt-3">Full-stack digital solutions built for conversion</h3>
             </div>
             <div className="grid md:grid-cols-3 gap-6">
               {[
@@ -299,8 +299,8 @@ export default function HomePage() {
                       <Image src={s.img} alt={s.alt} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
                     </div>
                     <div className="p-6">
-                      <h3 className="font-display text-lg font-semibold text-white">{s.title}</h3>
-                      <p className="text-slate-400 text-sm mt-3">{s.desc}</p>
+                      <h3 className="font-display text-lg font-semibold text-[var(--text-primary)]">{s.title}</h3>
+                      <p className="text-[var(--text-secondary)] text-sm mt-3">{s.desc}</p>
                       <span className="price-tag">{s.price}</span>
                     </div>
                   </div>
@@ -309,7 +309,7 @@ export default function HomePage() {
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16">
               {['Conversion-Focused', 'Mobile-Optimized', 'SEO-Ready', 'Fast Support'].map((t) => (
-                <div key={t} className="glass rounded-xl p-5 text-center"><span className="text-emerald-400 text-lg">✓</span><p className="text-slate-300 text-sm font-medium mt-1">{t}</p></div>
+                <div key={t} className="glass rounded-xl p-5 text-center"><span className="text-emerald-400 text-lg">✓</span><p className="text-[var(--text-secondary)] text-sm font-medium mt-1">{t}</p></div>
               ))}
             </div>
             <div className="text-center mt-12"><Link href="/services" className="text-[var(--brand-2)] font-semibold hover:underline text-sm">Explore all services &rarr;</Link></div>
@@ -320,8 +320,8 @@ export default function HomePage() {
         <section className="max-w-7xl mx-auto px-5 lg:px-8 py-24">
           <div className="text-center max-w-2xl mx-auto mb-14">
             <span className="text-[var(--brand-2)] text-xs font-semibold uppercase tracking-widest">How It Works</span>
-            <h2 className="font-display text-3xl sm:text-4xl font-bold text-white mt-3">A calm, predictable process</h2>
-            <p className="text-slate-400 mt-3">No black boxes, no surprise invoices &mdash; just a clear path from call to launch.</p>
+            <h2 className="font-display text-3xl sm:text-4xl font-bold text-[var(--text-primary)] mt-3">A calm, predictable process</h2>
+            <p className="text-[var(--text-secondary)] mt-3">No black boxes, no surprise invoices &mdash; just a clear path from call to launch.</p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
@@ -333,8 +333,8 @@ export default function HomePage() {
               <div key={String(num)} className="relative">
                 <div className="step-num">{num}</div>
                 {i < 3 && <div className="step-connector" />}
-                <h3 className="font-display text-lg font-semibold text-white mt-4">{title}</h3>
-                <p className="text-slate-400 text-sm mt-2">{desc}</p>
+                <h3 className="font-display text-lg font-semibold text-[var(--text-primary)] mt-4">{title}</h3>
+                <p className="text-[var(--text-secondary)] text-sm mt-2">{desc}</p>
               </div>
             ))}
           </div>
@@ -344,17 +344,17 @@ export default function HomePage() {
         <section id="team-section" className="max-w-7xl mx-auto px-5 lg:px-8 py-24">
           <div className="text-center max-w-2xl mx-auto">
             <span className="text-[var(--brand-2)] text-xs font-semibold uppercase tracking-widest">Our Team</span>
-            <h2 className="font-display text-3xl sm:text-4xl font-bold text-white mt-3">The people behind the work</h2>
+            <h2 className="font-display text-3xl sm:text-4xl font-bold text-[var(--text-primary)] mt-3">The people behind the work</h2>
           </div>
           <TeamGrid />
           <div className="text-center mt-10"><Link href="/about" className="text-[var(--brand-2)] font-semibold hover:underline">Meet the full team &rarr;</Link></div>
         </section>
 
         {/* ===== WEB DESIGN BY CITY & INDUSTRY ===== */}
-        <section className="max-w-7xl mx-auto px-5 lg:px-8 py-24 border-t border-white/10">
+        <section className="max-w-7xl mx-auto px-5 lg:px-8 py-24 border-t border-[var(--border)]">
           <div className="text-center mb-12">
             <span className="text-[var(--brand-2)] text-xs font-semibold uppercase tracking-widest">Services by Location & Industry</span>
-            <h2 className="font-display text-3xl sm:text-5xl font-bold text-white mt-3">Web Design Services Across Nigeria</h2>
+            <h2 className="font-display text-3xl sm:text-5xl font-bold text-[var(--text-primary)] mt-3">Web Design Services Across Nigeria</h2>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
@@ -365,9 +365,9 @@ export default function HomePage() {
               { href: '/services/ecommerce', title: 'E-Commerce Website Developer', desc: 'Build online stores with Flutterwave & Paystack integration for Nigerian businesses.' },
               { href: '/services/logistics', title: 'Website Design for Logistics', desc: 'Specialized B2B websites with shipment tracking, quote management & lead generation.' },
             ].map((l) => (
-              <Link key={l.title} href={l.href} className="group bg-slate-900/30 border border-white/10 rounded-lg p-6 hover:border-blue-500/50 hover:bg-slate-900/50 transition">
-                <h3 className="text-white font-semibold mb-2 group-hover:text-blue-400">{l.title}</h3>
-                <p className="text-slate-400 text-sm">{l.desc}</p>
+              <Link key={l.title} href={l.href} className="group bg-[var(--surface)] border border-[var(--border)] rounded-lg p-6 hover:border-[var(--brand)] hover:bg-[var(--surface)] transition">
+                <h3 className="text-[var(--text-primary)] font-semibold mb-2 group-hover:text-[var(--brand-2)]">{l.title}</h3>
+                <p className="text-[var(--text-secondary)] text-sm">{l.desc}</p>
               </Link>
             ))}
           </div>
@@ -378,7 +378,7 @@ export default function HomePage() {
           <div className="max-w-7xl mx-auto px-5 lg:px-8">
             <div className="text-center max-w-2xl mx-auto">
               <span className="text-[var(--brand-2)] text-xs font-semibold uppercase tracking-widest">Client Voices</span>
-              <h2 className="font-display text-3xl sm:text-4xl font-bold text-white mt-3">Trusted by teams worldwide</h2>
+              <h2 className="font-display text-3xl sm:text-4xl font-bold text-[var(--text-primary)] mt-3">Trusted by teams worldwide</h2>
             </div>
           </div>
           <TestimonialsCarousel />
@@ -388,8 +388,8 @@ export default function HomePage() {
         <section id="schedule" className="max-w-7xl mx-auto px-5 lg:px-8 py-24">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <span className="text-[var(--brand-2)] text-xs font-semibold uppercase tracking-widest">Book Your Free Call</span>
-            <h2 className="font-display text-3xl sm:text-4xl font-bold text-white mt-3">Schedule time with our team</h2>
-            <p className="text-slate-400 mt-4">Pick a time that works best for you. We&apos;ll discuss your project, goals, and how we can help.</p>
+            <h2 className="font-display text-3xl sm:text-4xl font-bold text-[var(--text-primary)] mt-3">Schedule time with our team</h2>
+            <p className="text-[var(--text-secondary)] mt-4">Pick a time that works best for you. We&apos;ll discuss your project, goals, and how we can help.</p>
           </div>
           <ScheduleWidget />
         </section>
@@ -407,7 +407,7 @@ export default function HomePage() {
                     {faq.question}
                     <span className="text-xl group-open:rotate-180 transition-transform">▾</span>
                   </summary>
-                  <p className="text-slate-400 mt-4 leading-relaxed">{faq.answer}</p>
+                  <p className="text-[var(--text-secondary)] mt-4 leading-relaxed">{faq.answer}</p>
                 </details>
               ))}
             </div>
@@ -418,8 +418,8 @@ export default function HomePage() {
         <section className="max-w-7xl mx-auto px-5 lg:px-8 py-10 mb-10">
           <div className="glass rounded-3xl p-12 text-center relative overflow-hidden">
             <div className="glow-orb bg-[var(--brand)] w-72 h-72 -top-20 left-1/2 -translate-x-1/2" />
-            <h2 className="font-display text-3xl sm:text-4xl font-bold text-white relative">Ready to build something great?</h2>
-            <p className="text-slate-400 mt-4 max-w-lg mx-auto relative">Tell us about your project and we&apos;ll get back within 24 hours with a clear plan and quote.</p>
+            <h2 className="font-display text-3xl sm:text-4xl font-bold text-[var(--text-primary)] relative">Ready to build something great?</h2>
+            <p className="text-[var(--text-secondary)] mt-4 max-w-lg mx-auto relative">Tell us about your project and we&apos;ll get back within 24 hours with a clear plan and quote.</p>
             <div className="flex flex-wrap justify-center gap-4 mt-8 relative">
               <Link href="/contact#schedule" className="btn-primary px-7 py-3.5 rounded-xl">Book a Free Call</Link>
               <Link href="/pricing" className="btn-ghost px-7 py-3.5 rounded-xl">See Pricing</Link>

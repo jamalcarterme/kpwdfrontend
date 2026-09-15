@@ -5,14 +5,21 @@ import Link from 'next/link';
 import { motion } from 'motion/react';
 import { useFetch } from '@/hooks';
 import { truncate } from '@/lib/utils';
-import { fallbackProjects, type FallbackProject } from '@/lib/data/fallback';
+interface Project {
+  _id: string;
+  title: string;
+  category: string;
+  description: string;
+  isFeatured?: boolean;
+  image?: { url?: string };
+}
 
 export default function FeaturedProjects() {
-  const { data, isLoading } = useFetch<{ projects?: FallbackProject[]; data?: FallbackProject[] }>('/projects', { auth: false });
+  const { data, isLoading } = useFetch<{ projects?: Project[]; data?: Project[] }>('/projects', { auth: false });
 
-  const fromApi = (data?.projects || data?.data || []).filter((p) => p.isFeatured);
-  const source = fromApi.length ? fromApi : (data?.projects || data?.data || []);
-  const list = (source.length > 0 ? source : fallbackProjects.filter((p) => p.isFeatured)).slice(0, 3);
+  const all = data?.projects || data?.data || [];
+  const featured = all.filter((p) => p.isFeatured);
+  const list = (featured.length ? featured : all).slice(0, 3);
 
   if (isLoading) {
     return (
@@ -22,6 +29,10 @@ export default function FeaturedProjects() {
         ))}
       </div>
     );
+  }
+
+  if (!isLoading && list.length === 0) {
+    return <p className="text-center text-slate-400 mt-10">Projects coming soon — check back shortly.</p>;
   }
 
   return (

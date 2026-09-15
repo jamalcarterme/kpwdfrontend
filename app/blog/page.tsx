@@ -9,7 +9,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { PAGE_META, generateMetadata, injectSchema, getBreadcrumbSchema } from '@/lib/seo';
 import NewsletterForm from '@/components/NewsletterForm';
-import { fallbackBlogPosts, type FallbackBlogPost } from '@/lib/data/fallback';
+import { SERVER_API_BASE } from '@/lib/api';
 
 // ===== Metadata =====
 export const metadata: Metadata = generateMetadata(PAGE_META.blog);
@@ -44,12 +44,12 @@ interface BlogPost {
 }
 
 /**
- * Fetch blog posts from backend API, falling back to seed content
- * (lib/data/fallback.ts) whenever the database has no published posts yet
- * so the page never ships the empty "No articles yet" state (audit item #15).
+ * Fetch published blog posts straight from the backend API. No mock/fallback
+ * content — if the API has no posts yet, the page shows its real empty
+ * state below instead of fabricated data.
  */
-async function getBlogPosts(): Promise<(BlogPost | FallbackBlogPost)[]> {
-  const apiBase = process.env.NEXT_PUBLIC_API_BASE || 'http://localhost:5000/api';
+async function getBlogPosts(): Promise<BlogPost[]> {
+  const apiBase = SERVER_API_BASE;
 
   try {
     const res = await fetch(`${apiBase}/blog`, {
@@ -60,15 +60,14 @@ async function getBlogPosts(): Promise<(BlogPost | FallbackBlogPost)[]> {
 
     if (!res.ok) {
       console.error(`Blog API error: ${res.status}`);
-      return fallbackBlogPosts;
+      return [];
     }
 
     const data = await res.json();
-    const posts: BlogPost[] = data.posts || data.data || [];
-    return posts.length > 0 ? posts : fallbackBlogPosts;
+    return data.posts || data.data || [];
   } catch (error) {
     console.error('Failed to fetch blog posts:', error);
-    return fallbackBlogPosts;
+    return [];
   }
 }
 

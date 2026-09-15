@@ -143,7 +143,11 @@ const nextConfig = {
 
   // ===== Environment Variables =====
   env: {
-    NEXT_PUBLIC_API_BASE: process.env.NEXT_PUBLIC_API_BASE || 'http://localhost:5000/api',
+    // No hardcoded fallback here — leave unset in this env block so
+    // lib/api.ts's own localhost-vs-production fallback (mirroring the
+    // original site's assets/js/config.js) takes effect instead of
+    // silently pinning every deploy to localhost:5000.
+    NEXT_PUBLIC_API_BASE: process.env.NEXT_PUBLIC_API_BASE,
     NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL || 'https://www.kingpraisewebdesign.name.ng',
     NEXT_PUBLIC_GA_ID: process.env.NEXT_PUBLIC_GA_ID || 'G-2BBFZB00KV',
     // Google Search Console ownership verification (Audit item #9). Set this to the

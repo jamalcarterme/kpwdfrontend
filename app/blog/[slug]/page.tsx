@@ -1,8 +1,6 @@
 /**
  * Blog Post Page (/blog/[slug])
- * Falls back to the seed posts in lib/data/fallback.ts when the API has no
- * matching post yet, so posts shown on the (also-fallback-backed) /blog
- * listing are always clickable instead of 404ing.
+ * Fetches the post from the backend API only — no mock/fallback content.
  */
 
 import type { Metadata } from 'next';
@@ -11,9 +9,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { generateMetadata as buildMeta, getBlogPostMeta } from '@/lib/seo';
 import { formatDate } from '@/lib/utils';
-import { fallbackBlogPosts } from '@/lib/data/fallback';
-
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE || 'http://localhost:5000/api';
+import { SERVER_API_BASE as API_BASE } from '@/lib/api';
 
 interface BlogPost {
   title: string;
@@ -33,14 +29,12 @@ async function getPost(slug: string): Promise<BlogPost | null> {
     const res = await fetch(`${API_BASE}/blog/${slug}`, { next: { revalidate: 300 } });
     if (res.ok) {
       const data = await res.json();
-      const post = data.post || data.data || null;
-      if (post) return post;
+      return data.post || data.data || null;
     }
-  } catch {
-    // fall through to fallback content below
+  } catch (error) {
+    console.error('Failed to fetch blog post:', error);
   }
-  const fallback = fallbackBlogPosts.find((p) => p.slug === slug);
-  return fallback || null;
+  return null;
 }
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {

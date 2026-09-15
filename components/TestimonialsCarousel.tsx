@@ -2,15 +2,20 @@
 
 import { motion } from 'motion/react';
 import { useFetch } from '@/hooks';
-import { fallbackTestimonials, type FallbackTestimonial } from '@/lib/data/fallback';
-
-type Testimonial = FallbackTestimonial & { isActive?: boolean };
+interface Testimonial {
+  _id: string;
+  name: string;
+  role?: string;
+  company?: string;
+  quote: string;
+  rating?: number;
+  isActive?: boolean;
+}
 
 export default function TestimonialsCarousel() {
   const { data, isLoading } = useFetch<{ testimonials?: Testimonial[]; data?: Testimonial[] }>('/testimonials', { auth: false });
 
-  const fromApi = (data?.testimonials || data?.data || []).filter((t) => t.isActive !== false);
-  const list = fromApi.length > 0 ? fromApi : fallbackTestimonials;
+  const list = (data?.testimonials || data?.data || []).filter((t) => t.isActive !== false);
 
   if (isLoading) {
     return (

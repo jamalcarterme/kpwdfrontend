@@ -4,7 +4,20 @@
  * For client-side use; Server Components should fetch directly
  */
 
-const BASE_URL = process.env.NEXT_PUBLIC_API_BASE || 'http://localhost:5000/api';
+const PROD_API_BASE = 'https://kingpraisewebdesign-backend.onrender.com/api';
+const BASE_URL =
+  process.env.NEXT_PUBLIC_API_BASE ||
+  (typeof window !== 'undefined' &&
+  (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+    ? 'http://localhost:5000/api'
+    : PROD_API_BASE);
+
+// Server-safe API base for Server Components / route handlers (no `window`
+// available there, so this only checks NODE_ENV). Server components (blog
+// listing/detail, sitemap) should import this instead of hardcoding
+// 'http://localhost:5000/api' as their fallback.
+export const SERVER_API_BASE =
+  process.env.NEXT_PUBLIC_API_BASE || (process.env.NODE_ENV === 'development' ? 'http://localhost:5000/api' : PROD_API_BASE);
 
 interface RequestOptions {
   method?: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';

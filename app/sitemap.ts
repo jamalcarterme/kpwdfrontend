@@ -3,7 +3,7 @@ import { locations } from '@/lib/data/locations';
 import { services } from '@/lib/data/services';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.kingpraisewebdesign.name.ng';
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE || 'http://localhost:5000/api';
+import { SERVER_API_BASE as API_BASE } from '@/lib/api';
 
 async function getBlogSlugs(): Promise<{ slug: string; updatedAt?: string }[]> {
   try {

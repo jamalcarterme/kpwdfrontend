@@ -3,15 +3,23 @@
 import Image from 'next/image';
 import { motion } from 'motion/react';
 import { useFetch } from '@/hooks';
-import { fallbackTeam, type FallbackTeamMember } from '@/lib/data/fallback';
-
-type TeamMember = FallbackTeamMember & { isActive?: boolean };
+interface TeamMember {
+  _id: string;
+  name: string;
+  role: string;
+  bio?: string;
+  order?: number;
+  isActive?: boolean;
+  photo?: { url?: string };
+  socials?: { linkedin?: string; twitter?: string; github?: string; instagram?: string };
+}
 
 export default function TeamGrid() {
   const { data, isLoading } = useFetch<{ team?: TeamMember[]; data?: TeamMember[] }>('/team', { auth: false });
 
-  const fromApi = (data?.team || data?.data || []).filter((t) => t.isActive !== false);
-  const list = (fromApi.length > 0 ? fromApi : fallbackTeam).sort((a, b) => (a.order || 0) - (b.order || 0));
+  const list = (data?.team || data?.data || [])
+    .filter((t) => t.isActive !== false)
+    .sort((a, b) => (a.order || 0) - (b.order || 0));
 
   if (isLoading) {
     return (
@@ -21,6 +29,10 @@ export default function TeamGrid() {
         ))}
       </div>
     );
+  }
+
+  if (!isLoading && list.length === 0) {
+    return <p className="text-center text-slate-400 mt-12">Team profiles coming soon.</p>;
   }
 
   return (

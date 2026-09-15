@@ -5,9 +5,19 @@ import Image from 'next/image';
 import { motion } from 'motion/react';
 import { useFetch } from '@/hooks';
 import { truncate } from '@/lib/utils';
-import { fallbackProjects, type FallbackProject } from '@/lib/data/fallback';
-
-type Project = FallbackProject;
+interface Project {
+  _id: string;
+  title: string;
+  client?: string;
+  category: string;
+  description: string;
+  country?: string;
+  tags?: string[];
+  isFeatured?: boolean;
+  order?: number;
+  liveUrl?: string;
+  image?: { url?: string };
+}
 
 export default function PortfolioGrid() {
   const { data, isLoading } = useFetch<{ projects?: Project[]; data?: Project[] }>('/projects', { auth: false });
@@ -15,8 +25,7 @@ export default function PortfolioGrid() {
 
   const all = useMemo(() => {
     const fromApi = (data?.projects || data?.data || []).slice();
-    const list = fromApi.length > 0 ? fromApi : fallbackProjects;
-    return list.slice().sort((a, b) => (a.order || 0) - (b.order || 0));
+    return fromApi.sort((a, b) => (a.order || 0) - (b.order || 0));
   }, [data]);
 
   const categories = useMemo(() => ['All', ...Array.from(new Set(all.map((p) => p.category).filter(Boolean) as string[]))], [all]);
