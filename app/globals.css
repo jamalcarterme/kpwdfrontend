@@ -827,6 +827,13 @@ select:disabled {
   background: var(--bg-secondary) !important;
 }
 
+/* Same transparency issue as the mobile menu: the chat widget's `.glass`
+   panel is only 5% tinted, so it reads as see-through with unreadable
+   text. Give it a solid, theme-appropriate background. */
+.chatbot-widget .glass {
+  background: var(--bg-secondary) !important;
+}
+
 /* ===== Toasts ===== */
 .toast {
   padding: 0.85rem 1.1rem;
