@@ -157,61 +157,50 @@ export default function HomePage() {
 
       <main className="flex-1">
         {/* ===== HERO ===== */}
-        <section id="hero" aria-label="Hero section featuring company value proposition" className="relative overflow-hidden">
-          <div className="glow-orb bg-[var(--brand)] w-[500px] h-[500px] -top-40 -left-40" />
-          <div className="glow-orb-2 bg-[var(--brand-2)] w-[400px] h-[400px] top-40 right-0" />
-          <div className="max-w-7xl mx-auto px-5 lg:px-8 py-6 sm:py-12 lg:py-24 grid lg:grid-cols-2 gap-8 lg:gap-14 items-center relative z-10">
-            <div>
-              <span className="chip"><span className="dot" /> Lagos &middot; Serving 12+ countries</span>
-              <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl font-bold text-[var(--text-primary)] leading-[1.15] mt-5 sm:mt-6">
-                Built for Businesses Who Are <span className="text-gradient">Done Being Invisible Online</span>.
-              </h1>
-              <p className="text-[var(--text-secondary)] text-base sm:text-lg mt-4 sm:mt-6 max-w-xl">
-                A premium website, e-commerce store or custom software build, engineered to make you the obvious choice in your market and turn visitors into paying clients. Designed with intent, built with clean code, shipped fast.
-              </p>
-              <p className="text-[var(--text-secondary)] text-base sm:text-lg mt-4 max-w-xl">
-                We specialize in conversion-focused design for law firms, real estate agencies, e-commerce brands, restaurants, and small businesses across Lagos and Nigeria. Every site we build includes on-page SEO optimization, mobile responsiveness, and fast load times&mdash;ensuring you rank on Google and attract qualified leads.
-              </p>
-              <div className="flex flex-wrap gap-4 mt-6 sm:mt-8">
-                <Link href="/contact#schedule" className="btn-primary px-7 py-3.5 rounded-xl">Book a Free Strategy Call</Link>
-                <Link href="/contact" className="btn-ghost px-7 py-3.5 rounded-xl">Get a Free Quote</Link>
-              </div>
-              <div className="stat-row mt-10 sm:mt-12">
-                <div className="stat"><b>12+</b><span>Countries served</span></div>
-                <div className="stat"><b>4.9/5</b><span>Client rating</span></div>
-                <div className="stat"><b>2&ndash;4</b><span>Weeks to launch</span></div>
-                <div className="stat"><b>98%</b><span>Clients who re-hire</span></div>
-              </div>
+        <section id="hero" aria-label="Hero section featuring company value proposition" className="relative overflow-hidden isolate">
+          {/* Video background — autoplay/muted/loop/playsInline so it starts
+              instantly on load with no user interaction and no wasted time. */}
+          <video
+            className="absolute inset-0 w-full h-full object-cover -z-20"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            aria-hidden="true"
+          >
+            <source src="/assets/video/hero-bg.mp4" type="video/mp4" />
+          </video>
+          {/* Dark overlay so text stays readable over any frame of the video */}
+          <div className="absolute inset-0 -z-10 bg-black/65" />
+          <div className="glow-orb bg-[var(--brand)] w-[500px] h-[500px] -top-40 -left-40 opacity-20" />
+          <div className="glow-orb-2 bg-[var(--brand-2)] w-[400px] h-[400px] top-40 right-0 opacity-20" />
+
+          <div className="max-w-4xl mx-auto px-5 lg:px-8 py-20 sm:py-28 lg:py-36 relative z-10 flex flex-col items-center text-center">
+            <span className="chip"><span className="dot" /> Lagos &middot; Serving 12+ countries</span>
+            <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl font-bold text-white leading-[1.15] mt-5 sm:mt-6">
+              Built for Businesses Who Are <span className="text-gradient">Done Being Invisible Online</span>.
+            </h1>
+            <p className="text-slate-200 text-base sm:text-lg mt-4 sm:mt-6 max-w-2xl">
+              A premium website, e-commerce store or custom software build, engineered to make you the obvious choice in your market and turn visitors into paying clients. Designed with intent, built with clean code, shipped fast.
+            </p>
+            <p className="text-slate-300 text-base sm:text-lg mt-4 max-w-2xl">
+              We specialize in conversion-focused design for law firms, real estate agencies, e-commerce brands, restaurants, and small businesses across Lagos and Nigeria. Every site we build includes on-page SEO optimization, mobile responsiveness, and fast load times&mdash;ensuring you rank on Google and attract qualified leads.
+            </p>
+            <div className="flex flex-wrap justify-center gap-4 mt-6 sm:mt-8">
+              <Link href="/contact#schedule" className="btn-primary px-7 py-3.5 rounded-xl">Book a Free Strategy Call</Link>
+              <Link href="/contact" className="btn-ghost px-7 py-3.5 rounded-xl !border-white !text-white hover:!bg-white/10">Get a Free Quote</Link>
             </div>
-            <div className="relative">
-              <div className="glass rounded-2xl overflow-hidden float">
-                <div className="flex items-center gap-2 px-4 pt-4 pb-3">
-                  <span className="w-3 h-3 rounded-full bg-rose-400" /><span className="w-3 h-3 rounded-full bg-amber-400" /><span className="w-3 h-3 rounded-full bg-emerald-400" />
-                  <span className="ml-2 text-xs text-[var(--text-secondary)] font-medium">kingpraisewebdesign.com</span>
-                </div>
-                <div className="relative w-full h-[220px] sm:h-[320px]">
-                  <Image
-                    src="/assets/img/portfolio-tasty-chops.png"
-                    alt="Recent client website project shipped by King Praise Web Design"
-                    fill
-                    priority
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                    className="object-cover"
-                  />
-                </div>
-              </div>
-              <div className="hidden sm:flex absolute -bottom-6 -left-6 glass rounded-xl px-5 py-3.5 items-center gap-3 shadow-lg">
-                <span className="text-2xl">🚀</span>
-                <div><p className="font-display font-bold text-[var(--text-primary)] text-lg leading-none">14 days</p><p className="text-[var(--text-secondary)] text-xs mt-1">Avg. time to launch</p></div>
-              </div>
-              <div className="hidden sm:flex absolute -top-6 -right-4 glass rounded-xl px-5 py-3 items-center gap-3 shadow-lg">
-                <span className="text-lg font-display font-bold text-[var(--brand-2)]">+212%</span>
-                <p className="text-[var(--text-secondary)] text-xs leading-tight">Avg. enquiries<br />first quarter</p>
-              </div>
+            <div className="stat-row mt-10 sm:mt-12 justify-center">
+              <div className="stat"><b className="text-white">12+</b><span className="text-slate-300">Countries served</span></div>
+              <div className="stat"><b className="text-white">4.9/5</b><span className="text-slate-300">Client rating</span></div>
+              <div className="stat"><b className="text-white">2&ndash;4</b><span className="text-slate-300">Weeks to launch</span></div>
+              <div className="stat"><b className="text-white">98%</b><span className="text-slate-300">Clients who re-hire</span></div>
             </div>
           </div>
-          <div className="border-y border-[var(--border)] py-6 overflow-hidden relative z-10">
-            <div className="marquee-track text-[var(--text-secondary)] font-display text-sm uppercase tracking-widest">
+
+          <div className="border-y border-white/10 py-6 overflow-hidden relative z-10 bg-black/50">
+            <div className="marquee-track text-slate-300 font-display text-sm uppercase tracking-widest">
               <span>Web Design</span><span>&middot;</span><span>E-Commerce</span><span>&middot;</span><span>Mobile Apps</span><span>&middot;</span><span>Custom Software</span><span>&middot;</span><span>SEO</span><span>&middot;</span><span>Branding</span>
               <span>Web Design</span><span>&middot;</span><span>E-Commerce</span><span>&middot;</span><span>Mobile Apps</span><span>&middot;</span><span>Custom Software</span><span>&middot;</span><span>SEO</span><span>&middot;</span><span>Branding</span>
             </div>
