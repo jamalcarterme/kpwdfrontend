@@ -55,10 +55,10 @@ export default function Header() {
     <>
       <header className="fixed top-0 inset-x-0 z-50">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
-          <div className="mt-3 glass rounded-2xl flex items-center justify-between px-5 py-3">
+          <div className="mt-3 nav-glass rounded-2xl flex items-center justify-between px-5 py-3">
             <Link href="/" className="flex items-center gap-2 group">
               <Image src="/assets/img/logo-icon.png" alt="King Praise Web Design" width={32} height={32} className="logo-icon" />
-              <span className="font-display font-semibold tracking-tight text-lg hidden sm:inline" style={{ color: 'var(--text)' }}>
+              <span className="font-display font-semibold tracking-tight text-lg hidden sm:inline text-white">
                 King Praise <span className="text-gradient">Web Design</span>
               </span>
             </Link>

@@ -183,11 +183,8 @@ export default function HomePage() {
             <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl font-bold text-white leading-[1.15] mt-5 sm:mt-6">
               Built for Businesses Who Are <span className="text-gradient">Done Being Invisible Online</span>.
             </h1>
-            <p className="text-slate-200 text-base sm:text-lg mt-4 sm:mt-6 max-w-2xl">
-              A premium website, e-commerce store or custom software build, engineered to make you the obvious choice in your market and turn visitors into paying clients. Designed with intent, built with clean code, shipped fast.
-            </p>
-            <p className="text-slate-300 text-base sm:text-lg mt-4 max-w-2xl">
-              We specialize in conversion-focused design for law firms, real estate agencies, e-commerce brands, restaurants, and small businesses across Lagos and Nigeria. Every site we build includes on-page SEO optimization, mobile responsiveness, and fast load times&mdash;ensuring you rank on Google and attract qualified leads.
+            <p className="text-slate-200 text-base sm:text-lg mt-4 sm:mt-6 max-w-xl">
+              Premium websites and custom software that turn visitors into paying clients — designed with intent, shipped fast.
             </p>
             <div className="flex flex-wrap justify-center gap-4 mt-6 sm:mt-8">
               <Link href="/contact#schedule" className="btn-primary px-7 py-3.5 rounded-xl">Book a Free Strategy Call</Link>
