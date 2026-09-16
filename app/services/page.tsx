@@ -71,9 +71,9 @@ export default function ServicesPage() {
         <p className="text-slate-400 mt-4">From a single landing page to a full custom platform, we scope, design, and build it end to end.</p>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-6 mt-16">
-        {cards.map((c) => (
-          <div key={c.title} className="glass rounded-2xl overflow-hidden card-hover">
+      <div className="grid md:grid-cols-2 gap-6 mt-16 section-hex py-8">
+        {cards.map((c, i) => (
+          <div key={c.title} className="glass rounded-2xl overflow-hidden card-hover tilt-hover item-pop" style={{ animationDelay: `${i * 0.08}s` }}>
             <Image src={c.img} alt={c.alt} width={600} height={300} className="w-full h-40 object-cover" />
             <div className="p-6">
               <h3 className="font-display text-xl font-semibold text-white">{c.title}</h3>
@@ -95,15 +95,16 @@ export default function ServicesPage() {
         ))}
       </div>
 
-      <div className="glass rounded-3xl p-12 text-center mt-20">
-        <h2 className="font-display text-3xl font-bold text-white">Not sure what you need?</h2>
-        <p className="text-slate-400 mt-3">Book a free discovery call and we&apos;ll help you scope the right solution.</p>
-        <Link href="/contact#schedule" className="btn-primary inline-block mt-6 px-7 py-3.5 rounded-xl">Book a Free Call</Link>
+      <div className="glass rounded-3xl p-12 text-center mt-20 tilt-hover relative overflow-hidden">
+        <div className="glow-orb-2 bg-[var(--brand-2)] w-64 h-64 -bottom-20 right-0 float" />
+        <h2 className="font-display text-3xl font-bold text-white relative">Not sure what you need?</h2>
+        <p className="text-slate-400 mt-3 relative">Book a free discovery call and we&apos;ll help you scope the right solution.</p>
+        <Link href="/contact#schedule" className="btn-primary inline-block mt-6 px-7 py-3.5 rounded-xl relative">Book a Free Call</Link>
       </div>
 
       <section className="py-16 lg:py-24">
-        <div className="glass rounded-3xl p-12 text-center relative overflow-hidden">
-          <div className="glow-orb bg-[var(--brand)] w-72 h-72 -top-20 left-1/2 -translate-x-1/2" />
+        <div className="glass rounded-3xl p-12 text-center relative overflow-hidden tilt-hover">
+          <div className="glow-orb bg-[var(--brand)] w-72 h-72 -top-20 left-1/2 -translate-x-1/2 float" />
           <h2 className="font-display text-3xl sm:text-4xl font-bold text-white relative">Ready to discuss your project?</h2>
           <p className="text-slate-400 mt-4 max-w-lg mx-auto relative">Let&apos;s explore how we can help grow your business with a custom web solution.</p>
           <div className="flex flex-wrap justify-center gap-4 mt-8 relative">

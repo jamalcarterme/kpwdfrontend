@@ -62,10 +62,11 @@ export default function PortfolioGrid() {
           {list.map((p, i) => (
             <motion.div
               key={p._id}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 28, scale: 0.96 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              whileHover={{ y: -6, rotate: -0.4 }}
               viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.5, delay: Math.min(i, 5) * 0.06 }}
+              transition={{ duration: 0.55, delay: Math.min(i, 5) * 0.07, ease: [0.22, 1, 0.36, 1] }}
               className="glass rounded-2xl overflow-hidden card-hover group"
             >
               <div className="aspect-[4/3] overflow-hidden bg-[var(--surface-2)] relative">

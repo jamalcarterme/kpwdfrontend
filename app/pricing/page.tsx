@@ -15,7 +15,7 @@ export default function PricingPage() {
 
       <PricingTiers />
 
-      <div className="max-w-4xl mx-auto mt-16 p-8 bg-slate-900/50 rounded-lg border border-white/10">
+      <div className="max-w-4xl mx-auto mt-16 p-8 glass rounded-2xl tilt-hover section-hex">
         <h2 className="text-2xl font-bold text-white mb-4">Transparent Web Design Pricing for Lagos &amp; Nigeria</h2>
         <p className="text-slate-300 mb-4">
           At King Praise Web Design, we offer transparent pricing with no hidden fees. Our packages start at ₦50,000 for small business websites and scale up to ₦500K+ for complex e-commerce stores. Below you&apos;ll find pricing for different business types. Need something custom? We offer enterprise quotes for agencies and large organizations.
@@ -25,10 +25,10 @@ export default function PricingPage() {
         </p>
       </div>
 
-      <div className="max-w-4xl mx-auto mt-16 p-8 bg-slate-900/50 rounded-lg border border-white/10">
+      <div className="max-w-4xl mx-auto mt-16 p-8 glass rounded-2xl">
         <h2 className="text-2xl font-bold text-white mb-6">What&apos;s Included in Each Package</h2>
-        <div className="grid md:grid-cols-3 gap-6 text-slate-300 text-sm">
-          <div>
+        <div className="grid md:grid-cols-3 gap-6 text-slate-300 text-sm reveal-group">
+          <div className="p-5 rounded-xl border border-white/10 tilt-hover">
             <h3 className="text-white font-semibold mb-3">STARTER (₦50K–₦100K)</h3>
             <ul className="space-y-2">
               <li>✓ 5–10 pages</li>
@@ -39,7 +39,7 @@ export default function PricingPage() {
               <li>✓ 2-week delivery</li>
             </ul>
           </div>
-          <div>
+          <div className="p-5 rounded-xl border border-white/10 tilt-hover">
             <h3 className="text-white font-semibold mb-3">PROFESSIONAL (₦100K–₦250K)</h3>
             <ul className="space-y-2">
               <li>✓ 10–20 pages</li>
@@ -50,7 +50,7 @@ export default function PricingPage() {
               <li>✓ 3-week delivery</li>
             </ul>
           </div>
-          <div>
+          <div className="p-5 rounded-xl border border-white/10 tilt-hover">
             <h3 className="text-white font-semibold mb-3">ENTERPRISE (₦250K+)</h3>
             <ul className="space-y-2">
               <li>✓ E-commerce integration</li>
@@ -64,7 +64,7 @@ export default function PricingPage() {
         </div>
       </div>
 
-      <div className="max-w-4xl mx-auto mt-12 p-8 bg-slate-900/50 rounded-lg border border-white/10">
+      <div className="max-w-4xl mx-auto mt-12 p-8 glass rounded-2xl tilt-hover section-dots">
         <h2 className="text-2xl font-bold text-white mb-4">Custom Quotes for Agencies &amp; Enterprise</h2>
         <p className="text-slate-300 mb-4">
           If your project doesn&apos;t fit standard packages, we offer custom quotes. Examples include custom software builds, MERN stack applications, API integrations, and white-label solutions for agencies.
@@ -74,15 +74,16 @@ export default function PricingPage() {
         </p>
       </div>
 
-      <div className="glass rounded-3xl p-12 text-center mt-20">
-        <h2 className="font-display text-3xl font-bold text-white">Need something custom?</h2>
-        <p className="text-slate-400 mt-3">Every business is different. Book a free call and we&apos;ll build a quote around your exact needs.</p>
-        <Link href="/contact#schedule" className="btn-primary inline-block mt-6 px-7 py-3.5 rounded-xl">Book a Free Call</Link>
+      <div className="glass rounded-3xl p-12 text-center mt-20 tilt-hover relative overflow-hidden">
+        <div className="glow-orb-2 bg-[var(--brand-2)] w-64 h-64 -top-16 right-0 float" />
+        <h2 className="font-display text-3xl font-bold text-white relative">Need something custom?</h2>
+        <p className="text-slate-400 mt-3 relative">Every business is different. Book a free call and we&apos;ll build a quote around your exact needs.</p>
+        <Link href="/contact#schedule" className="btn-primary inline-block mt-6 px-7 py-3.5 rounded-xl relative">Book a Free Call</Link>
       </div>
 
       <section className="py-16 lg:py-24">
-        <div className="glass rounded-3xl p-12 text-center relative overflow-hidden">
-          <div className="glow-orb bg-[var(--brand)] w-72 h-72 -top-20 left-1/2 -translate-x-1/2" />
+        <div className="glass rounded-3xl p-12 text-center relative overflow-hidden tilt-hover">
+          <div className="glow-orb bg-[var(--brand)] w-72 h-72 -top-20 left-1/2 -translate-x-1/2 float" />
           <h2 className="font-display text-3xl sm:text-4xl font-bold text-white relative">Ready to discuss your project?</h2>
           <p className="text-slate-400 mt-4 max-w-lg mx-auto relative">Let&apos;s explore how we can help grow your business with a custom web solution.</p>
           <div className="flex flex-wrap justify-center gap-4 mt-8 relative">

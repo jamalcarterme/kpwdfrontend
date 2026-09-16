@@ -100,7 +100,7 @@ export default function ContactPage() {
                 </div>
 
                 {/* Location Info */}
-                <div className="glass p-6 rounded-xl">
+                <div className="glass p-6 rounded-xl tilt-hover">
                   <h4 className="font-semibold mb-3">Service Areas</h4>
                   <ul className="text-slate-400 text-sm space-y-1">
                     <li>✓ Lagos</li>
@@ -117,47 +117,47 @@ export default function ContactPage() {
         </section>
 
         {/* ===== Why Choose Us ===== */}
-        <section className="py-20 sm:py-32 bg-[var(--bg-secondary)] border-t border-[var(--border)]">
+        <section className="py-20 sm:py-32 bg-[var(--bg-secondary)] border-t border-[var(--border)] section-hex">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl font-bold text-center mb-12">Why Work With Us</h2>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              <div className="space-y-3">
-                <div className="text-4xl">🚀</div>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 reveal-group">
+              <div className="space-y-3 glass p-6 rounded-2xl tilt-hover">
+                <div className="text-4xl icon-bounce">🚀</div>
                 <h3 className="text-lg font-semibold">Fast Turnaround</h3>
                 <p className="text-slate-400 text-sm">
                   Most projects launch within 2-4 weeks. Quick, quality delivery.
                 </p>
               </div>
-              <div className="space-y-3">
-                <div className="text-4xl">💰</div>
+              <div className="space-y-3 glass p-6 rounded-2xl tilt-hover">
+                <div className="text-4xl icon-bounce">💰</div>
                 <h3 className="text-lg font-semibold">Affordable</h3>
                 <p className="text-slate-400 text-sm">
                   Professional design without premium prices. Transparent pricing.
                 </p>
               </div>
-              <div className="space-y-3">
-                <div className="text-4xl">📊</div>
+              <div className="space-y-3 glass p-6 rounded-2xl tilt-hover">
+                <div className="text-4xl icon-bounce">📊</div>
                 <h3 className="text-lg font-semibold">Results-Focused</h3>
                 <p className="text-slate-400 text-sm">
                   Every site is optimized for conversions, SEO, and mobile users.
                 </p>
               </div>
-              <div className="space-y-3">
-                <div className="text-4xl">🤝</div>
+              <div className="space-y-3 glass p-6 rounded-2xl tilt-hover">
+                <div className="text-4xl icon-bounce">🤝</div>
                 <h3 className="text-lg font-semibold">Dedicated Support</h3>
                 <p className="text-slate-400 text-sm">
                   We're here after launch. Updates, fixes, and new features included.
                 </p>
               </div>
-              <div className="space-y-3">
-                <div className="text-4xl">🔍</div>
+              <div className="space-y-3 glass p-6 rounded-2xl tilt-hover">
+                <div className="text-4xl icon-bounce">🔍</div>
                 <h3 className="text-lg font-semibold">SEO Built-In</h3>
                 <p className="text-slate-400 text-sm">
                   Every site ranks for your target keywords. Organic growth.
                 </p>
               </div>
-              <div className="space-y-3">
-                <div className="text-4xl">⚡</div>
+              <div className="space-y-3 glass p-6 rounded-2xl tilt-hover">
+                <div className="text-4xl icon-bounce">⚡</div>
                 <h3 className="text-lg font-semibold">High Performance</h3>
                 <p className="text-slate-400 text-sm">
                   Fast load times, mobile-first, optimized for Core Web Vitals.

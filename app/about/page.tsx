@@ -27,8 +27,8 @@ export default function AboutPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(getBreadcrumbSchema([{ name: 'Home', url: '/' }, { name: 'About', url: '/about' }])) }}
       />
 
-      <div className="grid lg:grid-cols-2 gap-14 items-center">
-        <div>
+      <div className="grid lg:grid-cols-2 gap-14 items-center section-hex py-6">
+        <div className="item-pop">
           <span className="text-[var(--brand-2)] text-xs font-semibold uppercase tracking-widest">About Us</span>
           <h1 className="font-display text-4xl sm:text-5xl font-bold text-white mt-3 leading-tight">A remote studio obsessed with craft</h1>
           <p className="text-slate-400 mt-5 leading-relaxed">
@@ -36,9 +36,9 @@ export default function AboutPage() {
           </p>
           <p className="text-slate-400 mt-4 leading-relaxed">No bloated retainers, no jargon. Just clear scopes, honest timelines, and work that performs.</p>
         </div>
-        <div className="glass rounded-2xl overflow-hidden">
+        <div className="glass rounded-2xl overflow-hidden tilt-hover item-pop" style={{ animationDelay: '0.15s' }}>
           <Image src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=800&h=380&q=80" alt="Remote design studio workspace" width={800} height={380} className="w-full h-48 object-cover" />
-          <div className="grid grid-cols-2 gap-6 text-center p-8">
+          <div className="grid grid-cols-2 gap-6 text-center p-8 reveal-group">
             <div><p className="font-display text-3xl font-bold text-white">50+</p><p className="text-slate-500 text-sm mt-1">Projects Delivered</p></div>
             <div><p className="font-display text-3xl font-bold text-white">12+</p><p className="text-slate-500 text-sm mt-1">Countries Served</p></div>
             <div><p className="font-display text-3xl font-bold text-white">4.9/5</p><p className="text-slate-500 text-sm mt-1">Average Rating</p></div>
@@ -58,7 +58,7 @@ export default function AboutPage() {
             As a full-stack developer and web solutions agency owner in Nigeria, King Praise leads every project personally, from Node.js/Express/MongoDB backends to fast, SEO-friendly frontends, ensuring each client gets a website built to rank on Google and convert visitors into customers.
           </p>
         </div>
-        <div className="glass rounded-2xl overflow-hidden order-1 lg:order-2">
+        <div className="glass rounded-2xl overflow-hidden order-1 lg:order-2 tilt-hover">
           <Image src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&h=320&q=80" alt="Founder working on client project" width={800} height={320} className="w-full h-44 object-cover" />
           <div className="p-8">
             <p className="text-slate-500 text-sm uppercase tracking-widest font-semibold">Why Clients Hire King Praise Web Design</p>
@@ -71,7 +71,7 @@ export default function AboutPage() {
         </div>
       </div>
 
-      <div className="mt-24">
+      <div className="mt-24 section-dots py-10">
         <div className="text-center max-w-2xl mx-auto">
           <span className="text-[var(--brand-2)] text-xs font-semibold uppercase tracking-widest">Our Team</span>
           <h2 className="font-display text-3xl sm:text-4xl font-bold text-white mt-3">The people behind the work</h2>
@@ -88,8 +88,8 @@ export default function AboutPage() {
       </div>
 
       <section className="py-16 lg:py-24">
-        <div className="glass rounded-3xl p-12 text-center relative overflow-hidden">
-          <div className="glow-orb bg-[var(--brand)] w-72 h-72 -top-20 left-1/2 -translate-x-1/2" />
+        <div className="glass rounded-3xl p-12 text-center relative overflow-hidden tilt-hover">
+          <div className="glow-orb bg-[var(--brand)] w-72 h-72 -top-20 left-1/2 -translate-x-1/2 float" />
           <h2 className="font-display text-3xl sm:text-4xl font-bold text-white relative">Ready to discuss your project?</h2>
           <p className="text-slate-400 mt-4 max-w-lg mx-auto relative">Let&apos;s explore how we can help grow your business with a custom web solution.</p>
           <div className="flex flex-wrap justify-center gap-4 mt-8 relative">

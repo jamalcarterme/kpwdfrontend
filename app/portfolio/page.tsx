@@ -14,11 +14,13 @@ export default function PortfolioPage() {
         <p className="text-slate-400 mt-4">A selection of websites, apps and platforms we&apos;ve designed and built.</p>
       </div>
 
-      <PortfolioGrid />
+      <div className="section-dots py-6">
+        <PortfolioGrid />
+      </div>
 
       <section className="py-16 lg:py-24">
-        <div className="glass rounded-3xl p-12 text-center relative overflow-hidden">
-          <div className="glow-orb bg-[var(--brand)] w-72 h-72 -top-20 left-1/2 -translate-x-1/2" />
+        <div className="glass rounded-3xl p-12 text-center relative overflow-hidden tilt-hover">
+          <div className="glow-orb bg-[var(--brand)] w-72 h-72 -top-20 left-1/2 -translate-x-1/2 float" />
           <h2 className="font-display text-3xl sm:text-4xl font-bold text-white relative">Ready to discuss your project?</h2>
           <p className="text-slate-400 mt-4 max-w-lg mx-auto relative">Let&apos;s explore how we can help grow your business with a custom web solution.</p>
           <div className="flex flex-wrap justify-center gap-4 mt-8 relative">

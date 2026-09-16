@@ -114,11 +114,12 @@ export default async function BlogPage() {
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             {posts.length > 0 ? (
               <>
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {posts.map((post) => (
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 section-dots py-6">
+                  {posts.map((post, i) => (
                     <article
                       key={post._id}
-                      className="glass rounded-2xl overflow-hidden hover:border-[var(--brand)]/50 transition-all group"
+                      className="glass rounded-2xl overflow-hidden hover:border-[var(--brand)]/50 transition-all tilt-hover item-pop group"
+                      style={{ animationDelay: `${Math.min(i, 8) * 0.07}s` }}
                     >
                       {/* Featured Image */}
                       {post.coverImage?.url && (
@@ -203,8 +204,8 @@ export default async function BlogPage() {
         </section>
 
         {/* ===== Newsletter CTA ===== */}
-        <section className="py-20 sm:py-32 bg-[var(--bg-secondary)] border-t border-[var(--border)]">
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <section className="py-20 sm:py-32 bg-[var(--bg-secondary)] border-t border-[var(--border)] section-hex">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center glass rounded-3xl p-10 tilt-hover">
             <h2 className="text-3xl font-bold mb-4">
               Get Web Design Tips in Your Inbox
             </h2>

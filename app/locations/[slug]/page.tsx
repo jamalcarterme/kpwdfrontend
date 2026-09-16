@@ -28,7 +28,7 @@ export default function LocationSlugPage({ params }: { params: { slug: string } 
   if (!location) notFound();
 
   return (
-    <main className="pt-28 pb-24 max-w-4xl mx-auto px-5 lg:px-8">
+    <main className="pt-28 pb-24 max-w-4xl mx-auto px-5 lg:px-8 section-dots">
       {injectSchema(
         getBreadcrumbSchema([
           { name: 'Home', url: '/' },
@@ -49,14 +49,14 @@ export default function LocationSlugPage({ params }: { params: { slug: string } 
         ))}
       </div>
 
-      <div className="grid sm:grid-cols-2 gap-4 mt-10">
+      <div className="grid sm:grid-cols-2 gap-4 mt-10 reveal-group">
         {[
           'Custom, mobile-responsive design',
           'On-page SEO built in from day one',
           'Fast 2–4 week turnaround',
           'Direct access to the developer, no middleman',
         ].map((f) => (
-          <div key={f} className="glass rounded-xl p-5 flex items-start gap-3">
+          <div key={f} className="glass rounded-xl p-5 flex items-start gap-3 tilt-hover">
             <svg className="w-5 h-5 text-[var(--brand-2)] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
             </svg>
@@ -80,7 +80,7 @@ export default function LocationSlugPage({ params }: { params: { slug: string } 
       )}
 
       <section className="py-16 lg:py-24">
-        <div className="glass rounded-3xl p-12 text-center relative overflow-hidden">
+        <div className="glass rounded-3xl p-12 text-center relative overflow-hidden tilt-hover">
           <div className="glow-orb bg-[var(--brand)] w-72 h-72 -top-20 left-1/2 -translate-x-1/2" />
           <h2 className="font-display text-3xl font-bold text-white relative">Ready to build your {location.cityName} website?</h2>
           <p className="text-slate-400 mt-4 max-w-lg mx-auto relative">Book a free call and we&apos;ll scope it around your exact needs.</p>

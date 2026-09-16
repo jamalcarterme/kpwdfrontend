@@ -70,8 +70,8 @@ export default function PricingTiers() {
       </div>
 
       <div className="grid md:grid-cols-3 gap-6 mt-14">
-        {data.tiers.map((tier) => (
-          <div key={tier.name} className={`glass rounded-2xl p-8 card-hover relative ${tier.featured ? 'border-2 !border-[var(--brand)]' : ''}`}>
+        {data.tiers.map((tier, i) => (
+          <div key={tier.name} className={`glass rounded-2xl p-8 card-hover tilt-hover item-pop relative ${tier.featured ? 'border-2 !border-[var(--brand)]' : ''}`} style={{ animationDelay: `${i * 0.1}s` }}>
             {tier.featured && <span className="absolute -top-3 left-8 badge bg-[var(--brand)] text-white">Most Popular</span>}
             <h3 className="font-display text-xl font-semibold text-white">{tier.name}</h3>
             <p className="text-slate-400 text-sm mt-2 min-h-[40px]">{tier.desc}</p>

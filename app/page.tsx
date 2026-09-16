@@ -171,20 +171,21 @@ export default function HomePage() {
           >
             <source src="/assets/video/hero-bg.mp4" type="video/mp4" />
           </video>
-          {/* Light overlay — just enough to keep text readable without
-              muddying the video itself. */}
-          <div className="absolute inset-0 -z-10 bg-black/25" />
-          <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black/45 via-transparent to-black/50" />
+          {/* Dark overlay so text stays readable over any frame of the video */}
+          <div className="absolute inset-0 -z-10 bg-black/65" />
           <div className="glow-orb bg-[var(--brand)] w-[500px] h-[500px] -top-40 -left-40 opacity-20" />
           <div className="glow-orb-2 bg-[var(--brand-2)] w-[400px] h-[400px] top-40 right-0 opacity-20" />
 
-          <div className="max-w-4xl mx-auto px-5 lg:px-8 py-20 sm:py-28 lg:py-36 relative z-10 flex flex-col items-center text-center" style={{ textShadow: '0 2px 16px rgba(0,0,0,0.55)' }}>
+          <div className="max-w-4xl mx-auto px-5 lg:px-8 py-20 sm:py-28 lg:py-36 relative z-10 flex flex-col items-center text-center">
             <span className="chip"><span className="dot" /> Lagos &middot; Serving 12+ countries</span>
             <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl font-bold text-white leading-[1.15] mt-5 sm:mt-6">
               Built for Businesses Who Are <span className="text-gradient">Done Being Invisible Online</span>.
             </h1>
-            <p className="text-slate-200 text-base sm:text-lg mt-4 sm:mt-6 max-w-xl">
-              Premium websites and custom software that turn visitors into paying clients — designed with intent, shipped fast.
+            <p className="text-slate-200 text-base sm:text-lg mt-4 sm:mt-6 max-w-2xl">
+              A premium website, e-commerce store or custom software build, engineered to make you the obvious choice in your market and turn visitors into paying clients. Designed with intent, built with clean code, shipped fast.
+            </p>
+            <p className="text-slate-300 text-base sm:text-lg mt-4 max-w-2xl">
+              We specialize in conversion-focused design for law firms, real estate agencies, e-commerce brands, restaurants, and small businesses across Lagos and Nigeria. Every site we build includes on-page SEO optimization, mobile responsiveness, and fast load times&mdash;ensuring you rank on Google and attract qualified leads.
             </p>
             <div className="flex flex-wrap justify-center gap-4 mt-6 sm:mt-8">
               <Link href="/contact#schedule" className="btn-primary px-7 py-3.5 rounded-xl">Book a Free Strategy Call</Link>
@@ -207,7 +208,7 @@ export default function HomePage() {
         </section>
 
         {/* ===== WHY CHOOSE KPWD ===== */}
-        <section className="max-w-7xl mx-auto px-5 lg:px-8 py-16 border-t border-[var(--border)]">
+        <section className="max-w-7xl mx-auto px-5 lg:px-8 py-16 border-t border-[var(--border)] section-hex">
           <div className="text-center mb-12">
             <span className="text-[var(--brand-2)] text-xs font-semibold uppercase tracking-widest">Why Choose King Praise</span>
             <h2 className="font-display text-3xl sm:text-5xl font-bold text-[var(--text-primary)] mt-3">Why Businesses Choose KPWD</h2>
@@ -223,8 +224,8 @@ export default function HomePage() {
               { icon: '💰', title: 'Transparent Pricing', desc: 'No hidden fees. Packages start at ₦50K for small business sites. Custom quotes for enterprises.' },
             ].map((c, i) => (
               <Reveal key={c.title} delay={i * 0.06}>
-                <div className="bg-[var(--surface)] rounded-lg p-6 border border-[var(--border)] hover:border-[var(--brand)] transition h-full">
-                  <div className="text-3xl mb-3">{c.icon}</div>
+                <div className="bg-[var(--surface)] rounded-lg p-6 border border-[var(--border)] hover:border-[var(--brand)] transition h-full tilt-hover">
+                  <div className="text-3xl mb-3 icon-bounce">{c.icon}</div>
                   <h3 className="text-[var(--text-primary)] font-semibold text-lg mb-2">{c.title}</h3>
                   <p className="text-[var(--text-secondary)] text-sm">{c.desc}</p>
                 </div>
@@ -262,7 +263,7 @@ export default function HomePage() {
                 ['12+', 'Countries Served'],
                 ['2-4', 'Weeks to Launch'],
               ].map(([num, label]) => (
-                <div key={label} className="glass rounded-xl p-6 text-center">
+                <div key={label} className="glass rounded-xl p-6 text-center tilt-hover">
                   <div className="font-display text-3xl font-bold text-[var(--brand-2)]">{num}</div>
                   <p className="text-[var(--text-secondary)] text-sm mt-2">{label}</p>
                 </div>
@@ -282,7 +283,7 @@ export default function HomePage() {
                 { img: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=500&h=300&q=80', alt: 'Custom Software', title: 'Custom Software', desc: 'Bespoke dashboards, internal tools and automation systems tailored to your exact needs.', price: 'From $3,000' },
               ].map((s, i) => (
                 <Reveal key={s.title} delay={i * 0.08}>
-                  <div className="glass rounded-2xl overflow-hidden card-hover h-full">
+                  <div className="glass rounded-2xl overflow-hidden card-hover tilt-hover h-full">
                     <div className="relative w-full h-40">
                       <Image src={s.img} alt={s.alt} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
                     </div>
@@ -295,9 +296,9 @@ export default function HomePage() {
                 </Reveal>
               ))}
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 reveal-group">
               {['Conversion-Focused', 'Mobile-Optimized', 'SEO-Ready', 'Fast Support'].map((t) => (
-                <div key={t} className="glass rounded-xl p-5 text-center"><span className="text-emerald-400 text-lg">✓</span><p className="text-[var(--text-secondary)] text-sm font-medium mt-1">{t}</p></div>
+                <div key={t} className="glass rounded-xl p-5 text-center tilt-hover"><span className="text-emerald-400 text-lg icon-bounce inline-block">✓</span><p className="text-[var(--text-secondary)] text-sm font-medium mt-1">{t}</p></div>
               ))}
             </div>
             <div className="text-center mt-12"><Link href="/services" className="text-[var(--brand-2)] font-semibold hover:underline text-sm">Explore all services &rarr;</Link></div>
@@ -305,20 +306,20 @@ export default function HomePage() {
         </section>
 
         {/* ===== HOW IT WORKS ===== */}
-        <section className="max-w-7xl mx-auto px-5 lg:px-8 py-24">
+        <section className="max-w-7xl mx-auto px-5 lg:px-8 py-24 section-dots">
           <div className="text-center max-w-2xl mx-auto mb-14">
             <span className="text-[var(--brand-2)] text-xs font-semibold uppercase tracking-widest">How It Works</span>
             <h2 className="font-display text-3xl sm:text-4xl font-bold text-[var(--text-primary)] mt-3">A calm, predictable process</h2>
             <p className="text-[var(--text-secondary)] mt-3">No black boxes, no surprise invoices &mdash; just a clear path from call to launch.</p>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 reveal-group">
             {[
               ['01', 'Strategy call', '30 focused minutes on your market, offer and buyer. You leave with a plan either way.'],
               ['02', 'Blueprint & design', 'Messaging and wireframes, then a high-fidelity design you approve before we write code.'],
               ['03', 'Build & QA', 'Clean, fast, accessible code. Tested across devices and tuned for Core Web Vitals.'],
               ['04', 'Launch & grow', 'We ship, track the numbers, and keep optimizing what turns visitors into clients.'],
             ].map(([num, title, desc], i) => (
-              <div key={String(num)} className="relative">
+              <div key={String(num)} className="relative tilt-hover p-2 rounded-xl">
                 <div className="step-num">{num}</div>
                 {i < 3 && <div className="step-connector" />}
                 <h3 className="font-display text-lg font-semibold text-[var(--text-primary)] mt-4">{title}</h3>
@@ -344,7 +345,7 @@ export default function HomePage() {
             <span className="text-[var(--brand-2)] text-xs font-semibold uppercase tracking-widest">Services by Location & Industry</span>
             <h2 className="font-display text-3xl sm:text-5xl font-bold text-[var(--text-primary)] mt-3">Web Design Services Across Nigeria</h2>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 reveal-group">
             {[
               { href: '/locations/lagos', title: 'Web Design Company Lagos', desc: 'Custom websites for businesses across Lagos. Conversion-focused design for law firms, real estate, e-commerce & startups.' },
               { href: '/locations/victoria-island', title: 'Website Designer Victoria Island', desc: 'Local professional web designer for Victoria Island, Lekki, and Ikoyi businesses.' },
@@ -353,7 +354,7 @@ export default function HomePage() {
               { href: '/services/ecommerce', title: 'E-Commerce Website Developer', desc: 'Build online stores with Flutterwave & Paystack integration for Nigerian businesses.' },
               { href: '/services/logistics', title: 'Website Design for Logistics', desc: 'Specialized B2B websites with shipment tracking, quote management & lead generation.' },
             ].map((l) => (
-              <Link key={l.title} href={l.href} className="group bg-[var(--surface)] border border-[var(--border)] rounded-lg p-6 hover:border-[var(--brand)] hover:bg-[var(--surface)] transition">
+              <Link key={l.title} href={l.href} className="group bg-[var(--surface)] border border-[var(--border)] rounded-lg p-6 hover:border-[var(--brand)] hover:bg-[var(--surface)] transition tilt-hover">
                 <h3 className="text-[var(--text-primary)] font-semibold mb-2 group-hover:text-[var(--brand-2)]">{l.title}</h3>
                 <p className="text-[var(--text-secondary)] text-sm">{l.desc}</p>
               </Link>
@@ -383,14 +384,14 @@ export default function HomePage() {
         </section>
 
         {/* ===== FAQ ===== */}
-        <section className="py-20 sm:py-32 bg-[var(--bg-secondary)] border-t border-[var(--border)]">
+        <section className="py-20 sm:py-32 bg-[var(--bg-secondary)] border-t border-[var(--border)] section-hex">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-3xl sm:text-4xl font-bold">Frequently Asked Questions</h2>
             </div>
-            <div className="space-y-4">
+            <div className="space-y-4 reveal-group">
               {faqs.map((faq, index) => (
-                <details key={index} className="glass p-6 rounded-xl cursor-pointer group">
+                <details key={index} className="glass p-6 rounded-xl cursor-pointer group tilt-hover">
                   <summary className="flex items-center justify-between font-semibold text-lg group-open:text-[var(--brand)]">
                     {faq.question}
                     <span className="text-xl group-open:rotate-180 transition-transform">▾</span>
@@ -404,8 +405,8 @@ export default function HomePage() {
 
         {/* ===== FINAL CTA ===== */}
         <section className="max-w-7xl mx-auto px-5 lg:px-8 py-10 mb-10">
-          <div className="glass rounded-3xl p-12 text-center relative overflow-hidden">
-            <div className="glow-orb bg-[var(--brand)] w-72 h-72 -top-20 left-1/2 -translate-x-1/2" />
+          <div className="glass rounded-3xl p-12 text-center relative overflow-hidden tilt-hover">
+            <div className="glow-orb bg-[var(--brand)] w-72 h-72 -top-20 left-1/2 -translate-x-1/2 float" />
             <h2 className="font-display text-3xl sm:text-4xl font-bold text-[var(--text-primary)] relative">Ready to build something great?</h2>
             <p className="text-[var(--text-secondary)] mt-4 max-w-lg mx-auto relative">Tell us about your project and we&apos;ll get back within 24 hours with a clear plan and quote.</p>
             <div className="flex flex-wrap justify-center gap-4 mt-8 relative">

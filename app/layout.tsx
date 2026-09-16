@@ -208,11 +208,11 @@ export default function RootLayout({
           id="page-loader"
           className="fixed inset-0 z-[9999] flex items-center justify-center bg-[var(--bg-primary)]"
         >
-          <div className="animate-pulse">
+          <div className="loader-ring">
             <img
               src="/assets/img/logo-icon.png"
               alt="Loading"
-              className="w-12 h-12 opacity-60"
+              className="w-14 h-14 rounded-full object-cover"
             />
           </div>
         </div>
