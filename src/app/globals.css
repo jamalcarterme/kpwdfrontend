@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #0a0f14;
+  --color-charcoal: #141b22;
+  --color-paper: #faf8f3;
+  --color-paper-2: #f1ede3;
+  --color-gold: #d9a441;
+  --color-gold-light: #e9bd6a;
+  --color-gold-dark: #b3822f;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--color-ink);
+    color: var(--color-paper);
+    padding-bottom: 60px;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .balance {
+    text-wrap: balance;
+  }
+
+  .grain {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+    mix-blend-mode: overlay;
+    opacity: 0.6;
+  }
+
+  /* Diagonal chevron cut used at the base of inner-page heroes */
+  .hero-chevron-cut {
+    clip-path: polygon(0 0, 100% 0, 100% 88%, 50% 100%, 0 88%);
+  }
+
+  /* Soft glowing bokeh texture behind the footer, à la reference design */
+  .footer-glow {
+    background-image:
+      radial-gradient(circle at 12% 20%, rgba(217, 164, 65, 0.16) 0, transparent 42%),
+      radial-gradient(circle at 82% 15%, rgba(217, 164, 65, 0.12) 0, transparent 38%),
+      radial-gradient(circle at 70% 65%, rgba(217, 164, 65, 0.14) 0, transparent 40%),
+      radial-gradient(circle at 25% 80%, rgba(217, 164, 65, 0.1) 0, transparent 36%),
+      radial-gradient(circle at 95% 90%, rgba(217, 164, 65, 0.1) 0, transparent 32%);
+  }
+}
