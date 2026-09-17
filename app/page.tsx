@@ -12,7 +12,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { PAGE_META, generateMetadata, injectSchema, getFAQSchema, getBreadcrumbSchema } from '@/lib/seo';
 import FeaturedProjects from '@/components/FeaturedProjects';
-import TeamGrid from '@/components/TeamGrid';
 import TestimonialsCarousel from '@/components/TestimonialsCarousel';
 import ScheduleWidget from '@/components/ScheduleWidget';
 import Reveal from '@/components/Reveal';
@@ -305,63 +304,6 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ===== HOW IT WORKS ===== */}
-        <section className="max-w-7xl mx-auto px-5 lg:px-8 py-24 section-dots">
-          <div className="text-center max-w-2xl mx-auto mb-14">
-            <span className="text-[var(--brand-2)] text-xs font-semibold uppercase tracking-widest">How It Works</span>
-            <h2 className="font-display text-3xl sm:text-4xl font-bold text-[var(--text-primary)] mt-3">A calm, predictable process</h2>
-            <p className="text-[var(--text-secondary)] mt-3">No black boxes, no surprise invoices &mdash; just a clear path from call to launch.</p>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 reveal-group">
-            {[
-              ['01', 'Strategy call', '30 focused minutes on your market, offer and buyer. You leave with a plan either way.'],
-              ['02', 'Blueprint & design', 'Messaging and wireframes, then a high-fidelity design you approve before we write code.'],
-              ['03', 'Build & QA', 'Clean, fast, accessible code. Tested across devices and tuned for Core Web Vitals.'],
-              ['04', 'Launch & grow', 'We ship, track the numbers, and keep optimizing what turns visitors into clients.'],
-            ].map(([num, title, desc], i) => (
-              <div key={String(num)} className="relative tilt-hover p-2 rounded-xl">
-                <div className="step-num">{num}</div>
-                {i < 3 && <div className="step-connector" />}
-                <h3 className="font-display text-lg font-semibold text-[var(--text-primary)] mt-4">{title}</h3>
-                <p className="text-[var(--text-secondary)] text-sm mt-2">{desc}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* ===== OUR TEAM ===== */}
-        <section id="team-section" className="max-w-7xl mx-auto px-5 lg:px-8 py-24">
-          <div className="text-center max-w-2xl mx-auto">
-            <span className="text-[var(--brand-2)] text-xs font-semibold uppercase tracking-widest">Our Team</span>
-            <h2 className="font-display text-3xl sm:text-4xl font-bold text-[var(--text-primary)] mt-3">The people behind the work</h2>
-          </div>
-          <TeamGrid />
-          <div className="text-center mt-10"><Link href="/about" className="text-[var(--brand-2)] font-semibold hover:underline">Meet the full team &rarr;</Link></div>
-        </section>
-
-        {/* ===== WEB DESIGN BY CITY & INDUSTRY ===== */}
-        <section className="max-w-7xl mx-auto px-5 lg:px-8 py-24 border-t border-[var(--border)]">
-          <div className="text-center mb-12">
-            <span className="text-[var(--brand-2)] text-xs font-semibold uppercase tracking-widest">Services by Location & Industry</span>
-            <h2 className="font-display text-3xl sm:text-5xl font-bold text-[var(--text-primary)] mt-3">Web Design Services Across Nigeria</h2>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 reveal-group">
-            {[
-              { href: '/locations/lagos', title: 'Web Design Company Lagos', desc: 'Custom websites for businesses across Lagos. Conversion-focused design for law firms, real estate, e-commerce & startups.' },
-              { href: '/locations/victoria-island', title: 'Website Designer Victoria Island', desc: 'Local professional web designer for Victoria Island, Lekki, and Ikoyi businesses.' },
-              { href: '/locations/lagos', title: 'Web Design Agency Lagos', desc: 'Full-service web design agency offering design, development, SEO, and digital strategy.' },
-              { href: '/locations/nigeria', title: 'Web Design Company Nigeria', desc: 'Remote-first web design serving Lagos, Abuja, Port Harcourt, and nationwide.' },
-              { href: '/services/ecommerce', title: 'E-Commerce Website Developer', desc: 'Build online stores with Flutterwave & Paystack integration for Nigerian businesses.' },
-              { href: '/services/logistics', title: 'Website Design for Logistics', desc: 'Specialized B2B websites with shipment tracking, quote management & lead generation.' },
-            ].map((l) => (
-              <Link key={l.title} href={l.href} className="group bg-[var(--surface)] border border-[var(--border)] rounded-lg p-6 hover:border-[var(--brand)] hover:bg-[var(--surface)] transition tilt-hover">
-                <h3 className="text-[var(--text-primary)] font-semibold mb-2 group-hover:text-[var(--brand-2)]">{l.title}</h3>
-                <p className="text-[var(--text-secondary)] text-sm">{l.desc}</p>
-              </Link>
-            ))}
-          </div>
-        </section>
-
         {/* ===== TESTIMONIALS ===== */}
         <section id="testimonials-section" className="py-24">
           <div className="max-w-7xl mx-auto px-5 lg:px-8">
@@ -381,26 +323,6 @@ export default function HomePage() {
             <p className="text-[var(--text-secondary)] mt-4">Pick a time that works best for you. We&apos;ll discuss your project, goals, and how we can help.</p>
           </div>
           <ScheduleWidget />
-        </section>
-
-        {/* ===== FAQ ===== */}
-        <section className="py-20 sm:py-32 bg-[var(--bg-secondary)] border-t border-[var(--border)] section-hex">
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl font-bold">Frequently Asked Questions</h2>
-            </div>
-            <div className="space-y-4 reveal-group">
-              {faqs.map((faq, index) => (
-                <details key={index} className="glass p-6 rounded-xl cursor-pointer group tilt-hover">
-                  <summary className="flex items-center justify-between font-semibold text-lg group-open:text-[var(--brand)]">
-                    {faq.question}
-                    <span className="text-xl group-open:rotate-180 transition-transform">▾</span>
-                  </summary>
-                  <p className="text-[var(--text-secondary)] mt-4 leading-relaxed">{faq.answer}</p>
-                </details>
-              ))}
-            </div>
-          </div>
         </section>
 
         {/* ===== FINAL CTA ===== */}

@@ -2,6 +2,7 @@
 
 import { motion } from 'motion/react';
 import { useFetch } from '@/hooks';
+import AutoSlider from '@/components/AutoSlider';
 interface Testimonial {
   _id: string;
   name: string;
@@ -30,7 +31,7 @@ export default function TestimonialsCarousel() {
   if (!list.length) return null;
 
   return (
-    <div className="flex gap-6 mt-14 overflow-x-auto px-5 lg:px-8 pb-4" style={{ scrollbarWidth: 'none' }}>
+    <AutoSlider className="gap-6 mt-14 px-5 lg:px-8 pb-4">
       {list.map((t, i) => (
         <motion.div
           key={t._id}
@@ -50,6 +51,6 @@ export default function TestimonialsCarousel() {
           </div>
         </motion.div>
       ))}
-    </div>
+    </AutoSlider>
   );
 }

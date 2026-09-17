@@ -76,7 +76,7 @@ export default function Header() {
                         <svg className="w-3 h-3 transition-transform group-hover:rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
                       </Link>
                       <div className="absolute left-0 top-full pt-3 hidden group-hover:block z-50 transition-all duration-200">
-                        <div className="glass rounded-xl p-2 min-w-[240px] shadow-lg border border-white/10">
+                        <div className="glass rounded-xl p-4 w-[620px] max-w-[90vw] shadow-lg border border-white/10 grid grid-cols-3 gap-1">
                           {serviceLinks.map((s, i) => (
                             <Link key={`${s.href}-${i}`} href={s.href} className="mobile-menu-item block px-4 py-3 rounded-lg text-sm text-slate-300 hover:text-white hover:bg-white/5 transition">
                               {s.label}
@@ -98,7 +98,7 @@ export default function Header() {
                         <svg className="w-3 h-3 transition-transform group-hover:rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
                       </Link>
                       <div className="absolute left-0 top-full pt-3 hidden group-hover:block z-50 transition-all duration-200">
-                        <div className="glass rounded-xl p-2 min-w-[200px] shadow-lg border border-white/10">
+                        <div className="glass rounded-xl p-4 w-[420px] max-w-[90vw] shadow-lg border border-white/10 grid grid-cols-2 gap-1">
                           {locationLinks.map((s) => (
                             <Link key={s.href} href={s.href} className="mobile-menu-item block px-4 py-3 rounded-lg text-sm text-slate-300 hover:text-white hover:bg-white/5 transition">
                               {s.label}

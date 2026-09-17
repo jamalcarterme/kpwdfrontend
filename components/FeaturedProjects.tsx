@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { motion } from 'motion/react';
 import { useFetch } from '@/hooks';
 import { truncate } from '@/lib/utils';
+import AutoSlider from '@/components/AutoSlider';
 interface Project {
   _id: string;
   title: string;
@@ -19,7 +20,7 @@ export default function FeaturedProjects() {
 
   const all = data?.projects || data?.data || [];
   const featured = all.filter((p) => p.isFeatured);
-  const list = (featured.length ? featured : all).slice(0, 3);
+  const list = (featured.length ? featured : all).slice(0, 8);
 
   if (isLoading) {
     return (
@@ -36,7 +37,7 @@ export default function FeaturedProjects() {
   }
 
   return (
-    <div className="grid md:grid-cols-3 gap-6 mt-10">
+    <AutoSlider className="gap-6 mt-10 pb-2">
       {list.map((p, i) => (
         <motion.div
           key={p._id}
@@ -44,6 +45,7 @@ export default function FeaturedProjects() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.5, delay: i * 0.08 }}
+          className="shrink-0 w-[300px] sm:w-[340px]"
         >
           <Link href="/portfolio" className="reveal glass rounded-2xl overflow-hidden card-hover group block">
             <div className="aspect-[4/3] overflow-hidden bg-[var(--surface-2)] relative">
@@ -52,7 +54,7 @@ export default function FeaturedProjects() {
                   src={p.image.url}
                   alt={p.title}
                   fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
+                  sizes="340px"
                   className="object-cover group-hover:scale-105 transition duration-500"
                 />
               )}
@@ -65,6 +67,6 @@ export default function FeaturedProjects() {
           </Link>
         </motion.div>
       ))}
-    </div>
+    </AutoSlider>
   );
 }

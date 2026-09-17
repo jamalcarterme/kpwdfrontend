@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { generateMetadata as buildMeta, PAGE_META } from '@/lib/seo';
 import PortfolioGrid from '@/components/PortfolioGrid';
+import FeaturedProjects from '@/components/FeaturedProjects';
 
 export const metadata: Metadata = buildMeta(PAGE_META.portfolio);
 
@@ -13,6 +14,8 @@ export default function PortfolioPage() {
         <h1 className="font-display text-4xl sm:text-5xl font-bold text-white mt-3">Work we&apos;re proud of</h1>
         <p className="text-slate-400 mt-4">A selection of websites, apps and platforms we&apos;ve designed and built.</p>
       </div>
+
+      <FeaturedProjects />
 
       <div className="section-dots py-6">
         <PortfolioGrid />
