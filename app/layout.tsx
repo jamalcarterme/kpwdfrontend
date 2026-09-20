@@ -23,21 +23,11 @@ import './globals.css';
 
 // ===== Optimize Google Fonts =====
 // Only load essential weights to reduce blocking
-import { Plus_Jakarta_Sans, Instrument_Serif } from 'next/font/google';
-
-const plusJakartaSans = Plus_Jakarta_Sans({
-  subsets: ['latin'],
-  weight: ['600', '700'],
-  display: 'swap',
-  variable: '--font-sans',
-});
-
-const instrumentSerif = Instrument_Serif({
-  subsets: ['latin'],
-  weight: ['400'],
-  display: 'swap',
-  variable: '--font-serif',
-});
+import '@fontsource/poppins/400.css';
+import '@fontsource/poppins/500.css';
+import '@fontsource/poppins/600.css';
+import '@fontsource/poppins/700.css';
+import Preloader from '@/components/Preloader';
 
 // ===== Global Metadata =====
 export const metadata: Metadata = {
@@ -113,25 +103,11 @@ export default function RootLayout({
 }) {
   return (
     <html
-      lang="en"
+      lang="en" data-theme="light"
       suppressHydrationWarning
-      className={`${plusJakartaSans.variable} ${instrumentSerif.variable}`}
     >
       <head>
-        {/* ===== Theme Script (prevent flash) ===== */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function(){
-                try {
-                  const theme = localStorage.getItem('kpwd-theme') || 
-                    (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-                  document.documentElement.setAttribute('data-theme', theme);
-                } catch (e) {}
-              })();
-            `,
-          }}
-        />
+        <noscript><style>{`#preloader{display:none!important}`}</style></noscript>
 
         {/* ===== Preconnect to External Services ===== */}
         <link rel="preconnect" href="https://res.cloudinary.com" />
@@ -193,6 +169,7 @@ export default function RootLayout({
         className="bg-[var(--bg-primary)] text-[var(--text-primary)] font-sans antialiased transition-colors duration-200"
         suppressHydrationWarning
       >
+        <Preloader />
         {/* ===== Google Tag Manager NoScript (for JS-disabled users) ===== */}
         <noscript>
           <iframe

@@ -3,163 +3,78 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { AnimatePresence, motion } from 'motion/react';
+import { Menu, X } from 'lucide-react';
 
 const nav = [
   { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
   { href: '/services', label: 'Services' },
-  { href: '/locations/lagos', label: 'Locations' },
   { href: '/portfolio', label: 'Portfolio' },
   { href: '/pricing', label: 'Pricing' },
   { href: '/blog', label: 'Blog' },
-  { href: '/about', label: 'About' },
   { href: '/contact', label: 'Contact' },
-];
-
-const serviceLinks = [
-  { href: '/locations/lagos', label: 'Web Design Company Lagos' },
-  { href: '/locations/lagos', label: 'Website Designer Lagos' },
-  { href: '/locations/lagos', label: 'Web Design Agency Lagos' },
-  { href: '/locations/victoria-island', label: 'Website Designer Victoria Island' },
-  { href: '/locations/nigeria', label: 'Web Design Company Nigeria' },
-  { href: '/services/ecommerce', label: 'E-Commerce Developer Nigeria' },
-  { href: '/services/corporate', label: 'Corporate Website Designer' },
-  { href: '/services/logistics', label: 'Website Design - Logistics' },
-  { href: '/services/law-firms', label: 'Web Design for Law Firms' },
-  { href: '/services/real-estate', label: 'Real Estate Website Design' },
-  { href: '/services/restaurant', label: 'Restaurant Website Design' },
-  { href: '/services/med-spa', label: 'Med Spa Web Design' },
-  { href: '/services/seo', label: 'SEO for Small Business' },
-  { href: '/services/landing-page', label: 'Landing Page Design' },
-  { href: '/services/ecommerce', label: 'Ecommerce Web Design (Abuja)' },
-];
-
-const locationLinks = [
-  { href: '/locations/lagos', label: 'Web Design (Lagos)' },
-  { href: '/locations/victoria-island', label: 'Victoria Island' },
-  { href: '/locations/abuja', label: 'Abuja' },
-  { href: '/locations/benin-city', label: 'Benin City' },
-  { href: '/locations/port-harcourt', label: 'Port Harcourt' },
-  { href: '/locations/ibadan', label: 'Ibadan' },
 ];
 
 export default function Header() {
   const pathname = usePathname() || '/';
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const isHome = pathname === '/';
+  const solid = scrolled || !isHome || open;
 
-  const isActive = (href: string) => (href === '/' ? pathname === '/' : pathname.startsWith(href));
-  const svcActive = pathname.startsWith('/services');
-  const locActive = pathname.startsWith('/locations');
+  useEffect(() => {
+    const on = () => setScrolled(window.scrollY > 40);
+    on();
+    window.addEventListener('scroll', on, { passive: true });
+    return () => window.removeEventListener('scroll', on);
+  }, []);
+  useEffect(() => setOpen(false), [pathname]);
+
+  const active = (href: string) => (href === '/' ? pathname === '/' : pathname.startsWith(href));
 
   return (
-    <>
-      <header className="fixed top-0 inset-x-0 z-50">
-        <div className="mx-auto max-w-7xl px-5 lg:px-8">
-          <div className="mt-3 glass rounded-2xl flex items-center justify-between px-5 py-3">
-            <Link href="/" className="flex items-center gap-2 group">
-              <Image src="/assets/img/logo-icon.png" alt="King Praise Web Design" width={32} height={32} className="logo-icon" />
-              <span className="font-display font-semibold tracking-tight text-lg hidden sm:inline" style={{ color: 'var(--text)' }}>
-                King Praise <span className="text-gradient">Web Design</span>
-              </span>
+    <motion.header
+      initial={{ y: -90 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.7, delay: 1.9, ease: [0.22, 1, 0.36, 1] }}
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${solid ? 'bg-ink/95 shadow-lg backdrop-blur' : 'bg-transparent'}`}
+    >
+      <div className={`mx-auto flex max-w-[1240px] items-center justify-between px-6 transition-all duration-300 ${solid ? 'h-[72px]' : 'h-[88px]'}`}>
+        <Link href="/" className="flex items-center gap-2.5">
+          <Image src="/assets/img/logo-icon.png" alt="King Praise Web Design" width={36} height={36} priority />
+          <span className="text-[17px] font-semibold text-white">
+            King Praise <span className="text-brand">Web Design</span>
+          </span>
+        </Link>
+        <nav className="hidden items-center gap-8 lg:flex" aria-label="Main">
+          {nav.map((n) => (
+            <Link key={n.href} href={n.href} className={`relative text-[15px] font-medium transition-colors ${active(n.href) ? 'text-brand' : 'text-white/85 hover:text-brand'}`}>
+              {n.label}
+              {active(n.href) && <motion.span layoutId="nav-dot" className="absolute -bottom-2 left-0 right-0 h-[2px] rounded bg-brand" />}
             </Link>
-
-            <nav className="hidden lg:flex items-center gap-7">
-              {nav.map((n) => {
-                if (n.label === 'Services') {
-                  return (
-                    <div className="relative group" key={n.href}>
-                      <Link
-                        href="/services"
-                        className={`nav-link text-sm font-medium ${pathname === '/services' || svcActive ? 'active text-white' : 'text-slate-300'} hover:text-white transition inline-flex items-center gap-1`}
-                      >
-                        Services
-                        <svg className="w-3 h-3 transition-transform group-hover:rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
-                      </Link>
-                      <div className="absolute left-0 top-full pt-3 hidden group-hover:block z-50 transition-all duration-200">
-                        <div className="glass rounded-xl p-4 w-[620px] max-w-[90vw] shadow-lg border border-white/10 grid grid-cols-3 gap-1">
-                          {serviceLinks.map((s, i) => (
-                            <Link key={`${s.href}-${i}`} href={s.href} className="mobile-menu-item block px-4 py-3 rounded-lg text-sm text-slate-300 hover:text-white hover:bg-white/5 transition">
-                              {s.label}
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  );
-                }
-                if (n.label === 'Locations') {
-                  return (
-                    <div className="relative group" key={n.href}>
-                      <Link
-                        href="/locations/lagos"
-                        className={`nav-link text-sm font-medium ${locActive ? 'active text-white' : 'text-slate-300'} hover:text-white transition inline-flex items-center gap-1`}
-                      >
-                        Locations
-                        <svg className="w-3 h-3 transition-transform group-hover:rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
-                      </Link>
-                      <div className="absolute left-0 top-full pt-3 hidden group-hover:block z-50 transition-all duration-200">
-                        <div className="glass rounded-xl p-4 w-[420px] max-w-[90vw] shadow-lg border border-white/10 grid grid-cols-2 gap-1">
-                          {locationLinks.map((s) => (
-                            <Link key={s.href} href={s.href} className="mobile-menu-item block px-4 py-3 rounded-lg text-sm text-slate-300 hover:text-white hover:bg-white/5 transition">
-                              {s.label}
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  );
-                }
-                return (
-                  <Link key={n.href} href={n.href} className={`nav-link text-sm font-medium ${isActive(n.href) && n.href !== '/' ? 'active text-white' : pathname === n.href ? 'active text-white' : 'text-slate-300'} hover:text-white transition`}>
-                    {n.label}
-                  </Link>
-                );
-              })}
-            </nav>
-
-            <div className="hidden lg:flex items-center gap-3">
-              <Link href="/client/login" className="btn-ghost text-sm px-4 py-2 rounded-lg">Client Login</Link>
-              <Link href="/contact#schedule" className="btn-primary text-sm px-4 py-2 rounded-lg">Book a Call</Link>
-            </div>
-
-            <div className="flex items-center gap-2 lg:hidden">
-              <button onClick={() => setMenuOpen(true)} className="text-white p-2" aria-label="Open menu" aria-expanded={menuOpen}>
-                <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M4 7h16M4 12h16M4 17h16" /></svg>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div className={`mobile-menu-overlay ${menuOpen ? 'open' : ''}`} hidden={!menuOpen} onClick={() => setMenuOpen(false)} />
-        <div className={`mobile-menu glass ${menuOpen ? 'open' : ''}`} aria-hidden={!menuOpen}>
-          <div className="flex items-center justify-between mb-6">
-            <span className="font-display font-semibold text-white text-lg">Menu</span>
-            <button onClick={() => setMenuOpen(false)} className="text-white p-2" aria-label="Close menu">
-              <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
-            </button>
-          </div>
-          <div className="flex flex-col gap-4">
-            {nav.filter((n) => n.label !== 'Locations').map((n) => (
-              <Link key={n.href} href={n.href} onClick={() => setMenuOpen(false)} className="text-slate-200 hover:text-white font-medium">{n.label}</Link>
-            ))}
-            <div className="pl-3 border-l border-white/10 flex flex-col gap-3">
-              {serviceLinks.map((s, i) => (
-                <Link key={`${s.href}-m-${i}`} href={s.href} onClick={() => setMenuOpen(false)} className="text-slate-400 hover:text-white text-sm">{s.label}</Link>
+          ))}
+        </nav>
+        <Link href="/contact" className="hidden rounded-full bg-brand px-6 py-2.5 text-[14px] font-semibold text-ink transition hover:bg-brand-2 hover:shadow-[0_8px_24px_rgba(255,184,12,0.35)] lg:inline-block">
+          Request Quote
+        </Link>
+        <button onClick={() => setOpen((o) => !o)} aria-label="Toggle menu" className="text-white lg:hidden">
+          {open ? <X size={26} /> : <Menu size={26} />}
+        </button>
+      </div>
+      <AnimatePresence>
+        {open && (
+          <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden bg-ink lg:hidden">
+            <div className="flex flex-col gap-1 px-6 pb-6">
+              {nav.map((n) => (
+                <Link key={n.href} href={n.href} className={`rounded-lg px-3 py-3 text-[16px] font-medium ${active(n.href) ? 'bg-white/10 text-brand' : 'text-white/85'}`}>{n.label}</Link>
               ))}
+              <Link href="/contact" className="mt-3 rounded-full bg-brand px-6 py-3 text-center text-[14px] font-semibold text-ink">Request Quote</Link>
             </div>
-            <span className="text-slate-200 font-medium">Locations</span>
-            <div className="pl-3 border-l border-white/10 flex flex-col gap-3">
-              {locationLinks.map((s) => (
-                <Link key={`m-${s.href}`} href={s.href} onClick={() => setMenuOpen(false)} className="text-slate-400 hover:text-white text-sm">{s.label}</Link>
-              ))}
-            </div>
-            <hr className="border-white/10" />
-            <Link href="/client/login" onClick={() => setMenuOpen(false)} className="btn-ghost text-center px-4 py-2 rounded-lg">Client Login</Link>
-            <Link href="/admin/login" onClick={() => setMenuOpen(false)} className="text-sm text-center font-medium transition rounded-lg py-2" style={{ color: 'var(--text)', background: 'var(--surface-2)', border: '1px solid var(--border)' }}>Admin Login</Link>
-            <Link href="/contact#schedule" onClick={() => setMenuOpen(false)} className="btn-primary text-center px-4 py-2 rounded-lg">Book a Call</Link>
-          </div>
-        </div>
-      </header>
-    </>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.header>
   );
 }

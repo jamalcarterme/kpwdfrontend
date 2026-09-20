@@ -14,51 +14,20 @@
 
 /* ===== CSS Variables (Theme System) ===== */
 :root,
-[data-theme='dark'] {
-  --brand: #ffb80c;
-  --brand-2: #ffcb4d;
-  --brand-3: #c98a00;
-
-  --bg-primary: #07070a;
-  --bg-secondary: #121212;
-  --bg-tertiary: #1b1b1b;
-
-  --text-primary: #f2f0ea;
-  --text-secondary: #9c9890;
-
-  --border: #2a2a2a;
-  --border-light: #3a3a3a;
-
-  --glow-brand: rgba(255, 184, 12, 0.12);
-  --glow-brand-2: rgba(255, 203, 77, 0.12);
-
-  /* Aliases used across components/pages */
-  --surface: var(--bg-secondary);
-  --surface-2: var(--bg-tertiary);
-  --text: var(--text-primary);
-  --muted: var(--text-secondary);
-}
-
+[data-theme='dark'],
 [data-theme='light'] {
   --brand: #ffb80c;
   --brand-2: #ffcb4d;
   --brand-3: #c98a00;
-
-  /* Plain white background — gold/yellow is a brand ACCENT color only
-     (buttons, badges, glows), never the page background. */
   --bg-primary: #ffffff;
   --bg-secondary: #ffffff;
-  --bg-tertiary: #f4f4f5;
-
-  --text-primary: #17181c;
-  --text-secondary: #5b5e66;
-
-  --border: #e7e7ea;
-  --border-light: #efeff2;
-
+  --bg-tertiary: #f4f6fa;
+  --text-primary: #1a1d24;
+  --text-secondary: #5b6270;
+  --border: #e5e8ee;
+  --border-light: #eef0f4;
   --glow-brand: rgba(255, 184, 12, 0.1);
   --glow-brand-2: rgba(255, 203, 77, 0.1);
-
   --surface: var(--bg-secondary);
   --surface-2: var(--bg-tertiary);
   --text: var(--text-primary);
@@ -1091,3 +1060,8 @@ select:disabled {
   color: var(--text-secondary);
   font-size: 0.875rem;
 }
+
+/* Light agency theme: keep gold buttons legible */
+.btn-primary { color: #111 !important; }
+@keyframes kenburns { from { transform: scale(1.12); } to { transform: scale(1); } }
+.no-scrollbar::-webkit-scrollbar { display: none; }

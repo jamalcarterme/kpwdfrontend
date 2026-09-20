@@ -15,6 +15,10 @@ import FeaturedProjects from '@/components/FeaturedProjects';
 import TestimonialsCarousel from '@/components/TestimonialsCarousel';
 import ScheduleWidget from '@/components/ScheduleWidget';
 import Reveal from '@/components/Reveal';
+import HeroSlider from '@/components/HeroSlider';
+import Counter from '@/components/Counter';
+import TeamGrid from '@/components/TeamGrid';
+import { Palette, Code2, Megaphone, Smartphone, ShoppingCart, LifeBuoy, CheckCircle2, ChevronDown } from 'lucide-react';
 
 // ===== Metadata =====
 export const metadata: Metadata = generateMetadata(PAGE_META.home);
@@ -143,6 +147,31 @@ const itemListSchema = {
   ],
 };
 
+const helpServices = [
+  { icon: Palette, title: 'Web Design', desc: 'Conversion-focused, mobile-first websites for law firms, real estate, restaurants and small businesses.', href: '/services/corporate' },
+  { icon: Code2, title: 'Development', desc: 'Full-stack builds on the MERN stack: custom web apps, portals, booking systems and dashboards.', href: '/services' },
+  { icon: Megaphone, title: 'SEO & Marketing', desc: 'On-page SEO, structured data and fast load times so your business ranks and attracts qualified leads.', href: '/services/seo' },
+  { icon: Smartphone, title: 'Landing Pages', desc: 'High-converting landing pages that turn ad and social traffic into enquiries and paying clients.', href: '/services/landing-page' },
+  { icon: ShoppingCart, title: 'eCommerce', desc: 'Secure online stores with payments, product management and mobile-optimized storefronts.', href: '/services/ecommerce' },
+  { icon: LifeBuoy, title: 'Help & Support', desc: 'A single point of contact and 30 days of free bug fixes after launch.', href: '/contact' },
+];
+
+const facts = [
+  { to: 10, suffix: '+', label: 'Projects Shipped' },
+  { to: 12, suffix: '+', label: 'Countries Served' },
+  { to: 4.9, decimals: 1, suffix: '/5', label: 'Client Rating' },
+  { to: 98, suffix: '%', label: 'Clients Who Re-hire' },
+];
+
+const why = [
+  'Conversion-focused design that turns visitors into customers',
+  'Fast delivery: most projects launch in 2-4 weeks',
+  'SEO-optimized from day 1 with structured data',
+  'Mobile-first and responsive on every device',
+  'Dedicated support and 30 days of free bug fixes',
+  'Transparent pricing from ₦50K for small business sites',
+];
+
 export default function HomePage() {
   return (
     <>
@@ -153,189 +182,135 @@ export default function HomePage() {
       {injectSchema(localBusinessSchema)}
       {injectSchema(websiteSchema)}
       {injectSchema(itemListSchema)}
-
-      <main className="flex-1">
+      <main>
         {/* ===== HERO ===== */}
-        <section id="hero" aria-label="Hero section featuring company value proposition" className="relative overflow-hidden isolate">
-          {/* Video background — autoplay/muted/loop/playsInline so it starts
-              instantly on load with no user interaction and no wasted time. */}
-          <video
-            className="absolute inset-0 w-full h-full object-cover -z-20"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
-            aria-hidden="true"
-          >
-            <source src="/assets/video/hero-bg.mp4" type="video/mp4" />
-          </video>
-          {/* Dark overlay so text stays readable over any frame of the video */}
-          <div className="absolute inset-0 -z-10 bg-black/65" />
-          <div className="glow-orb bg-[var(--brand)] w-[500px] h-[500px] -top-40 -left-40 opacity-20" />
-          <div className="glow-orb-2 bg-[var(--brand-2)] w-[400px] h-[400px] top-40 right-0 opacity-20" />
-
-          <div className="max-w-4xl mx-auto px-5 lg:px-8 py-20 sm:py-28 lg:py-36 relative z-10 flex flex-col items-center text-center">
-            <span className="chip"><span className="dot" /> Lagos &middot; Serving 12+ countries</span>
-            <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl font-bold text-white leading-[1.15] mt-5 sm:mt-6">
-              Built for Businesses Who Are <span className="text-gradient">Done Being Invisible Online</span>.
-            </h1>
-            <p className="text-slate-200 text-base sm:text-lg mt-4 sm:mt-6 max-w-2xl">
-              A premium website, e-commerce store or custom software build, engineered to make you the obvious choice in your market and turn visitors into paying clients. Designed with intent, built with clean code, shipped fast.
-            </p>
-            <p className="text-slate-300 text-base sm:text-lg mt-4 max-w-2xl">
-              We specialize in conversion-focused design for law firms, real estate agencies, e-commerce brands, restaurants, and small businesses across Lagos and Nigeria. Every site we build includes on-page SEO optimization, mobile responsiveness, and fast load times&mdash;ensuring you rank on Google and attract qualified leads.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4 mt-6 sm:mt-8">
-              <Link href="/contact#schedule" className="btn-primary px-7 py-3.5 rounded-xl">Book a Free Strategy Call</Link>
-              <Link href="/contact" className="btn-ghost px-7 py-3.5 rounded-xl !border-white !text-white hover:!bg-white/10">Get a Free Quote</Link>
-            </div>
-            <div className="stat-row mt-10 sm:mt-12 justify-center">
-              <div className="stat"><b className="text-white">12+</b><span className="text-slate-300">Countries served</span></div>
-              <div className="stat"><b className="text-white">4.9/5</b><span className="text-slate-300">Client rating</span></div>
-              <div className="stat"><b className="text-white">2&ndash;4</b><span className="text-slate-300">Weeks to launch</span></div>
-              <div className="stat"><b className="text-white">98%</b><span className="text-slate-300">Clients who re-hire</span></div>
-            </div>
+        <section id="hero" aria-label="Hero" className="relative flex min-h-screen items-center overflow-hidden bg-ink pt-24">
+          <div className="absolute inset-0 animate-[kenburns_14s_ease-out_forwards]">
+            <Image src="/images/hero-agency.jpg" alt="Web design agency team collaborating over laptops" fill priority sizes="100vw" className="object-cover" />
           </div>
-
-          <div className="border-y border-white/10 py-6 overflow-hidden relative z-10 bg-black/50">
-            <div className="marquee-track text-slate-300 font-display text-sm uppercase tracking-widest">
-              <span>Web Design</span><span>&middot;</span><span>E-Commerce</span><span>&middot;</span><span>Mobile Apps</span><span>&middot;</span><span>Custom Software</span><span>&middot;</span><span>SEO</span><span>&middot;</span><span>Branding</span>
-              <span>Web Design</span><span>&middot;</span><span>E-Commerce</span><span>&middot;</span><span>Mobile Apps</span><span>&middot;</span><span>Custom Software</span><span>&middot;</span><span>SEO</span><span>&middot;</span><span>Branding</span>
-            </div>
+          <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/70 to-ink/40" />
+          <div className="relative mx-auto w-full max-w-[1240px] px-6 py-20">
+            <HeroSlider />
           </div>
         </section>
 
-        {/* ===== WHY CHOOSE KPWD ===== */}
-        <section className="max-w-7xl mx-auto px-5 lg:px-8 py-16 border-t border-[var(--border)] section-hex">
-          <div className="text-center mb-12">
-            <span className="text-[var(--brand-2)] text-xs font-semibold uppercase tracking-widest">Why Choose King Praise</span>
-            <h2 className="font-display text-3xl sm:text-5xl font-bold text-[var(--text-primary)] mt-3">Why Businesses Choose KPWD</h2>
-            <p className="text-[var(--text-secondary)] mt-4 max-w-2xl mx-auto">Most web designers build pretty websites. We build websites that generate revenue.</p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8 mt-12">
-            {[
-              { icon: '🎯', title: 'Conversion-Focused Design', desc: 'Every element is engineered to convert visitors into paying customers. Not just aesthetics—results.' },
-              { icon: '⚡', title: 'Fast Delivery (2-4 Weeks)', desc: 'We ship websites quickly without cutting corners on quality. Most projects launch within 2-4 weeks.' },
-              { icon: '🔍', title: 'SEO-Optimized from Day 1', desc: 'Every site includes keyword research, on-page optimization, and structured data for Google rankings.' },
-              { icon: '📱', title: 'Mobile-First & Responsive', desc: 'Optimized for all devices with fast load times and smooth user experience across desktop, tablet, mobile.' },
-              { icon: '💼', title: 'Dedicated Support', desc: 'Single point of contact throughout the project. 30 days of free bug fixes after launch.' },
-              { icon: '💰', title: 'Transparent Pricing', desc: 'No hidden fees. Packages start at ₦50K for small business sites. Custom quotes for enterprises.' },
-            ].map((c, i) => (
-              <Reveal key={c.title} delay={i * 0.06}>
-                <div className="bg-[var(--surface)] rounded-lg p-6 border border-[var(--border)] hover:border-[var(--brand)] transition h-full tilt-hover">
-                  <div className="text-3xl mb-3 icon-bounce">{c.icon}</div>
-                  <h3 className="text-[var(--text-primary)] font-semibold text-lg mb-2">{c.title}</h3>
-                  <p className="text-[var(--text-secondary)] text-sm">{c.desc}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </section>
-
-        {/* ===== FEATURED PORTFOLIO ===== */}
-        <section className="max-w-7xl mx-auto px-5 lg:px-8 py-16">
-          <div className="flex items-end justify-between flex-wrap gap-4">
-            <div>
-              <span className="text-[var(--brand-2)] text-xs font-semibold uppercase tracking-widest">Selected Work</span>
-              <h2 className="font-display text-3xl sm:text-5xl font-bold text-[var(--text-primary)] mt-3">Real projects, real results</h2>
-              <p className="text-[var(--text-secondary)] mt-3 max-w-lg">A look at what we&apos;ve shipped for clients across industries and continents.</p>
-            </div>
-            <Link href="/portfolio" className="btn-primary px-5 py-2.5 rounded-lg text-sm whitespace-nowrap">View full portfolio →</Link>
-          </div>
-          <FeaturedProjects />
-        </section>
-
-        {/* ===== SERVICES & ABOUT ===== */}
-        <section id="services" className="max-w-7xl mx-auto px-5 lg:px-8 py-24">
-          <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
-            <div>
-              <span className="text-[var(--brand-2)] text-xs font-semibold uppercase tracking-widest">Who We Are</span>
-              <h2 className="font-display text-3xl sm:text-4xl font-bold text-[var(--text-primary)] mt-3 leading-[1.2]">No AI slop. No cookie-cutter templates. Just work that converts.</h2>
-              <p className="text-[var(--text-secondary)] mt-4 leading-relaxed">We&apos;re a premium web design and software studio based in Lagos, working with law firms, real estate agencies, churches, restaurants and small businesses worldwide. We combine conversion-focused design with clean, maintainable code on the MERN stack (React, Node.js, MongoDB, Express.js).</p>
-              <p className="text-[var(--text-secondary)] mt-3 leading-relaxed">Our mission: give your business a web presence that ranks on Google, builds instant trust with visitors, and turns them into paying customers, not just another site sitting quietly in a corner of the internet.</p>
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              {[
-                ['10+', 'Projects Shipped'],
-                ['4.9/5', 'Client Rating'],
-                ['12+', 'Countries Served'],
-                ['2-4', 'Weeks to Launch'],
-              ].map(([num, label]) => (
-                <div key={label} className="glass rounded-xl p-6 text-center tilt-hover">
-                  <div className="font-display text-3xl font-bold text-[var(--brand-2)]">{num}</div>
-                  <p className="text-[var(--text-secondary)] text-sm mt-2">{label}</p>
-                </div>
+        {/* ===== HOW CAN WE HELP ===== */}
+        <section id="services" className="bg-white py-24">
+          <div className="mx-auto grid max-w-[1240px] gap-14 px-6 lg:grid-cols-[1fr_1.4fr]">
+            <Reveal>
+              <h2 className="text-[34px] font-bold leading-tight text-ink sm:text-[42px]">How can we help you?</h2>
+              <p className="mt-5 text-[17px] leading-relaxed text-gray-600">
+                We&apos;re a premium web design and software studio based in Lagos, working with law firms, real estate agencies, churches, restaurants and small businesses worldwide. No AI slop. No cookie-cutter templates. Just work that converts.
+              </p>
+              <p className="mt-4 text-[17px] leading-relaxed text-gray-600">
+                We combine conversion-focused design with clean, maintainable code on the MERN stack (React, Node.js, MongoDB, Express.js) so your site ranks on Google and builds instant trust.
+              </p>
+              <Link href="/contact#schedule" className="mt-8 inline-block rounded-full bg-brand px-8 py-3.5 text-[15px] font-semibold text-ink transition hover:-translate-y-0.5 hover:bg-brand-2 hover:shadow-[0_10px_30px_rgba(255,184,12,0.4)]">Book A Meeting</Link>
+            </Reveal>
+            <div className="grid gap-x-8 gap-y-10 sm:grid-cols-2">
+              {helpServices.map((s, i) => (
+                <Reveal key={s.title} delay={i * 0.07}>
+                  <Link href={s.href} className="group block">
+                    <span className="flex h-14 w-14 items-center justify-center rounded-xl bg-brand/15 text-brand transition group-hover:bg-brand group-hover:text-ink"><s.icon size={26} /></span>
+                    <h4 className="mt-4 text-[20px] font-semibold text-ink transition group-hover:text-brand-3">{s.title}</h4>
+                    <p className="mt-2 text-[15px] leading-relaxed text-gray-600">{s.desc}</p>
+                  </Link>
+                </Reveal>
               ))}
             </div>
           </div>
+        </section>
 
-          <div>
-            <div className="text-center max-w-2xl mx-auto mb-14">
-              <span className="text-[var(--brand-2)] text-xs font-semibold uppercase tracking-widest">What We Deliver</span>
-              <h3 className="font-display text-2xl sm:text-3xl font-bold text-[var(--text-primary)] mt-3">Full-stack digital solutions built for conversion</h3>
+        {/* ===== PORTFOLIO ===== */}
+        <section id="portfolio" className="bg-[#F4F6FA] py-24">
+          <div className="mx-auto max-w-[1240px] px-6">
+            <Reveal className="mx-auto max-w-2xl text-center">
+              <h2 className="text-[34px] font-bold text-ink sm:text-[42px]">Portfolio</h2>
+              <p className="mt-4 text-[17px] text-gray-600">A look at what we&apos;ve shipped for clients across industries and continents.</p>
+            </Reveal>
+            <div className="mt-12"><FeaturedProjects /></div>
+            <div className="mt-10 text-center">
+              <Link href="/portfolio" className="inline-block rounded-full bg-brand px-8 py-3.5 text-[15px] font-semibold text-ink transition hover:-translate-y-0.5 hover:bg-brand-2">Explore More</Link>
             </div>
-            <div className="grid md:grid-cols-3 gap-6">
-              {[
-                { img: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=500&h=300&q=80', alt: 'Web Design & Development', title: 'Web Design & Development', desc: 'Fast, responsive websites built to convert visitors into customers with SEO fundamentals baked in.', price: 'From $450' },
-                { img: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=500&h=300&q=80', alt: 'Mobile Apps', title: 'Mobile Apps', desc: 'Native-feel apps for iOS and Android built on a single codebase with real-time functionality.', price: 'From $3,000' },
-                { img: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=500&h=300&q=80', alt: 'Custom Software', title: 'Custom Software', desc: 'Bespoke dashboards, internal tools and automation systems tailored to your exact needs.', price: 'From $3,000' },
-              ].map((s, i) => (
-                <Reveal key={s.title} delay={i * 0.08}>
-                  <div className="glass rounded-2xl overflow-hidden card-hover tilt-hover h-full">
-                    <div className="relative w-full h-40">
-                      <Image src={s.img} alt={s.alt} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
-                    </div>
-                    <div className="p-6">
-                      <h3 className="font-display text-lg font-semibold text-[var(--text-primary)]">{s.title}</h3>
-                      <p className="text-[var(--text-secondary)] text-sm mt-3">{s.desc}</p>
-                      <span className="price-tag">{s.price}</span>
-                    </div>
+          </div>
+        </section>
+
+        {/* ===== FACTS (counters) ===== */}
+        <section id="facts" className="relative overflow-hidden bg-ink py-24 text-white">
+          <div className="absolute inset-0 opacity-25"><Image src="/images/hero-agency.jpg" alt="" fill sizes="100vw" className="object-cover" /></div>
+          <div className="absolute inset-0 bg-ink/80" />
+          <div className="relative mx-auto grid max-w-[1240px] items-center gap-14 px-6 lg:grid-cols-2">
+            <Reveal>
+              <h2 className="text-[34px] font-bold leading-tight sm:text-[42px]">Why Businesses Choose KPWD</h2>
+              <p className="mt-4 text-[17px] text-white/70">Most web designers build pretty websites. We build websites that generate revenue.</p>
+              <ul className="mt-7 space-y-3">
+                {why.map((w) => <li key={w} className="flex gap-3 text-[16px] text-white/85"><CheckCircle2 size={20} className="mt-0.5 shrink-0 text-brand" />{w}</li>)}
+              </ul>
+            </Reveal>
+            <div className="grid grid-cols-2 gap-6">
+              {facts.map((f, i) => (
+                <Reveal key={f.label} delay={i * 0.1}>
+                  <div className="rounded-2xl border border-white/15 bg-white/5 p-7 text-center backdrop-blur transition hover:-translate-y-1 hover:border-brand/60">
+                    <div className="text-[44px] font-bold leading-none text-brand sm:text-[52px]"><Counter to={f.to} decimals={f.decimals} suffix={f.suffix} /></div>
+                    <p className="mt-3 text-[15px] text-white/75">{f.label}</p>
                   </div>
                 </Reveal>
               ))}
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 reveal-group">
-              {['Conversion-Focused', 'Mobile-Optimized', 'SEO-Ready', 'Fast Support'].map((t) => (
-                <div key={t} className="glass rounded-xl p-5 text-center tilt-hover"><span className="text-emerald-400 text-lg icon-bounce inline-block">✓</span><p className="text-[var(--text-secondary)] text-sm font-medium mt-1">{t}</p></div>
+          </div>
+        </section>
+
+        {/* ===== CUSTOMERS ===== */}
+        <section id="customers" className="bg-white py-24">
+          <div className="mx-auto max-w-[1240px] px-6">
+            <Reveal className="mx-auto max-w-2xl text-center">
+              <h2 className="text-[34px] font-bold text-ink sm:text-[42px]">Our Customers</h2>
+              <p className="mt-4 text-[17px] text-gray-600">Businesses across Nigeria and beyond trust us to build their online presence.</p>
+            </Reveal>
+            <div className="mt-14"><TestimonialsCarousel /></div>
+          </div>
+        </section>
+
+        {/* ===== LEADERSHIP ===== */}
+        <section id="team" className="bg-[#F4F6FA] py-24">
+          <div className="mx-auto max-w-[1240px] px-6">
+            <Reveal className="mx-auto max-w-2xl text-center">
+              <h2 className="text-[34px] font-bold text-ink sm:text-[42px]">Meet Our Leadership</h2>
+              <p className="mt-4 text-[17px] text-gray-600">The people behind every conversion-focused website we ship.</p>
+            </Reveal>
+            <div className="mt-14"><TeamGrid /></div>
+          </div>
+        </section>
+
+        {/* ===== FAQ (matches FAQ schema) ===== */}
+        <section className="bg-white py-24">
+          <div className="mx-auto max-w-3xl px-6">
+            <Reveal className="text-center">
+              <h2 className="text-[34px] font-bold text-ink sm:text-[42px]">Frequently Asked Questions</h2>
+            </Reveal>
+            <div className="mt-12 space-y-3">
+              {faqs.map((f) => (
+                <details key={f.question} className="group rounded-xl border border-gray-200 bg-white px-6 py-5 open:shadow-md">
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-[17px] font-semibold text-ink">
+                    {f.question}
+                    <ChevronDown size={20} className="shrink-0 text-brand transition group-open:rotate-180" />
+                  </summary>
+                  <p className="mt-3 text-[15px] leading-relaxed text-gray-600">{f.answer}</p>
+                </details>
               ))}
             </div>
-            <div className="text-center mt-12"><Link href="/services" className="text-[var(--brand-2)] font-semibold hover:underline text-sm">Explore all services &rarr;</Link></div>
           </div>
         </section>
 
-        {/* ===== TESTIMONIALS ===== */}
-        <section id="testimonials-section" className="py-24">
-          <div className="max-w-7xl mx-auto px-5 lg:px-8">
-            <div className="text-center max-w-2xl mx-auto">
-              <span className="text-[var(--brand-2)] text-xs font-semibold uppercase tracking-widest">Client Voices</span>
-              <h2 className="font-display text-3xl sm:text-4xl font-bold text-[var(--text-primary)] mt-3">Trusted by teams worldwide</h2>
-            </div>
-          </div>
-          <TestimonialsCarousel />
-        </section>
-
-        {/* ===== SCHEDULE A CALL ===== */}
-        <section id="schedule" className="max-w-7xl mx-auto px-5 lg:px-8 py-24">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="text-[var(--brand-2)] text-xs font-semibold uppercase tracking-widest">Book Your Free Call</span>
-            <h2 className="font-display text-3xl sm:text-4xl font-bold text-[var(--text-primary)] mt-3">Schedule time with our team</h2>
-            <p className="text-[var(--text-secondary)] mt-4">Pick a time that works best for you. We&apos;ll discuss your project, goals, and how we can help.</p>
-          </div>
-          <ScheduleWidget />
-        </section>
-
-        {/* ===== FINAL CTA ===== */}
-        <section className="max-w-7xl mx-auto px-5 lg:px-8 py-10 mb-10">
-          <div className="glass rounded-3xl p-12 text-center relative overflow-hidden tilt-hover">
-            <div className="glow-orb bg-[var(--brand)] w-72 h-72 -top-20 left-1/2 -translate-x-1/2 float" />
-            <h2 className="font-display text-3xl sm:text-4xl font-bold text-[var(--text-primary)] relative">Ready to build something great?</h2>
-            <p className="text-[var(--text-secondary)] mt-4 max-w-lg mx-auto relative">Tell us about your project and we&apos;ll get back within 24 hours with a clear plan and quote.</p>
-            <div className="flex flex-wrap justify-center gap-4 mt-8 relative">
-              <Link href="/contact#schedule" className="btn-primary px-7 py-3.5 rounded-xl">Book a Free Call</Link>
-              <Link href="/pricing" className="btn-ghost px-7 py-3.5 rounded-xl">See Pricing</Link>
-            </div>
-          </div>
+        {/* ===== CTA ===== */}
+        <section className="relative overflow-hidden bg-ink py-24 text-center text-white">
+          <div className="absolute inset-0 opacity-30"><Image src="/images/hero-agency.jpg" alt="" fill sizes="100vw" className="object-cover" /></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-ink/80 to-ink/95" />
+          <Reveal className="relative mx-auto max-w-3xl px-6">
+            <h3 className="text-[32px] font-bold leading-tight sm:text-[42px]">Would you like to start a project with us?</h3>
+            <p className="mx-auto mt-5 max-w-xl text-[17px] text-white/75">Tell us about your business and we&apos;ll send you a free, no-obligation quote.</p>
+            <Link href="/contact" className="mt-9 inline-block rounded-full bg-brand px-9 py-4 text-[15px] font-semibold text-ink transition hover:-translate-y-0.5 hover:bg-brand-2 hover:shadow-[0_10px_30px_rgba(255,184,12,0.4)]">Get a Quote</Link>
+          </Reveal>
         </section>
       </main>
     </>

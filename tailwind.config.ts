@@ -14,6 +14,7 @@ const config: Config = {
         'brand-2': 'var(--brand-2, #FFCB4D)', // Cyan secondary
         // Dark theme background
         dark: '#07070A',
+        ink: '#0B0F19',
         // Light theme background
         light: '#fff',
       },
@@ -33,9 +34,9 @@ const config: Config = {
       },
       // ===== Typography =====
       fontFamily: {
-        sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
-        display: ['Instrument Serif', 'Georgia', 'serif'],
-        serif: ['Instrument Serif', 'Georgia', 'serif'],
+        sans: ['Poppins', 'system-ui', 'sans-serif'],
+        display: ['Poppins', 'system-ui', 'sans-serif'],
+        serif: ['Poppins', 'system-ui', 'sans-serif'],
       },
       fontSize: {
         // Headings (display)
