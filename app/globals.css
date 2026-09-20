@@ -221,6 +221,54 @@ select:disabled {
   border-color: rgba(255, 255, 255, 0.1);
 }
 
+/* Header, Footer, the preloader and any section on the fixed dark "ink"
+   background (facts, final CTA, etc.) are permanently dark regardless of
+   theme, so they must keep light text/borders in light mode too — this
+   was previously missing, which made that copy render in the light
+   theme's near-black text color on top of the dark background. */
+[data-theme='light'] header .text-white,
+[data-theme='light'] header.text-white,
+[data-theme='light'] footer .text-white,
+[data-theme='light'] footer.text-white,
+[data-theme='light'] .bg-ink .text-white,
+[data-theme='light'] .bg-ink.text-white,
+[data-theme='light'] header .hover\:text-white:hover,
+[data-theme='light'] footer .hover\:text-white:hover,
+[data-theme='light'] .bg-ink .hover\:text-white:hover {
+  color: #ffffff;
+}
+[data-theme='light'] header .text-slate-200,
+[data-theme='light'] footer .text-slate-200,
+[data-theme='light'] .bg-ink .text-slate-200 {
+  color: #e2e8f0;
+}
+[data-theme='light'] header .text-slate-300,
+[data-theme='light'] header .text-slate-400,
+[data-theme='light'] footer .text-slate-300,
+[data-theme='light'] footer .text-slate-400,
+[data-theme='light'] .bg-ink .text-slate-300,
+[data-theme='light'] .bg-ink .text-slate-400 {
+  color: #cbd5e1;
+}
+[data-theme='light'] header .text-slate-500,
+[data-theme='light'] footer .text-slate-500,
+[data-theme='light'] .bg-ink .text-slate-500 {
+  color: #94a3b8;
+}
+[data-theme='light'] header .border-white\/10,
+[data-theme='light'] header .border-white\/5,
+[data-theme='light'] footer .border-white\/10,
+[data-theme='light'] footer .border-white\/5,
+[data-theme='light'] .bg-ink .border-white\/10,
+[data-theme='light'] .bg-ink .border-white\/5 {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+[data-theme='light'] header .hover\:bg-white\/5:hover,
+[data-theme='light'] footer .hover\:bg-white\/5:hover,
+[data-theme='light'] .bg-ink .hover\:bg-white\/5:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
 /* ===== Glow Orb (background decoration) ===== */
 .glow-orb {
   @apply absolute opacity-30 rounded-full blur-3xl pointer-events-none;

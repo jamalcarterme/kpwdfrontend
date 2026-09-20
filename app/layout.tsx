@@ -116,11 +116,13 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
 
-        {/* ===== Icons ===== */}
-        <link rel="icon" type="image/png" href="/assets/img/favicon.png" sizes="256x256" />
+        {/* ===== Icons (King Praise Web Design "KP" mark) ===== */}
         <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16" />
+        <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
+        <link rel="icon" type="image/png" href="/assets/img/favicon.png" sizes="256x256" />
         <link rel="shortcut icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" href="/assets/img/favicon.png" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
 
         {/* ===== Google Analytics (GA4) ===== */}
         <Script
