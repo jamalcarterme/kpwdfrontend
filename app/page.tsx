@@ -205,13 +205,13 @@ export default function HomePage() {
               <p className="mt-4 text-[17px] leading-relaxed text-gray-600">
                 We combine conversion-focused design with clean, maintainable code on the MERN stack (React, Node.js, MongoDB, Express.js) so your site ranks on Google and builds instant trust.
               </p>
-              <Link href="/contact#schedule" className="mt-8 inline-block rounded-full bg-brand px-8 py-3.5 text-[15px] font-semibold text-ink transition hover:-translate-y-0.5 hover:bg-brand-2 hover:shadow-[0_10px_30px_rgba(255,184,12,0.4)]">Book A Meeting</Link>
+              <Link href="/contact#schedule" className="mt-8 inline-block rounded-full bg-brand px-8 py-3.5 text-[15px] font-semibold text-white transition hover:-translate-y-0.5 hover:bg-brand-2 hover:shadow-[0_10px_30px_rgba(99,102,241,0.4)]">Book A Meeting</Link>
             </Reveal>
             <div className="grid gap-x-8 gap-y-10 sm:grid-cols-2">
               {helpServices.map((s, i) => (
                 <Reveal key={s.title} delay={i * 0.07}>
                   <Link href={s.href} className="group block">
-                    <span className="flex h-14 w-14 items-center justify-center rounded-xl bg-brand/15 text-brand transition group-hover:bg-brand group-hover:text-ink"><s.icon size={26} /></span>
+                    <span className="flex h-14 w-14 items-center justify-center rounded-xl bg-brand/15 text-brand transition group-hover:bg-brand group-hover:text-white"><s.icon size={26} /></span>
                     <h4 className="mt-4 text-[20px] font-semibold text-ink transition group-hover:text-brand-3">{s.title}</h4>
                     <p className="mt-2 text-[15px] leading-relaxed text-gray-600">{s.desc}</p>
                   </Link>
@@ -230,7 +230,7 @@ export default function HomePage() {
             </Reveal>
             <div className="mt-12"><FeaturedProjects /></div>
             <div className="mt-10 text-center">
-              <Link href="/portfolio" className="inline-block rounded-full bg-brand px-8 py-3.5 text-[15px] font-semibold text-ink transition hover:-translate-y-0.5 hover:bg-brand-2">Explore More</Link>
+              <Link href="/portfolio" className="inline-block rounded-full bg-brand px-8 py-3.5 text-[15px] font-semibold text-white transition hover:-translate-y-0.5 hover:bg-brand-2">Explore More</Link>
             </div>
           </div>
         </section>
@@ -309,7 +309,7 @@ export default function HomePage() {
           <Reveal className="relative mx-auto max-w-3xl px-6">
             <h3 className="text-[32px] font-bold leading-tight sm:text-[42px]">Would you like to start a project with us?</h3>
             <p className="mx-auto mt-5 max-w-xl text-[17px] text-white/75">Tell us about your business and we&apos;ll send you a free, no-obligation quote.</p>
-            <Link href="/contact" className="mt-9 inline-block rounded-full bg-brand px-9 py-4 text-[15px] font-semibold text-ink transition hover:-translate-y-0.5 hover:bg-brand-2 hover:shadow-[0_10px_30px_rgba(255,184,12,0.4)]">Get a Quote</Link>
+            <Link href="/contact" className="mt-9 inline-block rounded-full bg-brand px-9 py-4 text-[15px] font-semibold text-white transition hover:-translate-y-0.5 hover:bg-brand-2 hover:shadow-[0_10px_30px_rgba(99,102,241,0.4)]">Get a Quote</Link>
           </Reveal>
         </section>
       </main>

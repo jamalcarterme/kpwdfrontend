@@ -10,11 +10,11 @@ const config: Config = {
       // ===== Color System (from existing design) =====
       colors: {
         // Brand colors (matches existing CSS variables)
-        brand: 'var(--brand, #FFB80C)', // Emerald/teal primary
-        'brand-2': 'var(--brand-2, #FFCB4D)', // Cyan secondary
+        brand: 'var(--brand, #6366F1)', // Indigo primary
+        'brand-2': 'var(--brand-2, #8B93EE)', // Soft periwinkle secondary
         // Dark theme background
-        dark: '#07070A',
-        ink: '#0B0F19',
+        dark: '#0B0E1F',
+        ink: '#242B54',
         // Light theme background
         light: '#fff',
       },
@@ -85,15 +85,15 @@ const config: Config = {
         'lg': '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
         'xl': '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
         '2xl': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
-        'glow': '0 0 30px rgba(255, 184, 12, 0.3)',
-        'glow-cyan': '0 0 30px rgba(255, 203, 77, 0.3)',
+        'glow': '0 0 30px rgba(99, 102, 241, 0.35)',
+        'glow-cyan': '0 0 30px rgba(139, 147, 238, 0.35)',
         'inner': 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.05)',
         'none': 'none',
       },
       // ===== Gradients =====
       backgroundImage: {
-        'gradient-brand': 'linear-gradient(135deg, var(--brand, #FFB80C), var(--brand-2, #FFCB4D))',
-        'gradient-dark': 'linear-gradient(135deg, #07070A, #1A1A1F)',
+        'gradient-brand': 'linear-gradient(135deg, var(--brand, #6366F1), var(--brand-2, #8B93EE))',
+        'gradient-dark': 'linear-gradient(135deg, #0B0E1F, #242B54)',
       },
       // ===== Transitions =====
       transitionDuration: {

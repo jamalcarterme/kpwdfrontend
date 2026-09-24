@@ -48,6 +48,37 @@ export default function ServiceSlugPage({ params }: { params: { slug: string } }
         ))}
       </div>
 
+      <section className="mt-16">
+        <h2 className="font-display text-2xl font-semibold text-white mb-4">How we approach {service.serviceName.toLowerCase()}</h2>
+        <div className="space-y-4 text-slate-400 leading-relaxed">
+          <p>
+            We start every {service.serviceName.toLowerCase()} project with a short discovery conversation, not a generic
+            package sheet. That means understanding your customers, what they need to see or do on the page, and what a
+            realistic budget and timeline looks like for your specific business before we quote anything.
+          </p>
+          <p>
+            From there, you get a written scope and a fixed price, a design pass you sign off on before development starts,
+            and a build phase where the actual engineering happens — on the MERN stack (MongoDB, Express, React, Node.js)
+            for anything needing a database, logins or a dashboard, or hand-coded HTML, Tailwind CSS and JavaScript for fast,
+            lightweight marketing pages that do not need a backend.
+          </p>
+          <p>
+            Every {service.serviceName.toLowerCase()} project includes on-page SEO fundamentals from day one — clean
+            semantic markup, fast load times and descriptive metadata — plus 30 days of free bug fixes after launch, so
+            small issues get resolved quickly without a separate support contract.
+          </p>
+        </div>
+      </section>
+
+      <section className="mt-16">
+        <h2 className="font-display text-2xl font-semibold text-white mb-4">Is {service.serviceName.toLowerCase()} right for your business?</h2>
+        <p className="text-slate-400 leading-relaxed">
+          If you are still deciding between this and a different service, the fastest way to know is a free discovery call —
+          we will tell you honestly if something simpler (or, occasionally, more involved) would actually serve your business
+          better than the service you started out asking about. There is no obligation to proceed afterward.
+        </p>
+      </section>
+
       {service.faqs && service.faqs.length > 0 && (
         <section className="mt-16">
           <h2 className="font-display text-xl font-semibold text-white mb-4">Frequently asked questions</h2>

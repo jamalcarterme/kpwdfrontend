@@ -11,6 +11,7 @@ interface Project {
   description?: string;
   isFeatured?: boolean;
   image?: { url?: string };
+  liveUrl?: string;
 }
 
 /** Portfolio carousel (image + title + description) shown on the homepage. */
@@ -30,6 +31,7 @@ export default function FeaturedProjects() {
     title: p.title,
     description: p.description,
     href: '/portfolio',
+    liveUrl: p.liveUrl,
   }));
 
   return <ImageCarousel slides={slides} />;

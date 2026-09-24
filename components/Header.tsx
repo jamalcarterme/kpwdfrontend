@@ -56,7 +56,7 @@ export default function Header() {
             </Link>
           ))}
         </nav>
-        <Link href="/contact" className="hidden rounded-full bg-brand px-6 py-2.5 text-[14px] font-semibold text-ink transition hover:bg-brand-2 hover:shadow-[0_8px_24px_rgba(255,184,12,0.35)] lg:inline-block">
+        <Link href="/contact" className="hidden rounded-full bg-brand px-6 py-2.5 text-[14px] font-semibold text-white transition hover:bg-brand-2 hover:shadow-[0_8px_24px_rgba(99,102,241,0.35)] lg:inline-block">
           Request Quote
         </Link>
         <button onClick={() => setOpen((o) => !o)} aria-label="Toggle menu" className="text-white lg:hidden">
@@ -70,7 +70,7 @@ export default function Header() {
               {nav.map((n) => (
                 <Link key={n.href} href={n.href} className={`rounded-lg px-3 py-3 text-[16px] font-medium ${active(n.href) ? 'bg-white/10 text-brand' : 'text-white/85'}`}>{n.label}</Link>
               ))}
-              <Link href="/contact" className="mt-3 rounded-full bg-brand px-6 py-3 text-center text-[14px] font-semibold text-ink">Request Quote</Link>
+              <Link href="/contact" className="mt-3 rounded-full bg-brand px-6 py-3 text-center text-[14px] font-semibold text-white">Request Quote</Link>
             </div>
           </motion.div>
         )}

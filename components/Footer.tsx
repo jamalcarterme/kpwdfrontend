@@ -28,7 +28,7 @@ export default function Footer() {
   const yearLabel = now > FOUNDED_YEAR ? `${FOUNDED_YEAR}–${now}` : `${FOUNDED_YEAR}`;
   const h = 'mb-5 text-[18px] font-semibold text-white';
   const a = 'text-[15px] text-white/65 transition hover:text-brand';
-  const soc = 'flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition hover:-translate-y-1 hover:bg-brand hover:text-ink';
+  const soc = 'flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition hover:-translate-y-1 hover:bg-brand hover:text-white';
   return (
     <footer className="bg-ink text-white">
       <div className="mx-auto grid max-w-[1240px] gap-12 px-6 py-16 md:grid-cols-2 lg:grid-cols-4">

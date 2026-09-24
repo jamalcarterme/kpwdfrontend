@@ -5,8 +5,25 @@
  */
 
 import { Metadata } from 'next';
+import { ChevronDown } from 'lucide-react';
 import { PAGE_META, generateMetadata, injectSchema, getBreadcrumbSchema } from '@/lib/seo';
 import ContactForm from '@/components/ContactForm';
+import ScheduleWidget from '@/components/ScheduleWidget';
+
+const afterYouSubmit = [
+  { title: 'We read your message the same day', text: 'Every enquiry lands in one inbox we check throughout the working day, so nothing sits unread for long, even over a weekend.' },
+  { title: 'You get a reply within 24 hours', text: 'We respond with clarifying questions if we need them, or a straightforward next step if your brief is already clear enough to quote from.' },
+  { title: 'We schedule a short call if useful', text: 'For anything beyond a very simple site, a 15-20 minute call is usually faster than a long email thread for nailing down scope.' },
+  { title: 'You receive a written quote', text: 'A fixed price and estimated timeline, based on what we discussed, with no obligation to proceed if it is not the right fit.' },
+];
+
+const contactFaqs = [
+  { q: 'What information should I include in my first message?', a: 'A short description of your business, what you want the website or app to do, any examples you like, and a rough budget or timeline if you have one. The more specific you are, the faster we can send an accurate quote.' },
+  { q: 'Do you offer a free consultation?', a: 'Yes, we offer a free discovery call to discuss your project before you commit to anything. You can request one through the contact form or by scheduling directly below.' },
+  { q: 'What is the best way to reach you urgently?', a: 'WhatsApp is fastest for time-sensitive questions. For anything that needs more detail — a full brief, files or reference links — email works better since it keeps a clear written record for both sides.' },
+  { q: 'Do you take calls with clients outside Nigeria?', a: 'Yes, we regularly take video and phone calls with clients in the US and other countries, scheduled around a time zone that works for both sides.' },
+  { q: 'How soon can you start on a new project?', a: 'This depends on our current workload, but we will always tell you honestly when we can start during our first conversation rather than after you have paid a deposit.' },
+];
 
 // ===== Metadata =====
 export const metadata: Metadata = generateMetadata(PAGE_META.contact);
@@ -113,6 +130,51 @@ export default function ContactPage() {
                 </div>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* ===== Schedule a Call ===== */}
+        <section id="schedule" className="py-20 sm:py-32">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="text-3xl font-bold mb-4">Prefer to Book a Call Directly?</h2>
+            <p className="text-slate-400 mb-10">Skip the back-and-forth and pick a time that works for you. We&apos;ll confirm by email or WhatsApp.</p>
+            <ScheduleWidget />
+          </div>
+        </section>
+
+        {/* ===== What Happens After You Submit ===== */}
+        <section className="py-20 sm:py-32 border-t border-[var(--border)]">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl font-bold text-center mb-4">What Happens After You Reach Out</h2>
+            <p className="text-slate-400 text-center max-w-2xl mx-auto mb-12">
+              We know reaching out to a new developer can feel uncertain, especially if you have been burned by slow
+              communication before. Here is exactly what to expect once you send that first message.
+            </p>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {afterYouSubmit.map((s, i) => (
+                <div key={s.title} className="glass p-6 rounded-2xl tilt-hover">
+                  <div className="text-[13px] font-bold uppercase tracking-widest text-brand">{String(i + 1).padStart(2, '0')}</div>
+                  <h3 className="mt-2 text-base font-semibold">{s.title}</h3>
+                  <p className="mt-2 text-sm text-slate-400 leading-relaxed">{s.text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ===== Contact FAQ ===== */}
+        <section className="py-20 sm:py-32 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-center mb-10">Contact FAQ</h2>
+          <div className="space-y-3">
+            {contactFaqs.map((f) => (
+              <details key={f.q} className="group rounded-xl border border-[var(--border)] px-6 py-5 open:shadow-md">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-[16px] font-semibold">
+                  {f.q}
+                  <ChevronDown size={20} className="shrink-0 text-brand transition group-open:rotate-180" />
+                </summary>
+                <p className="mt-3 text-[15px] leading-relaxed text-slate-400">{f.a}</p>
+              </details>
+            ))}
           </div>
         </section>
 

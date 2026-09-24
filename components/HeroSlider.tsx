@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 
 const slides = [
@@ -28,28 +28,59 @@ const slides = [
 export default function HeroSlider() {
   const [i, setI] = useState(0);
   const [paused, setPaused] = useState(false);
+  const resumeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const touchX = useRef<number | null>(null);
+
+  const resume = (delay = 4000) => {
+    if (resumeTimer.current) clearTimeout(resumeTimer.current);
+    resumeTimer.current = setTimeout(() => setPaused(false), delay);
+  };
+  const goTo = (idx: number) => {
+    setPaused(true);
+    setI((idx + slides.length) % slides.length);
+    resume();
+  };
+
   useEffect(() => {
     if (paused) return;
     const t = setInterval(() => setI((c) => (c + 1) % slides.length), 7000);
     return () => clearInterval(t);
   }, [paused]);
+
   const s = slides[i];
   return (
-    <div onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)} className="relative min-h-[420px] max-w-3xl">
+    <div
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => resume(1500)}
+      onTouchStart={(e) => {
+        setPaused(true);
+        touchX.current = e.touches[0].clientX;
+      }}
+      onTouchEnd={(e) => {
+        const start = touchX.current;
+        const end = e.changedTouches[0].clientX;
+        if (start !== null && Math.abs(start - end) > 40) {
+          setI((c) => (start - end > 0 ? (c + 1) % slides.length : (c - 1 + slides.length) % slides.length));
+        }
+        touchX.current = null;
+        resume();
+      }}
+      className="relative min-h-[420px] max-w-3xl"
+    >
       <AnimatePresence mode="wait">
         <motion.div key={i} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.6 }}>
           <h4 className="text-[15px] font-semibold uppercase tracking-[0.18em] text-brand">{s.eyebrow}</h4>
           <h1 className="mt-5 text-[38px] font-bold leading-[1.12] text-white sm:text-[54px]">{s.title}</h1>
           <p className="mt-6 max-w-2xl text-[17px] leading-relaxed text-white/80">{s.text}</p>
           <div className="mt-9 flex flex-wrap gap-4">
-            <Link href={s.cta[1]} className="rounded-full bg-brand px-8 py-3.5 text-[15px] font-semibold text-ink transition hover:-translate-y-0.5 hover:bg-brand-2 hover:shadow-[0_10px_30px_rgba(255,184,12,0.4)]">{s.cta[0]}</Link>
+            <Link href={s.cta[1]} className="rounded-full bg-brand px-8 py-3.5 text-[15px] font-semibold text-white transition hover:-translate-y-0.5 hover:bg-brand-2 hover:shadow-[0_10px_30px_rgba(99,102,241,0.4)]">{s.cta[0]}</Link>
             <Link href="/contact" className="rounded-full border border-white/50 px-8 py-3.5 text-[15px] font-semibold text-white transition hover:border-brand hover:text-brand">Get a Free Quote</Link>
           </div>
         </motion.div>
       </AnimatePresence>
       <div className="mt-10 flex gap-2.5">
         {slides.map((_, idx) => (
-          <button key={idx} onClick={() => setI(idx)} aria-label={`Slide ${idx + 1}`} className={`h-1.5 rounded-full transition-all ${idx === i ? 'w-10 bg-brand' : 'w-4 bg-white/40'}`} />
+          <button key={idx} onClick={() => goTo(idx)} aria-label={`Slide ${idx + 1}`} className={`h-1.5 rounded-full transition-all ${idx === i ? 'w-10 bg-brand' : 'w-4 bg-white/40'}`} />
         ))}
       </div>
     </div>

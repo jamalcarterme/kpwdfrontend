@@ -1,7 +1,24 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
+import { ChevronDown } from 'lucide-react';
 import { generateMetadata as buildMeta, PAGE_META } from '@/lib/seo';
+
+const process = [
+  { title: 'Discovery Call', text: 'We start with a short call or written brief to understand your business, your customers and what you actually need the site or app to do — not what a generic package says you should have.' },
+  { title: 'Scope & Fixed Quote', text: 'You get a written scope and a fixed price before any work begins, so there is no ambiguity about what is included or what counts as a change request later.' },
+  { title: 'Design', text: 'We design the structure and look of your key pages first and get your sign-off before writing production code, so revisions happen early when they are cheap.' },
+  { title: 'Build', text: 'Marketing sites are hand-coded in HTML/Tailwind/JavaScript for speed; anything needing a database, logins or an admin dashboard is built on the MERN stack.' },
+  { title: 'Launch & Support', text: 'We test across devices, connect your domain, and hand over with 30 days of free bug fixes plus a walkthrough of anything you will manage yourself.' },
+];
+
+const serviceFaqs = [
+  { q: 'How do I know which service I need?', a: 'Most clients start with a website. If you already have a site and are ready to sell online, take bookings, or manage clients through a dashboard, that is when custom software or e-commerce becomes the right next step. A free discovery call is the fastest way to figure out what fits your budget and goals.' },
+  { q: 'Can these services be combined into one project?', a: 'Yes — a large share of our work combines several of the services on this page into one build, such as a website with an integrated booking system and an admin dashboard, or an e-commerce store with SEO baked in from launch.' },
+  { q: 'Do you provide ongoing maintenance after launch?', a: 'Every project includes 30 days of free bug fixes. After that, ongoing maintenance, content updates and new features are available on a project or retainer basis, whichever suits how often you expect to need changes.' },
+  { q: 'What technology do you build with?', a: 'Marketing and brochure sites are typically hand-built with HTML, Tailwind CSS and vanilla JavaScript for speed. Anything requiring a database, user accounts or an admin dashboard is built on the MERN stack: MongoDB, Express, React (often via Next.js) and Node.js.' },
+  { q: 'Do you work with businesses outside Nigeria?', a: 'Yes. While most of our current clients are Nigerian businesses in Lagos, Abuja, Port Harcourt and beyond, we deliver every project remotely and have worked with clients in the US and other countries as well.' },
+];
 
 export const metadata: Metadata = buildMeta(PAGE_META.services);
 
@@ -101,6 +118,41 @@ export default function ServicesPage() {
         <p className="text-slate-400 mt-3 relative">Book a free discovery call and we&apos;ll help you scope the right solution.</p>
         <Link href="/contact#schedule" className="btn-primary inline-block mt-6 px-7 py-3.5 rounded-xl relative">Book a Free Call</Link>
       </div>
+
+      <section className="py-16 lg:py-20">
+        <div className="text-center max-w-2xl mx-auto">
+          <span className="text-[var(--brand-2)] text-xs font-semibold uppercase tracking-widest">Our Process</span>
+          <h2 className="font-display text-3xl sm:text-4xl font-bold text-white mt-3">From first call to launch</h2>
+          <p className="text-slate-400 mt-4 leading-relaxed">
+            Whichever service above fits your business, the path from a first conversation to a live site follows the same five
+            stages. It keeps things predictable for you and keeps us accountable to a real timeline instead of an open-ended one.
+          </p>
+        </div>
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
+          {process.map((p, i) => (
+            <div key={p.title} className="glass rounded-2xl p-6">
+              <div className="text-[13px] font-bold uppercase tracking-widest text-brand">{String(i + 1).padStart(2, '0')}</div>
+              <h3 className="mt-2 font-display text-base font-semibold text-white">{p.title}</h3>
+              <p className="mt-2 text-[13px] leading-relaxed text-slate-400">{p.text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="py-16 lg:py-20 max-w-3xl mx-auto">
+        <h2 className="text-center font-display text-3xl sm:text-4xl font-bold text-white">Services FAQ</h2>
+        <div className="mt-10 space-y-3">
+          {serviceFaqs.map((f) => (
+            <details key={f.q} className="group rounded-xl border border-white/10 bg-white/[0.03] px-6 py-5 open:shadow-md">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-[16px] font-semibold text-white">
+                {f.q}
+                <ChevronDown size={20} className="shrink-0 text-brand transition group-open:rotate-180" />
+              </summary>
+              <p className="mt-3 text-[15px] leading-relaxed text-slate-400">{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </section>
 
       <section className="py-16 lg:py-24">
         <div className="glass rounded-3xl p-12 text-center relative overflow-hidden tilt-hover">

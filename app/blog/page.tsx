@@ -7,9 +7,24 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
+import { ChevronDown } from 'lucide-react';
 import { PAGE_META, generateMetadata, injectSchema, getBreadcrumbSchema } from '@/lib/seo';
 import NewsletterForm from '@/components/NewsletterForm';
 import { SERVER_API_BASE } from '@/lib/api';
+import { fallbackBlogPosts } from '@/lib/data/fallback';
+
+const topics = [
+  { title: 'Pricing & Budgeting', text: 'What websites, e-commerce stores and custom software actually cost in Nigeria, and how to avoid overpaying for features you do not need.' },
+  { title: 'Industry Guides', text: 'What makes a website work for a specific type of business — law firms, real estate agencies, restaurants and med spas each have different priorities.' },
+  { title: 'E-Commerce & Payments', text: 'Practical breakdowns of Flutterwave, Paystack and building online stores that Nigerian shoppers actually trust and complete checkout on.' },
+  { title: 'SEO & Growth', text: 'On-page SEO fundamentals, structured data and the technical basics that help a small business site actually get found on Google.' },
+];
+
+const blogFaqs = [
+  { q: 'How often do you publish new articles?', a: 'We publish new guides and case studies as they become genuinely useful, rather than on a fixed schedule padded with filler content. Subscribe below to be notified when a new one goes up.' },
+  { q: 'Can I suggest a topic for the blog?', a: 'Yes — if there is a web design, SEO or software question you keep running into as a business owner, send it through our contact form and we may turn it into a full article.' },
+  { q: 'Are these articles specific to Nigeria, or useful anywhere?', a: 'Most of our guides are written with the Nigerian market in mind — local payment gateways, connectivity conditions and business types — but the underlying principles of good web design and SEO apply anywhere.' },
+];
 
 // ===== Metadata =====
 export const metadata: Metadata = generateMetadata(PAGE_META.blog);
@@ -87,7 +102,8 @@ function formatDate(dateString: string): string {
  * Blog Page Component
  */
 export default async function BlogPage() {
-  const posts = await getBlogPosts();
+  const fetched = await getBlogPosts();
+  const posts: BlogPost[] = fetched.length ? fetched : (fallbackBlogPosts as unknown as BlogPost[]);
 
   return (
     <>
@@ -106,6 +122,25 @@ export default async function BlogPage() {
             <p className="text-slate-400 text-lg max-w-2xl mx-auto">
               Tips, guides, and case studies on web design, SEO, e-commerce, and digital marketing for small businesses.
             </p>
+            <p className="text-slate-400 max-w-2xl mx-auto mt-4">
+              Everything here comes from real client work and the questions we get asked most often — how much a website
+              should cost in Nigeria, what a law firm or restaurant site actually needs, and how to set up online payments
+              without the checkout scaring customers off. No filler, no recycled listicles.
+            </p>
+          </div>
+        </section>
+
+        {/* ===== Popular Topics ===== */}
+        <section className="pb-4">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {topics.map((t) => (
+                <div key={t.title} className="glass p-6 rounded-2xl tilt-hover">
+                  <h3 className="text-base font-semibold">{t.title}</h3>
+                  <p className="mt-2 text-sm text-slate-400 leading-relaxed">{t.text}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -200,6 +235,22 @@ export default async function BlogPage() {
                 </Link>
               </div>
             )}
+          </div>
+        </section>
+
+        {/* ===== Blog FAQ ===== */}
+        <section className="py-16 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-bold text-center mb-8">Blog FAQ</h2>
+          <div className="space-y-3">
+            {blogFaqs.map((f) => (
+              <details key={f.q} className="group rounded-xl border border-[var(--border)] px-6 py-5 open:shadow-md">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-[16px] font-semibold">
+                  {f.q}
+                  <ChevronDown size={20} className="shrink-0 text-brand transition group-open:rotate-180" />
+                </summary>
+                <p className="mt-3 text-[15px] leading-relaxed text-slate-400">{f.a}</p>
+              </details>
+            ))}
           </div>
         </section>
 

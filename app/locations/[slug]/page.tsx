@@ -65,6 +65,48 @@ export default function LocationSlugPage({ params }: { params: { slug: string } 
         ))}
       </div>
 
+      <section className="mt-16">
+        <h2 className="font-display text-2xl font-semibold text-white mb-4">Why {location.cityName} businesses choose us</h2>
+        <div className="space-y-4 text-slate-400 leading-relaxed">
+          <p>
+            Every business in {location.cityName} is competing for attention with dozens of others in the same industry, most
+            of whom now have some kind of website. The businesses that actually win customers online are the ones whose sites
+            load fast, look credible on a phone screen, and make it obvious what to do next — call, message on WhatsApp, or
+            fill out a form. That is the standard we build every {location.cityName} project to.
+          </p>
+          <p>
+            We combine conversion-focused design with clean, maintainable code on the MERN stack (React, Node.js, MongoDB,
+            Express) for anything that needs a database or a dashboard, and hand-coded HTML, Tailwind CSS and JavaScript for
+            fast, lightweight marketing sites. Either way, every {location.cityName} project ships with on-page SEO
+            fundamentals — clean semantic markup, descriptive metadata, and structured data where relevant — so search
+            engines understand who you are and where you operate.
+          </p>
+          <p>
+            Because we work remotely, working with a {location.cityName} business does not mean waiting around for an
+            in-person meeting to get anything done. Discovery calls, design reviews and progress updates all happen over
+            phone, video call, email or WhatsApp, which usually means things move faster, not slower, than a traditional
+            local agency relationship.
+          </p>
+        </div>
+      </section>
+
+      <section className="mt-16">
+        <h2 className="font-display text-2xl font-semibold text-white mb-4">Our process for {location.cityName} clients</h2>
+        <div className="grid sm:grid-cols-2 gap-5">
+          {[
+            { t: 'Discovery Call', d: `We start with a short call to understand your ${location.cityName} business, your customers and what the site actually needs to do.` },
+            { t: 'Fixed Quote', d: 'You receive a written scope and a fixed price before any development work begins — no open-ended hourly billing.' },
+            { t: 'Design & Build', d: 'We design your key pages first for your sign-off, then build on clean code so the site stays fast and easy to maintain.' },
+            { t: 'Launch & Support', d: 'We test across devices, connect your domain, and include 30 days of free bug fixes after your site goes live.' },
+          ].map((s) => (
+            <div key={s.t} className="glass rounded-xl p-6">
+              <h3 className="text-white font-semibold">{s.t}</h3>
+              <p className="mt-2 text-sm text-slate-400 leading-relaxed">{s.d}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {location.faqs && location.faqs.length > 0 && (
         <section className="mt-16">
           <h2 className="font-display text-xl font-semibold text-white mb-4">Frequently asked questions</h2>
