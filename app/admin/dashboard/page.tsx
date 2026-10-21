@@ -78,10 +78,10 @@ const onboardingFields: FieldConfig[] = [
   { name: 'email', label: 'Client Email', type: 'email', required: true },
   { name: 'name', label: 'Client Name' },
   { name: 'domain', label: 'Domain', placeholder: 'clientsite.com' },
-  { name: 'expiryDate', label: 'Maintenance Expiry (min. 2 days ahead)', type: 'date', required: true },
+  { name: 'startDate', label: 'Plan Start Date (required for new clients)', type: 'date' },
   { name: 'amount', label: 'Renewal Amount (major units, e.g. 50000)', type: 'number' },
   { name: 'currency', label: 'Currency', type: 'select', options: ['NGN', 'USD', 'GHS', 'ZAR', 'KES'].map((c) => ({ value: c, label: c })) },
-  { name: 'renewalMonths', label: 'Renewal Period (months)', type: 'number' },
+  { name: 'renewalMonths', label: 'Maintenance Period (months, default 12)', type: 'number' },
   { name: 'notes', label: 'Notes', type: 'textarea' },
 ];
 
