@@ -19,8 +19,8 @@ export default function AdminLoginPage() {
     setIsLoading(true);
     try {
       const res: any = await endpoints.auth.adminLogin(email, password);
-      if (res?.token) {
-        api.setToken(res.token);
+      if (res?.accessToken || res?.token) {
+        api.setToken(res.accessToken || res.token);
         if (res.user) api.setUser(res.user);
         router.push('/admin/dashboard');
       } else {

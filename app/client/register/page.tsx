@@ -25,8 +25,8 @@ export default function ClientRegisterPage() {
         company: form.company || undefined,
         country: form.country || undefined,
       });
-      if (res?.token) {
-        api.setToken(res.token);
+      if (res?.accessToken || res?.token) {
+        api.setToken(res.accessToken || res.token);
         if (res.user) api.setUser(res.user);
         router.push('/client/dashboard');
       } else {

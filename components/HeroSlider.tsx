@@ -13,13 +13,6 @@ const slides = [
     cta: ['Book a Free Strategy Call', '/contact#schedule'],
   },
   {
-    img: '/images/team-photo.jpg',
-    alt: 'King Praise Web Design team',
-    eyebrow: 'Full-stack web development',
-    title: 'Custom Web Apps That Run Your Business.',
-    cta: ['Get a Free Quote', '/contact'],
-  },
-  {
     img: '/assets/img/portfolio-tasty-chops.png',
     alt: 'E-commerce website built by King Praise Web Design',
     eyebrow: 'E-commerce & SEO',

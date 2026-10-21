@@ -241,7 +241,7 @@ export default function HomePage() {
                 <div className="hex absolute inset-1 overflow-hidden"><Image src="/images/hero-agency.jpg" alt="KPWD team at work" fill sizes="(min-width:1024px) 30vw, 60vw" className="object-cover" /></div>
               </div>
               <div className="hex absolute bottom-0 right-0 h-[62%] w-[56%] bg-brand-2">
-                <div className="hex absolute inset-1 overflow-hidden"><Image src="/images/team-photo.jpg" alt="King Praise Web Design team" fill sizes="(min-width:1024px) 25vw, 50vw" className="object-cover" /></div>
+                <div className="hex absolute inset-1 overflow-hidden"><Image src="/assets/img/portfolio-tasty-chops.png" alt="Website built by King Praise Web Design" fill sizes="(min-width:1024px) 25vw, 50vw" className="object-cover" /></div>
               </div>
               <div className="absolute bottom-6 left-0 rounded-2xl bg-ink p-5 text-white shadow-2xl">
                 <p className="text-xs uppercase tracking-widest text-brand-2">Based in</p>
@@ -337,7 +337,7 @@ export default function HomePage() {
         </section>
 
         {/* ===== CTA ===== */}
-        <section className="parallax relative isolate overflow-hidden py-24 text-center text-white" style={{ backgroundImage: 'url(/images/team-photo.jpg)' }}>
+        <section className="parallax relative isolate overflow-hidden py-24 text-center text-white" style={{ backgroundImage: 'url(/assets/img/portfolio-tasty-chops.png)' }}>
           <div className="absolute inset-0 -z-10 bg-gradient-to-br from-ink/95 via-brand/80 to-ink/90" />
           <div className="hex-pattern absolute inset-0 -z-10" />
           <HexDeco className="left-4 top-6 h-40 w-40 text-brand-2" />
