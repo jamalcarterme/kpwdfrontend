@@ -20,6 +20,7 @@ const TABS = [
   'Bookings',
   'Messages',
   'Client Projects',
+  'Client Onboarding',
 ] as const;
 type Tab = (typeof TABS)[number];
 
@@ -72,6 +73,19 @@ const announcementFields: FieldConfig[] = [
   { name: 'isPinned', label: 'Pinned', type: 'checkbox' },
   { name: 'isActive', label: 'Active', type: 'checkbox' },
 ];
+
+const onboardingFields: FieldConfig[] = [
+  { name: 'email', label: 'Client Email', type: 'email', required: true },
+  { name: 'name', label: 'Client Name' },
+  { name: 'domain', label: 'Domain', placeholder: 'clientsite.com' },
+  { name: 'expiryDate', label: 'Maintenance Expiry (min. 2 days ahead)', type: 'date', required: true },
+  { name: 'amount', label: 'Renewal Amount (major units, e.g. 50000)', type: 'number' },
+  { name: 'currency', label: 'Currency', type: 'select', options: ['NGN', 'USD', 'GHS', 'ZAR', 'KES'].map((c) => ({ value: c, label: c })) },
+  { name: 'renewalMonths', label: 'Renewal Period (months)', type: 'number' },
+  { name: 'notes', label: 'Notes', type: 'textarea' },
+];
+
+const fmtDate = (d?: string) => (d ? new Date(d).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) : '');
 
 export default function AdminDashboardPage() {
   const router = useRouter();
@@ -223,6 +237,34 @@ export default function AdminDashboardPage() {
       {tab === 'Bookings' && <BookingsPanel />}
       {tab === 'Messages' && <MessagesPanel />}
       {tab === 'Client Projects' && <ClientProjectsPanel />}
+      {tab === 'Client Onboarding' && (
+        <EntityPanel
+          title="Client Onboarding"
+          addLabel="Onboard Client"
+          fields={onboardingFields}
+          columns={[
+            { key: 'email', label: 'Email' },
+            { key: 'domain', label: 'Domain' },
+            { key: 'expiryDate', label: 'Expires', render: (i: any) => fmtDate(i.expiryDate) },
+            { key: 'amount', label: 'Renewal', render: (i: any) => (i.amount ? `${i.currency} ${Number(i.amount).toLocaleString()}` : '—') },
+            { key: 'status', label: 'Status' },
+          ]}
+          list={() => endpoints.onboarding.list()}
+          create={async (payload) => {
+            const res: any = await endpoints.onboarding.create(payload);
+            alert(res.emailSent === false ? `Client saved, but the welcome email failed: ${res.emailError}` : 'Client onboarded. Welcome email sent.');
+          }}
+          update={(id, payload) => endpoints.onboarding.update(id, payload)}
+          remove={(id) => endpoints.onboarding.delete(id)}
+          extractList={(res: any) => res?.clients || []}
+          extraAction={(item: any) => (
+            <>
+              <button className="text-xs font-semibold text-emerald-400 hover:underline mr-3" onClick={async () => { try { await endpoints.onboarding.resendWelcome(item._id); alert('Welcome email sent'); } catch (e) { alert((e as Error).message); } }}>Welcome</button>
+              <button className="text-xs font-semibold text-amber-400 hover:underline mr-3" onClick={async () => { try { await endpoints.onboarding.sendReminder(item._id, 'week'); alert('Reminder sent'); } catch (e) { alert((e as Error).message); } }}>Remind</button>
+            </>
+          )}
+        />
+      )}
     </main>
   );
 }

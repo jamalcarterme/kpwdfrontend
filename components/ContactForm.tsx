@@ -1,9 +1,7 @@
 /**
  * Contact Form Component
  * Client Component ("use client")
- * Submits directly to Web3Forms using the real access key found in the
- * approved HTML source (kpwd-new-frontend/contact.html), matching the same
- * submission flow as assets/js/contact.js.
+ * Submits to Web3Forms.
  */
 
 'use client';
@@ -20,20 +18,28 @@ interface FormData {
   message: string;
 }
 
-const WEB3FORMS_ACCESS_KEY = 'a0229950-d9cf-46de-9e78-ef5964ef9cbb';
-
+// Posts to Web3Forms (https://web3forms.com). Set NEXT_PUBLIC_WEB3FORMS_KEY in .env.local / hosting env.
 async function submitContactForm(data: FormData) {
-  const response = await fetch('https://api.web3forms.com/submit', {
+  const key = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
+  if (!key) throw new Error('Contact form is not configured yet. Please email us directly.');
+  const res = await fetch('https://api.web3forms.com/submit', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-    body: JSON.stringify({ ...data, access_key: WEB3FORMS_ACCESS_KEY }),
+    body: JSON.stringify({
+      access_key: key,
+      subject: `New enquiry: ${data.service || 'Website'} — ${data.name}`,
+      from_name: 'King Praise Web Design Website',
+      name: data.name,
+      email: data.email,
+      business_or_phone: data.business,
+      country: data.country,
+      service: data.service,
+      message: data.message,
+    }),
   });
-
-  const result = await response.json();
-  if (!result.success) {
-    throw new Error(result.message || 'Failed to send message. Please try again.');
-  }
-  return result;
+  const json = await res.json().catch(() => ({}));
+  if (!res.ok || !json.success) throw new Error(json.message || 'Could not send your message. Please try again.');
+  return json;
 }
 
 export default function ContactForm() {

@@ -7,6 +7,13 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      keyframes: {
+        drift: { '0%': { transform: 'scale(1.05) translate(0,0)' }, '100%': { transform: 'scale(1.18) translate(-1.5%,-1%)' } },
+        float: { '0%,100%': { transform: 'translateY(0) rotate(0)' }, '50%': { transform: 'translateY(-18px) rotate(6deg)' } },
+        ring: { '0%': { transform: 'scale(1)', opacity: '.6' }, '100%': { transform: 'scale(1.9)', opacity: '0' } },
+        fadeUp: { '0%': { opacity: '0', transform: 'translateY(24px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
+      },
+      animation: { drift: 'drift 9s ease-out forwards', float: 'float 7s ease-in-out infinite', ring: 'ring 2s ease-out infinite', fadeUp: 'fadeUp .9s ease-out both' },
       // ===== Color System (from existing design) =====
       colors: {
         // Brand colors (matches existing CSS variables)
@@ -35,7 +42,7 @@ const config: Config = {
       // ===== Typography =====
       fontFamily: {
         sans: ['Poppins', 'system-ui', 'sans-serif'],
-        display: ['Poppins', 'system-ui', 'sans-serif'],
+        display: ['Sora', 'Poppins', 'system-ui', 'sans-serif'],
         serif: ['Poppins', 'system-ui', 'sans-serif'],
       },
       fontSize: {

@@ -1,88 +1,79 @@
 'use client';
-
-import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
-import { AnimatePresence, motion } from 'motion/react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const slides = [
   {
+    img: '/images/hero-agency.jpg',
+    alt: 'Web design agency team collaborating over laptops',
     eyebrow: 'Lagos · Serving 12+ countries',
     title: 'Built for Businesses Who Are Done Being Invisible Online.',
-    text: 'A premium website, e-commerce store or custom software build, engineered to make you the obvious choice in your market and turn visitors into paying clients. Designed with intent, built with clean code, shipped fast.',
     cta: ['Book a Free Strategy Call', '/contact#schedule'],
   },
   {
+    img: '/images/team-photo.jpg',
+    alt: 'King Praise Web Design team',
     eyebrow: 'Full-stack web development',
     title: 'Custom Web Apps That Run Your Business.',
-    text: 'From client portals to booking systems and admin dashboards, we build on the MERN stack (React, Node.js, MongoDB, Express) so your website works as hard as you do.',
     cta: ['Get a Free Quote', '/contact'],
   },
   {
+    img: '/assets/img/portfolio-tasty-chops.png',
+    alt: 'E-commerce website built by King Praise Web Design',
     eyebrow: 'E-commerce & SEO',
     title: 'Online Stores Built to Sell and Rank on Google.',
-    text: 'Secure checkout, online payments and on-page SEO from day one, so the right customers find you and buy from you with confidence.',
     cta: ['See Our Work', '/portfolio'],
   },
 ];
 
 export default function HeroSlider() {
   const [i, setI] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const resumeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const touchX = useRef<number | null>(null);
-
-  const resume = (delay = 4000) => {
-    if (resumeTimer.current) clearTimeout(resumeTimer.current);
-    resumeTimer.current = setTimeout(() => setPaused(false), delay);
-  };
-  const goTo = (idx: number) => {
-    setPaused(true);
-    setI((idx + slides.length) % slides.length);
-    resume();
-  };
-
-  useEffect(() => {
-    if (paused) return;
-    const t = setInterval(() => setI((c) => (c + 1) % slides.length), 7000);
-    return () => clearInterval(t);
-  }, [paused]);
-
-  const s = slides[i];
+  const touch = useRef<number | null>(null);
+  const n = slides.length;
+  useEffect(() => { const id = setInterval(() => setI((x) => (x + 1) % n), 6500); return () => clearInterval(id); }, [i, n]);
+  const go = (d: number) => setI((x) => (x + d + n) % n);
+  const t = slides[i];
   return (
-    <div
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => resume(1500)}
-      onTouchStart={(e) => {
-        setPaused(true);
-        touchX.current = e.touches[0].clientX;
-      }}
+    <section
+      id="hero"
+      aria-label="Hero"
+      className="relative min-h-[100svh] overflow-hidden bg-ink text-white"
+      onTouchStart={(e) => (touch.current = e.touches[0].clientX)}
       onTouchEnd={(e) => {
-        const start = touchX.current;
-        const end = e.changedTouches[0].clientX;
-        if (start !== null && Math.abs(start - end) > 40) {
-          setI((c) => (start - end > 0 ? (c + 1) % slides.length : (c - 1 + slides.length) % slides.length));
-        }
-        touchX.current = null;
-        resume();
+        if (touch.current === null) return;
+        const d = e.changedTouches[0].clientX - touch.current;
+        if (Math.abs(d) > 50) go(d < 0 ? 1 : -1);
+        touch.current = null;
       }}
-      className="relative min-h-[420px] max-w-3xl"
     >
-      <AnimatePresence mode="wait">
-        <motion.div key={i} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.6 }}>
-          <h4 className="text-[15px] font-semibold uppercase tracking-[0.18em] text-brand">{s.eyebrow}</h4>
-          <h1 className="mt-5 text-[38px] font-bold leading-[1.12] text-white sm:text-[54px]">{s.title}</h1>
-          <p className="mt-6 max-w-2xl text-[17px] leading-relaxed text-white/80">{s.text}</p>
-          <div className="mt-9 flex flex-wrap gap-4">
-            <Link href={s.cta[1]} className="rounded-full bg-brand px-8 py-3.5 text-[15px] font-semibold text-white transition hover:-translate-y-0.5 hover:bg-brand-2 hover:shadow-[0_10px_30px_rgba(99,102,241,0.4)]">{s.cta[0]}</Link>
-            <Link href="/contact" className="rounded-full border border-white/50 px-8 py-3.5 text-[15px] font-semibold text-white transition hover:border-brand hover:text-brand">Get a Free Quote</Link>
+      {slides.map((s, k) => (
+        <div key={s.img} className={`absolute inset-0 transition-opacity duration-[1400ms] ${k === i ? 'opacity-100' : 'opacity-0'}`}>
+          <div className={`absolute inset-0 ${k === i ? 'animate-drift' : ''}`}>
+            <Image src={s.img} alt={s.alt} fill priority={k === 0} sizes="100vw" className="object-cover" />
           </div>
-        </motion.div>
-      </AnimatePresence>
-      <div className="mt-10 flex gap-2.5">
-        {slides.map((_, idx) => (
-          <button key={idx} onClick={() => goTo(idx)} aria-label={`Slide ${idx + 1}`} className={`h-1.5 rounded-full transition-all ${idx === i ? 'w-10 bg-brand' : 'w-4 bg-white/40'}`} />
-        ))}
+        </div>
+      ))}
+      <div className="absolute inset-0 bg-ink/60" />
+      <div className="absolute inset-0 bg-gradient-to-b from-ink/60 via-transparent to-ink/60" />
+      <div className="hex-pattern absolute inset-0 opacity-50" />
+      <div className="relative flex min-h-[100svh] items-center justify-center px-6 text-center">
+        <div key={i} className="max-w-3xl">
+          <p className="animate-fadeUp text-xs font-bold uppercase tracking-[.3em] text-brand-2 sm:text-sm">{t.eyebrow}</p>
+          {i === 0 ? (
+            <h1 className="animate-fadeUp mt-8 font-display text-3xl font-light leading-snug tracking-wide text-white [animation-delay:.15s] sm:text-5xl lg:text-6xl">{t.title}</h1>
+          ) : (
+            <p className="animate-fadeUp mt-8 font-display text-3xl font-light leading-snug tracking-wide text-white [animation-delay:.15s] sm:text-5xl lg:text-6xl">{t.title}</p>
+          )}
+          <Link href={t.cta[1]} className="animate-fadeUp mt-10 inline-block rounded-md bg-brand px-10 py-4 text-sm font-medium text-white shadow-lg shadow-brand/30 transition hover:-translate-y-0.5 hover:bg-brand-2 [animation-delay:.3s]">{t.cta[0]}</Link>
+        </div>
       </div>
-    </div>
+      <div className="absolute inset-x-0 bottom-8 z-10 flex items-center justify-center gap-3">
+        {slides.map((_, k) => <button key={k} aria-label={`Slide ${k + 1}`} onClick={() => setI(k)} className={`h-3.5 w-3.5 transition-all duration-300 ${k === i ? 'scale-110 bg-white' : 'bg-white/40 hover:bg-white/70'}`} />)}
+      </div>
+      <button aria-label="Previous slide" onClick={() => go(-1)} className="absolute left-6 top-1/2 hidden h-12 w-12 -translate-y-1/2 place-items-center rounded-full border border-white/30 transition hover:bg-white hover:text-ink md:grid"><ChevronLeft className="h-5 w-5" /></button>
+      <button aria-label="Next slide" onClick={() => go(1)} className="absolute right-6 top-1/2 hidden h-12 w-12 -translate-y-1/2 place-items-center rounded-full border border-white/30 transition hover:bg-white hover:text-ink md:grid"><ChevronRight className="h-5 w-5" /></button>
+    </section>
   );
 }

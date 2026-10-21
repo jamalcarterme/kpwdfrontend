@@ -18,7 +18,8 @@ import Reveal from '@/components/Reveal';
 import HeroSlider from '@/components/HeroSlider';
 import Counter from '@/components/Counter';
 import TeamGrid from '@/components/TeamGrid';
-import { Palette, Code2, Megaphone, Smartphone, ShoppingCart, LifeBuoy, CheckCircle2, ChevronDown } from 'lucide-react';
+import { Palette, Code2, Megaphone, Smartphone, ShoppingCart, LifeBuoy, Check, ChevronDown, ArrowRight } from 'lucide-react';
+import { HexDeco, SectionHead } from '@/components/Ui';
 
 // ===== Metadata =====
 export const metadata: Metadata = generateMetadata(PAGE_META.home);
@@ -172,6 +173,13 @@ const why = [
   'Transparent pricing from ₦50K for small business sites',
 ];
 
+const steps = [
+  { t: 'Consult', d: 'Share your goals, budget and timeline on a free call.' },
+  { t: 'Design', d: 'We map the pages and craft a conversion-focused design.' },
+  { t: 'Build', d: 'Clean MERN-stack development with SEO baked in.' },
+  { t: 'Launch', d: 'Go live fast, with 30 days of free bug fixes.' },
+];
+
 export default function HomePage() {
   return (
     <>
@@ -183,37 +191,30 @@ export default function HomePage() {
       {injectSchema(websiteSchema)}
       {injectSchema(itemListSchema)}
       <main>
-        {/* ===== HERO ===== */}
-        <section id="hero" aria-label="Hero" className="relative flex min-h-screen items-center overflow-hidden bg-ink pt-24">
-          <div className="absolute inset-0 animate-[kenburns_14s_ease-out_forwards]">
-            <Image src="/images/hero-agency.jpg" alt="Web design agency team collaborating over laptops" fill priority sizes="100vw" className="object-cover" />
-          </div>
-          <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/70 to-ink/40" />
-          <div className="relative mx-auto w-full max-w-[1240px] px-6 py-20">
-            <HeroSlider />
-          </div>
-        </section>
+        <HeroSlider />
 
-        {/* ===== HOW CAN WE HELP ===== */}
-        <section id="services" className="bg-white py-24">
-          <div className="mx-auto grid max-w-[1240px] gap-14 px-6 lg:grid-cols-[1fr_1.4fr]">
-            <Reveal>
-              <h2 className="text-[34px] font-bold leading-tight text-ink sm:text-[42px]">How can we help you?</h2>
-              <p className="mt-5 text-[17px] leading-relaxed text-gray-600">
-                We&apos;re a premium web design and software studio based in Lagos, working with law firms, real estate agencies, churches, restaurants and small businesses worldwide. No AI slop. No cookie-cutter templates. Just work that converts.
+        {/* ===== SERVICES ===== */}
+        <section id="services" className="relative overflow-hidden bg-white py-24">
+          <HexDeco className="-left-16 top-24 h-64 w-64 text-brand-2" />
+          <HexDeco className="-right-16 bottom-10 h-72 w-72 text-brand" />
+          <div className="relative mx-auto max-w-6xl px-6">
+            <Reveal className="mx-auto max-w-3xl text-center">
+              <h2 className="text-3xl font-bold text-ink sm:text-4xl">How can we help you?</h2>
+              <p className="mt-6 text-lg leading-relaxed text-gray-600">
+                We&apos;re a premium web design and software studio based in Lagos, working with law firms, real estate agencies, churches, restaurants and small businesses worldwide. Clean MERN-stack code, conversion-focused design and SEO from day one, so your site ranks on Google and builds instant trust.
               </p>
-              <p className="mt-4 text-[17px] leading-relaxed text-gray-600">
-                We combine conversion-focused design with clean, maintainable code on the MERN stack (React, Node.js, MongoDB, Express.js) so your site ranks on Google and builds instant trust.
-              </p>
-              <Link href="/contact#schedule" className="mt-8 inline-block rounded-full bg-brand px-8 py-3.5 text-[15px] font-semibold text-white transition hover:-translate-y-0.5 hover:bg-brand-2 hover:shadow-[0_10px_30px_rgba(99,102,241,0.4)]">Book A Meeting</Link>
             </Reveal>
-            <div className="grid gap-x-8 gap-y-10 sm:grid-cols-2">
+            <div className="mt-16 grid gap-x-10 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
               {helpServices.map((s, i) => (
-                <Reveal key={s.title} delay={i * 0.07}>
-                  <Link href={s.href} className="group block">
-                    <span className="flex h-14 w-14 items-center justify-center rounded-xl bg-brand/15 text-brand transition group-hover:bg-brand group-hover:text-white"><s.icon size={26} /></span>
-                    <h4 className="mt-4 text-[20px] font-semibold text-ink transition group-hover:text-brand-3">{s.title}</h4>
+                <Reveal key={s.title} delay={(i % 3) * 0.12}>
+                  <Link href={s.href} className="group block text-center">
+                    <span className="relative mx-auto grid h-28 w-24 place-items-center">
+                      <span className="hex absolute inset-0 bg-gradient-to-br from-brand to-brand-2 transition group-hover:scale-110" />
+                      <s.icon className="relative h-9 w-9 text-white" />
+                    </span>
+                    <h3 className="mt-6 text-xl font-bold text-ink transition group-hover:text-brand">{s.title}</h3>
                     <p className="mt-2 text-[15px] leading-relaxed text-gray-600">{s.desc}</p>
+                    <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-brand">Learn more <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" /></span>
                   </Link>
                 </Reveal>
               ))}
@@ -224,36 +225,78 @@ export default function HomePage() {
         {/* ===== PORTFOLIO ===== */}
         <section id="portfolio" className="bg-[#F4F6FA] py-24">
           <div className="mx-auto max-w-[1240px] px-6">
-            <Reveal className="mx-auto max-w-2xl text-center">
-              <h2 className="text-[34px] font-bold text-ink sm:text-[42px]">Portfolio</h2>
-              <p className="mt-4 text-[17px] text-gray-600">A look at what we&apos;ve shipped for clients across industries and continents.</p>
-            </Reveal>
-            <div className="mt-12"><FeaturedProjects /></div>
+            <SectionHead eyebrow="Our Work" title="Featured Projects" sub="A look at what we've shipped for clients across industries and continents." />
+            <FeaturedProjects />
             <div className="mt-10 text-center">
-              <Link href="/portfolio" className="inline-block rounded-full bg-brand px-8 py-3.5 text-[15px] font-semibold text-white transition hover:-translate-y-0.5 hover:bg-brand-2">Explore More</Link>
+              <Link href="/portfolio" className="btn bg-ink text-white hover:bg-brand">View All Projects <ArrowRight className="h-4 w-4" /></Link>
             </div>
           </div>
         </section>
 
-        {/* ===== FACTS (counters) ===== */}
-        <section id="facts" className="relative overflow-hidden bg-ink py-24 text-white">
-          <div className="absolute inset-0 opacity-25"><Image src="/images/hero-agency.jpg" alt="" fill sizes="100vw" className="object-cover" /></div>
-          <div className="absolute inset-0 bg-ink/80" />
-          <div className="relative mx-auto grid max-w-[1240px] items-center gap-14 px-6 lg:grid-cols-2">
-            <Reveal>
-              <h2 className="text-[34px] font-bold leading-tight sm:text-[42px]">Why Businesses Choose KPWD</h2>
-              <p className="mt-4 text-[17px] text-white/70">Most web designers build pretty websites. We build websites that generate revenue.</p>
-              <ul className="mt-7 space-y-3">
-                {why.map((w) => <li key={w} className="flex gap-3 text-[16px] text-white/85"><CheckCircle2 size={20} className="mt-0.5 shrink-0 text-brand" />{w}</li>)}
-              </ul>
+        {/* ===== ABOUT ===== */}
+        <section className="relative overflow-hidden bg-white py-28">
+          <div className="mx-auto grid max-w-7xl items-center gap-16 px-6 lg:grid-cols-2 lg:px-8">
+            <Reveal className="relative mx-auto h-[30rem] w-full max-w-lg sm:h-[34rem]">
+              <div className="hex absolute left-0 top-0 h-[78%] w-[66%] bg-brand">
+                <div className="hex absolute inset-1 overflow-hidden"><Image src="/images/hero-agency.jpg" alt="KPWD team at work" fill sizes="(min-width:1024px) 30vw, 60vw" className="object-cover" /></div>
+              </div>
+              <div className="hex absolute bottom-0 right-0 h-[62%] w-[56%] bg-brand-2">
+                <div className="hex absolute inset-1 overflow-hidden"><Image src="/images/team-photo.jpg" alt="King Praise Web Design team" fill sizes="(min-width:1024px) 25vw, 50vw" className="object-cover" /></div>
+              </div>
+              <div className="absolute bottom-6 left-0 rounded-2xl bg-ink p-5 text-white shadow-2xl">
+                <p className="text-xs uppercase tracking-widest text-brand-2">Based in</p>
+                <p className="font-display text-2xl font-extrabold">Lagos, Nigeria</p>
+              </div>
             </Reveal>
-            <div className="grid grid-cols-2 gap-6">
+            <Reveal>
+              <span className="text-xs font-bold uppercase tracking-[.25em] text-brand">About KPWD</span>
+              <h2 className="mt-4 text-3xl font-bold leading-tight text-ink sm:text-4xl">Most designers build pretty websites. We build websites that generate revenue.</h2>
+              <ul className="mt-8 grid gap-3">
+                {why.map((w) => (
+                  <li key={w} className="flex items-center gap-3 font-medium text-ink">
+                    <span className="hex grid h-7 w-6 shrink-0 place-items-center bg-brand text-white"><Check className="h-3.5 w-3.5" /></span>{w}
+                  </li>
+                ))}
+              </ul>
+              <Link href="/about" className="btn mt-10 bg-ink text-white hover:bg-brand">More About Us <ArrowRight className="h-4 w-4" /></Link>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* ===== FACTS (parallax) ===== */}
+        <section id="facts" className="parallax relative isolate py-28 text-white" style={{ backgroundImage: 'url(/images/hero-agency.jpg)' }}>
+          <div className="absolute inset-0 -z-10 bg-ink/90" />
+          <div className="hex-pattern absolute inset-0 -z-10" />
+          <div className="mx-auto max-w-7xl px-6">
+            <Reveal className="mx-auto mb-14 max-w-2xl text-center">
+              <h2 className="text-3xl font-bold !text-white sm:text-4xl">Why Businesses Choose KPWD</h2>
+              <p className="mt-4 text-white/75">Results that keep clients coming back.</p>
+            </Reveal>
+            <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
               {facts.map((f, i) => (
-                <Reveal key={f.label} delay={i * 0.1}>
-                  <div className="rounded-2xl border border-white/15 bg-white/5 p-7 text-center backdrop-blur transition hover:-translate-y-1 hover:border-brand/60">
-                    <div className="text-[44px] font-bold leading-none text-brand sm:text-[52px]"><Counter to={f.to} decimals={f.decimals} suffix={f.suffix} /></div>
-                    <p className="mt-3 text-[15px] text-white/75">{f.label}</p>
+                <Reveal key={f.label} delay={i * 0.1} className="text-center">
+                  <div className="relative mx-auto grid h-32 w-28 place-items-center">
+                    <div className="hex absolute inset-0 bg-gradient-to-br from-brand to-brand-2" />
+                    <span className="relative font-display text-3xl font-extrabold text-white"><Counter to={f.to} decimals={f.decimals} suffix={f.suffix} /></span>
                   </div>
+                  <p className="mt-5 text-lg font-semibold text-white">{f.label}</p>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ===== PROCESS ===== */}
+        <section className="bg-white py-28">
+          <div className="mx-auto max-w-7xl px-6">
+            <Reveal className="mb-14 text-center"><h2 className="text-3xl font-bold text-ink sm:text-4xl">A simple, transparent process</h2></Reveal>
+            <div className="relative grid gap-10 md:grid-cols-4">
+              <div className="absolute left-[12%] right-[12%] top-12 hidden border-t-2 border-dashed border-brand-2/50 md:block" />
+              {steps.map((s, i) => (
+                <Reveal key={s.t} delay={i * 0.12} className="relative text-center">
+                  <div className="hex relative mx-auto grid h-24 w-[5.4rem] place-items-center bg-ink font-display text-3xl font-extrabold text-brand-2">0{i + 1}</div>
+                  <h3 className="mt-5 text-xl font-bold text-ink">{s.t}</h3>
+                  <p className="mt-2 text-sm text-gray-600">{s.d}</p>
                 </Reveal>
               ))}
             </div>
@@ -261,41 +304,32 @@ export default function HomePage() {
         </section>
 
         {/* ===== CUSTOMERS ===== */}
-        <section id="customers" className="bg-white py-24">
+        <section id="customers" className="bg-[#F4F6FA] py-24">
           <div className="mx-auto max-w-[1240px] px-6">
-            <Reveal className="mx-auto max-w-2xl text-center">
-              <h2 className="text-[34px] font-bold text-ink sm:text-[42px]">Our Customers</h2>
-              <p className="mt-4 text-[17px] text-gray-600">Businesses across Nigeria and beyond trust us to build their online presence.</p>
-            </Reveal>
-            <div className="mt-14"><TestimonialsCarousel /></div>
+            <SectionHead eyebrow="Testimonials" title="Our Customers" sub="Businesses across Nigeria and beyond trust us to build their online presence." />
+            <TestimonialsCarousel />
           </div>
         </section>
 
-        {/* ===== LEADERSHIP ===== */}
-        <section id="team" className="bg-[#F4F6FA] py-24">
+        {/* ===== TEAM ===== */}
+        <section id="team" className="bg-white py-24">
           <div className="mx-auto max-w-[1240px] px-6">
-            <Reveal className="mx-auto max-w-2xl text-center">
-              <h2 className="text-[34px] font-bold text-ink sm:text-[42px]">Meet Our Leadership</h2>
-              <p className="mt-4 text-[17px] text-gray-600">The people behind every conversion-focused website we ship.</p>
-            </Reveal>
-            <div className="mt-14"><TeamGrid /></div>
+            <SectionHead eyebrow="The Team" title="Meet Our Leadership" sub="The people behind every conversion-focused website we ship." />
+            <TeamGrid />
           </div>
         </section>
 
         {/* ===== FAQ (matches FAQ schema) ===== */}
-        <section className="bg-white py-24">
+        <section className="bg-[#F4F6FA] py-24">
           <div className="mx-auto max-w-3xl px-6">
-            <Reveal className="text-center">
-              <h2 className="text-[34px] font-bold text-ink sm:text-[42px]">Frequently Asked Questions</h2>
-            </Reveal>
-            <div className="mt-12 space-y-3">
+            <Reveal><h2 className="mb-10 text-center text-3xl font-bold text-ink sm:text-4xl">FAQs</h2></Reveal>
+            <div className="space-y-3">
               {faqs.map((f) => (
-                <details key={f.question} className="group rounded-xl border border-gray-200 bg-white px-6 py-5 open:shadow-md">
-                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-[17px] font-semibold text-ink">
-                    {f.question}
-                    <ChevronDown size={20} className="shrink-0 text-brand transition group-open:rotate-180" />
+                <details key={f.question} className="group overflow-hidden rounded-lg bg-ink text-white">
+                  <summary className="flex cursor-pointer list-none items-center gap-4 px-5 py-4 font-display font-semibold">
+                    <ChevronDown size={16} className="shrink-0 transition group-open:rotate-180" />{f.question}
                   </summary>
-                  <p className="mt-3 text-[15px] leading-relaxed text-gray-600">{f.answer}</p>
+                  <p className="border-t border-white/15 px-5 py-4 text-sm leading-relaxed text-white/80">{f.answer}</p>
                 </details>
               ))}
             </div>
@@ -303,13 +337,18 @@ export default function HomePage() {
         </section>
 
         {/* ===== CTA ===== */}
-        <section className="relative overflow-hidden bg-ink py-24 text-center text-white">
-          <div className="absolute inset-0 opacity-30"><Image src="/images/hero-agency.jpg" alt="" fill sizes="100vw" className="object-cover" /></div>
-          <div className="absolute inset-0 bg-gradient-to-b from-ink/80 to-ink/95" />
+        <section className="parallax relative isolate overflow-hidden py-24 text-center text-white" style={{ backgroundImage: 'url(/images/team-photo.jpg)' }}>
+          <div className="absolute inset-0 -z-10 bg-gradient-to-br from-ink/95 via-brand/80 to-ink/90" />
+          <div className="hex-pattern absolute inset-0 -z-10" />
+          <HexDeco className="left-4 top-6 h-40 w-40 text-brand-2" />
+          <HexDeco className="bottom-4 right-8 h-56 w-56 text-brand-2" />
           <Reveal className="relative mx-auto max-w-3xl px-6">
-            <h3 className="text-[32px] font-bold leading-tight sm:text-[42px]">Would you like to start a project with us?</h3>
-            <p className="mx-auto mt-5 max-w-xl text-[17px] text-white/75">Tell us about your business and we&apos;ll send you a free, no-obligation quote.</p>
-            <Link href="/contact" className="mt-9 inline-block rounded-full bg-brand px-9 py-4 text-[15px] font-semibold text-white transition hover:-translate-y-0.5 hover:bg-brand-2 hover:shadow-[0_10px_30px_rgba(99,102,241,0.4)]">Get a Quote</Link>
+            <h3 className="text-3xl font-bold !text-white sm:text-5xl">Would you like to start a project with us?</h3>
+            <p className="mx-auto mt-5 max-w-xl text-lg text-white/80">Tell us about your business and we&apos;ll send you a free, no-obligation quote.</p>
+            <div className="mt-9 flex flex-wrap justify-center gap-4">
+              <Link href="/contact" className="btn btn-primary">Get a Quote <ArrowRight className="h-4 w-4" /></Link>
+              <a href="https://wa.me/2349030232048" target="_blank" rel="noopener noreferrer" className="btn border border-white/40 text-white backdrop-blur hover:bg-white hover:text-ink">WhatsApp Us</a>
+            </div>
           </Reveal>
         </section>
       </main>

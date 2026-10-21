@@ -14,6 +14,7 @@ interface EntityPanelProps<T extends { _id: string }> {
   update: (id: string, payload: any, hasFile: boolean) => Promise<any>;
   remove: (id: string) => Promise<any>;
   extractList?: (res: any) => T[];
+  extraAction?: (item: T, reload: () => void) => React.ReactNode;
 }
 
 export default function EntityPanel<T extends { _id: string }>({
@@ -26,6 +27,7 @@ export default function EntityPanel<T extends { _id: string }>({
   update,
   remove,
   extractList,
+  extraAction,
 }: EntityPanelProps<T>) {
   const [items, setItems] = useState<T[] | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
@@ -84,6 +86,7 @@ export default function EntityPanel<T extends { _id: string }>({
           columns={columns}
           onEdit={(item) => { setEditing(item); setModalOpen(true); }}
           onDelete={handleDelete}
+          extraAction={extraAction ? (item) => extraAction(item, load) : undefined}
         />
       )}
 

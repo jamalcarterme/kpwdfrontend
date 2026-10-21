@@ -26,12 +26,14 @@ const YouTubeIcon = () => (
 export default function Footer() {
   const now = new Date().getFullYear();
   const yearLabel = now > FOUNDED_YEAR ? `${FOUNDED_YEAR}–${now}` : `${FOUNDED_YEAR}`;
-  const h = 'mb-5 text-[18px] font-semibold text-white';
-  const a = 'text-[15px] text-white/65 transition hover:text-brand';
-  const soc = 'flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition hover:-translate-y-1 hover:bg-brand hover:text-white';
+  const h = 'mb-5 font-display text-sm font-bold uppercase tracking-widest text-white';
+  const a = 'text-[15px] text-white/65 transition hover:text-brand-2';
+  const soc = 'grid h-11 w-11 place-items-center rounded-full border border-white/25 text-white transition hover:border-brand hover:bg-brand hover:text-white';
   return (
-    <footer className="bg-ink text-white">
-      <div className="mx-auto grid max-w-[1240px] gap-12 px-6 py-16 md:grid-cols-2 lg:grid-cols-4">
+    <div className="bg-white">
+    <footer className="relative overflow-hidden rounded-t-[50%_3.5rem] bg-ink pt-10 text-white">
+      <div className="hex-pattern absolute inset-0" />
+      <div className="relative mx-auto grid max-w-[1240px] gap-12 px-6 py-16 md:grid-cols-2 lg:grid-cols-4">
         <div>
           <Link href="/" className="flex items-center gap-2.5">
             <Image src="/assets/img/logo-icon.png" alt="King Praise Web Design" width={34} height={34} />
@@ -61,20 +63,21 @@ export default function Footer() {
         <div>
           <h4 className={h}>Get In Touch</h4>
           <ul className="space-y-4 text-[15px] text-white/65">
-            <li className="flex gap-3"><MapPin size={18} className="mt-0.5 shrink-0 text-brand" />Remote Company, Global Delivery</li>
-            <li className="flex gap-3"><Mail size={18} className="mt-0.5 shrink-0 text-brand" /><a href="mailto:kingpraisewebdesign@gmail.com" className="hover:text-brand">kingpraisewebdesign@gmail.com</a></li>
-            <li className="flex gap-3"><MessageCircle size={18} className="mt-0.5 shrink-0 text-brand" /><a href="https://wa.me/2349030232048" target="_blank" rel="noopener noreferrer" className="hover:text-brand">+234 903 023 2048 (NG/WhatsApp)</a></li>
-            <li className="flex gap-3"><Phone size={18} className="mt-0.5 shrink-0 text-brand" /><a href="tel:+16507064845" className="hover:text-brand">+1 650-706-4845 (US)</a></li>
+            <li className="flex gap-3"><MapPin size={18} className="mt-0.5 shrink-0 text-brand-2" />Remote Company, Global Delivery</li>
+            <li className="flex gap-3"><Mail size={18} className="mt-0.5 shrink-0 text-brand-2" /><a href="mailto:kingpraisewebdesign@gmail.com" className="hover:text-brand-2">kingpraisewebdesign@gmail.com</a></li>
+            <li className="flex gap-3"><MessageCircle size={18} className="mt-0.5 shrink-0 text-brand-2" /><a href="https://wa.me/2349030232048" target="_blank" rel="noopener noreferrer" className="hover:text-brand-2">+234 903 023 2048 (NG/WhatsApp)</a></li>
+            <li className="flex gap-3"><Phone size={18} className="mt-0.5 shrink-0 text-brand-2" /><a href="tel:+16507064845" className="hover:text-brand-2">+1 650-706-4845 (US)</a></li>
           </ul>
         </div>
       </div>
-      <div className="border-t border-white/10">
+      <div className="relative border-t border-white/10">
         <div className="mx-auto grid max-w-[1240px] gap-6 px-6 py-8 md:grid-cols-2">
-          <p className="text-[14px] leading-loose text-white/50"><b className="mr-2 text-white/80">Web design locations:</b>{locations.map(([l, h2], i) => <span key={h2}><Link href={h2} className="hover:text-brand">{l}</Link>{i < locations.length - 1 ? ' · ' : ''}</span>)}</p>
-          <p className="text-[14px] leading-loose text-white/50"><b className="mr-2 text-white/80">Industries:</b>{industries.map(([l, h2], i) => <span key={h2}><Link href={h2} className="hover:text-brand">{l}</Link>{i < industries.length - 1 ? ' · ' : ''}</span>)}</p>
+          <p className="text-[14px] leading-loose text-white/50"><b className="mr-2 text-white/80">Web design locations:</b>{locations.map(([l, h2], i) => <span key={h2}><Link href={h2} className="hover:text-brand-2">{l}</Link>{i < locations.length - 1 ? ' · ' : ''}</span>)}</p>
+          <p className="text-[14px] leading-loose text-white/50"><b className="mr-2 text-white/80">Industries:</b>{industries.map(([l, h2], i) => <span key={h2}><Link href={h2} className="hover:text-brand-2">{l}</Link>{i < industries.length - 1 ? ' · ' : ''}</span>)}</p>
         </div>
       </div>
-      <div className="border-t border-white/10 py-6 text-center text-[14px] text-white/50">&copy; {yearLabel} King Praise Web Design. All rights reserved.</div>
+      <div className="relative border-t border-white/10 py-6 text-center text-[14px] text-white/50">&copy; {yearLabel} King Praise Web Design. All rights reserved.</div>
     </footer>
+    </div>
   );
 }

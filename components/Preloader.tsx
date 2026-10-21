@@ -1,51 +1,26 @@
 'use client';
-
 import { useEffect, useState } from 'react';
-import Image from 'next/image';
-import { AnimatePresence, motion } from 'motion/react';
 
-/** Full-screen load animation: logo + progress counter, then the curtain slides up. */
+/** Three-dot load screen shown once per session, then fades out. */
 export default function Preloader() {
-  const [show, setShow] = useState(true);
-  const [pct, setPct] = useState(0);
-
+  const [phase, setPhase] = useState<'show' | 'fade' | 'gone'>('show');
+  const [dot, setDot] = useState(0);
   useEffect(() => {
-    document.body.style.overflow = 'hidden';
-    let raf = 0;
-    const start = performance.now();
-    const D = 1700;
-    const tick = (t: number) => {
-      const p = Math.min(1, (t - start) / D);
-      setPct(Math.round((1 - Math.pow(1 - p, 3)) * 100));
-      if (p < 1) raf = requestAnimationFrame(tick);
-      else setTimeout(() => { setShow(false); document.body.style.overflow = ''; }, 250);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => { cancelAnimationFrame(raf); document.body.style.overflow = ''; };
+    try {
+      if (sessionStorage.getItem('kpwd-loaded')) { setPhase('gone'); return; }
+      sessionStorage.setItem('kpwd-loaded', '1');
+    } catch {}
+    const d = setInterval(() => setDot((x) => (x + 1) % 3), 320);
+    const t1 = setTimeout(() => setPhase('fade'), 1500);
+    const t2 = setTimeout(() => setPhase('gone'), 2100);
+    return () => { clearInterval(d); clearTimeout(t1); clearTimeout(t2); };
   }, []);
-
+  if (phase === 'gone') return null;
   return (
-    <AnimatePresence>
-      {show && (
-        <motion.div
-          id="preloader"
-          key="preloader"
-          exit={{ y: '-100%' }}
-          transition={{ duration: 0.85, ease: [0.76, 0, 0.24, 1] }}
-          className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-ink text-white"
-        >
-          <motion.div initial={{ scale: 0.6, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.7 }}>
-            <Image src="/assets/img/logo-icon.png" alt="King Praise Web Design" width={72} height={72} priority />
-          </motion.div>
-          <motion.p initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="mt-5 text-lg font-semibold tracking-wide">
-            King Praise <span className="text-brand">Web Design</span>
-          </motion.p>
-          <div className="mt-8 h-[3px] w-56 overflow-hidden rounded-full bg-white/15">
-            <div className="h-full rounded-full bg-brand" style={{ width: `${pct}%` }} />
-          </div>
-          <p className="mt-3 text-sm tabular-nums text-white/60">{pct}%</p>
-        </motion.div>
-      )}
-    </AnimatePresence>
+    <div id="preloader" className={`fixed inset-0 z-[9999] grid place-items-center bg-ink transition-opacity duration-500 ${phase === 'fade' ? 'opacity-0' : 'opacity-100'}`}>
+      <div className="flex gap-4">
+        {[0, 1, 2].map((i) => <span key={i} className={`h-2.5 w-2.5 rounded-full transition-all duration-300 ${dot === i ? 'scale-125 bg-brand-2' : 'bg-brand-2/30'}`} />)}
+      </div>
+    </div>
   );
 }

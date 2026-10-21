@@ -28,6 +28,7 @@ import '@fontsource/poppins/500.css';
 import '@fontsource/poppins/600.css';
 import '@fontsource/poppins/700.css';
 import Preloader from '@/components/Preloader';
+import PageBanner from '@/components/PageBanner';
 
 // ===== Global Metadata =====
 export const metadata: Metadata = {
@@ -111,6 +112,9 @@ export default function RootLayout({
 
         {/* ===== Preconnect to External Services ===== */}
         <link rel="preconnect" href="https://res.cloudinary.com" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
 
         {/* ===== DNS Prefetch ===== */}
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
@@ -182,24 +186,12 @@ export default function RootLayout({
           />
         </noscript>
 
-        {/* ===== Page Loader (initial load only) ===== */}
-        <div
-          id="page-loader"
-          className="fixed inset-0 z-[9999] flex items-center justify-center bg-[var(--bg-primary)]"
-        >
-          <div className="loader-ring">
-            <img
-              src="/assets/img/logo-icon.png"
-              alt="Loading"
-              className="w-14 h-14 rounded-full object-cover"
-            />
-          </div>
-        </div>
 
         {/* ===== Main Content ===== */}
         <div className="flex flex-col min-h-screen">
           <Header />
-          <div className="flex-1">{children}</div>
+          <PageBanner />
+          <div className="flex-1 has-banner">{children}</div>
           <Footer />
         </div>
         <WhatsAppFloat />

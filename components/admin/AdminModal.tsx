@@ -24,7 +24,8 @@ export default function AdminModal({ title, fields, initial, onClose, onSubmit }
     const base: Record<string, any> = {};
     fields.forEach((f) => {
       if (f.type === 'file') return;
-      base[f.name] = initial?.[f.name] ?? (f.type === 'checkbox' ? false : '');
+      const v = initial?.[f.name] ?? (f.type === 'checkbox' ? false : '');
+      base[f.name] = f.type === 'date' && typeof v === 'string' ? v.slice(0, 10) : v;
     });
     return base;
   });

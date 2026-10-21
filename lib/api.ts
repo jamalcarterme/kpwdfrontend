@@ -338,6 +338,19 @@ export const endpoints = {
       api.del(`/client-projects/${id}/milestones/${milestoneId}`),
     addNote: (id: string, text: string) => api.post(`/client-projects/${id}/notes`, { text }),
   },
+
+  // Maintenance/renewal onboarding (admin only) + Paystack payment verification
+  onboarding: {
+    list: (status?: 'active' | 'expired') => api.get(`/onboarding${status ? `?status=${status}` : ''}`),
+    create: (data: unknown) => api.post('/onboarding', data),
+    update: (id: string, data: unknown) => api.put(`/onboarding/${id}`, data),
+    delete: (id: string) => api.del(`/onboarding/${id}`),
+    resendWelcome: (id: string) => api.post(`/onboarding/${id}/resend-welcome`, {}),
+    sendReminder: (id: string, kind: 'week' | 'day') => api.post(`/onboarding/${id}/send-reminder`, { kind }),
+  },
+  payments: {
+    verify: (reference: string) => api.get(`/payments/verify/${encodeURIComponent(reference)}`, { auth: false }),
+  },
 };
 
 export default api;
